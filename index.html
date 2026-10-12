@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<title>Clearline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a single column that reads like a tax form — Parts I–IV with ruled boxes — wrapped around one working product demo. */
+:root{
+  --paper:#F5F7F5; --panel:#FFFFFF; --ink:#16201C; --muted:#5A6661; --rule:#CBD3CF; --rule-strong:#16201C;
+  --flag:#F1BE3A; --flag-ink:#2A2108; --pen:#1E5A86;
+  --ok:#2E7A4E; --ok-bg:#E3F1E8; --warn:#9A6512; --warn-bg:#FBF0D9; --crit:#A83A2E; --crit-bg:#F8E3E0; --info:#2A5B88; --info-bg:#E2ECF5; --none:#5A6661; --none-bg:#ECEFED;
+  --display:"Archivo","Arial Narrow",Helvetica,Arial,sans-serif;
+  --body:"Public Sans",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --radius:4px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#111614; --panel:#18201D; --ink:#E7ECEA; --muted:#9BA7A1; --rule:#2D3833; --rule-strong:#C9D3CE;
+  --flag:#F2C24A; --flag-ink:#231B05; --pen:#8DBCE6;
+  --ok:#7CCB9A; --ok-bg:#183326; --warn:#E6B565; --warn-bg:#352812; --crit:#F0938A; --crit-bg:#3A1C19; --info:#93BDE6; --info-bg:#172A3D; --none:#A3AEA8; --none-bg:#222B27;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111614; --panel:#18201D; --ink:#E7ECEA; --muted:#9BA7A1; --rule:#2D3833; --rule-strong:#C9D3CE;
+  --flag:#F2C24A; --flag-ink:#231B05; --pen:#8DBCE6;
+  --ok:#7CCB9A; --ok-bg:#183326; --warn:#E6B565; --warn-bg:#352812; --crit:#F0938A; --crit-bg:#3A1C19; --info:#93BDE6; --info-bg:#172A3D; --none:#A3AEA8; --none-bg:#222B27;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:20px;padding-block:0 48px}
+.wrap{max-width:1040px;margin-inline:auto;display:flex;flex-direction:column;gap:72px}
+a{color:var(--pen)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+p{margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--pen);outline-offset:2px}
+
+/* masthead: form header */
+.mast{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:end;border-bottom:3px solid var(--rule-strong);padding-block:20px 10px}
+.formno{font-family:var(--display);font-stretch:62%;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
+.formno b{display:block;font-size:30px;letter-spacing:0;font-stretch:75%}
+.mast .mid{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-left:1px solid var(--rule);padding-left:16px}
+.mast .rev{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:right}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:start;padding-top:8px}
+.eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hero h1{font-size:clamp(40px,6.2vw,72px);font-weight:800;font-stretch:72%;letter-spacing:-.01em;margin-top:14px}
+.hero h1 mark{background:linear-gradient(transparent 58%,var(--flag) 58%,var(--flag) 92%,transparent 92%);color:inherit;padding-inline:2px}
+.hero .lede{font-size:19px;max-width:34em;margin-top:20px;color:var(--ink)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{font:600 15px/1 var(--body);padding:13px 18px;border-radius:var(--radius);border:1.5px solid var(--rule-strong);background:var(--panel);color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* threshold box: a form box */
+.box{border:1.5px solid var(--rule-strong);background:var(--panel)}
+.box-h{display:flex;justify-content:space-between;gap:8px;border-bottom:1.5px solid var(--rule-strong);padding:8px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.thr{padding:18px 16px;display:flex;flex-direction:column;gap:14px}
+.thr-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;border-bottom:1px dashed var(--rule);padding-bottom:10px}
+.thr-row:last-child{border-bottom:0;padding-bottom:0}
+.thr-row span{font-size:14px;color:var(--muted)}
+.thr-row strong{font-family:var(--mono);font-size:22px;font-weight:500}
+.thr-row s{color:var(--muted);font-family:var(--mono);font-size:15px;margin-right:8px}
+.thr small{font-size:12px;color:var(--muted);line-height:1.45}
+
+/* parts */
+.part-h{display:grid;grid-template-columns:auto 1fr;border:1.5px solid var(--rule-strong);margin-bottom:28px}
+.part-h .tag{background:var(--ink);color:var(--paper);font-family:var(--display);font-weight:800;font-stretch:70%;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;font-size:14px;display:flex;align-items:center}
+.part-h h2{font-size:clamp(20px,2.6vw,26px);font-weight:700;font-stretch:85%;padding:8px 14px}
+.intro{max-width:44em;color:var(--muted);margin-top:-12px;margin-bottom:24px}
+
+/* comparison */
+.compare{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+.compare table{min-width:560px;background:var(--panel);border:1.5px solid var(--rule-strong)}
+.compare th,.compare td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--rule);vertical-align:top;font-size:15px}
+.compare th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1.5px solid var(--rule-strong)}
+.compare td:first-child{color:var(--muted);font-size:14px;width:22%}
+.compare tr:last-child td{border-bottom:0}
+
+/* demo */
+.demo{border:1.5px solid var(--rule-strong);background:var(--panel)}
+.demo-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;border-bottom:1.5px solid var(--rule-strong);padding:10px 14px}
+.demo-top .who{font-size:13px;color:var(--muted)}
+.demo-top .who b{color:var(--ink)}
+.sample{font-size:11px;text-transform:uppercase;letter-spacing:.08em;background:var(--flag);color:var(--flag-ink);padding:4px 8px;font-weight:700;border-radius:2px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1.5px solid var(--rule-strong)}
+.step{background:none;border:0;border-right:1px solid var(--rule);padding:12px 14px;text-align:left;cursor:pointer;color:var(--muted);font:500 14px/1.3 var(--body);display:flex;gap:10px;align-items:center}
+.step:last-child{border-right:0}
+.step .n{font-family:var(--mono);font-size:12px;border:1px solid currentColor;width:22px;height:22px;display:inline-grid;place-items:center;border-radius:50%;flex:none}
+.step[aria-selected="true"]{color:var(--ink);font-weight:700;box-shadow:inset 0 -3px 0 var(--flag)}
+.step.done .n{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pane{padding:22px 20px;display:flex;flex-direction:column;gap:18px;min-height:420px}
+.pane h3{font-size:22px;font-weight:700;font-stretch:85%}
+.pane .sub{color:var(--muted);max-width:52em}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+.clients{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.client{border:1px solid var(--rule);padding:12px 14px;display:flex;flex-direction:column;gap:4px;border-radius:var(--radius)}
+.client b{font-size:15px}
+.client span{font-size:13px;color:var(--muted)}
+.meter{height:6px;background:var(--none-bg);border-radius:3px;overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;width:0;background:var(--ink);transition:width .5s linear}
+.log{font-family:var(--mono);font-size:13px;color:var(--muted);min-height:1.5em}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--rule)}
+.stat{padding:12px 14px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:2px}
+.stat:last-child{border-right:0}
+.stat strong{font-family:var(--mono);font-size:26px;font-weight:500}
+.stat span{font-size:13px;color:var(--muted)}
+.stat.crit strong{color:var(--crit)} .stat.ok strong{color:var(--ok)} .stat.warn strong{color:var(--warn)}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--rule)}
+.vt{min-width:720px}
+.vt th,.vt td{padding:10px 12px;border-bottom:1px solid var(--rule);text-align:left;font-size:14px;vertical-align:top}
+.vt th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);background:var(--paper)}
+.vt td.amt{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.vt th.amt{text-align:right}
+.vt tr:last-child td{border-bottom:0}
+.vt .client-cell{color:var(--muted);font-size:13px}
+.vt .why{color:var(--muted);font-size:13px;max-width:26em}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.chip.crit{background:var(--crit-bg);color:var(--crit)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.warn{background:var(--warn-bg);color:var(--warn)}
+.chip.info{background:var(--info-bg);color:var(--info)}
+.chip.none{background:var(--none-bg);color:var(--none)}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filt{font:500 13px/1 var(--body);border:1px solid var(--rule);background:var(--panel);color:var(--ink);padding:8px 12px;border-radius:999px;cursor:pointer}
+.filt[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+.sendgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px;align-items:start}
+.recips{display:flex;flex-direction:column;border:1px solid var(--rule)}
+.recip{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:10px 12px;border-bottom:1px solid var(--rule);align-items:start;cursor:pointer}
+.recip:last-child{border-bottom:0}
+.recip small{display:block;color:var(--muted);font-size:12px}
+.recip input{margin-top:4px;accent-color:var(--ink)}
+.email{border:1px solid var(--rule);background:var(--paper)}
+.email-h{padding:10px 14px;border-bottom:1px solid var(--rule);font-size:13px;display:flex;flex-direction:column;gap:2px}
+.email-h span{color:var(--muted)}
+.email-b{padding:16px 14px;font-size:14px;display:flex;flex-direction:column;gap:12px}
+.fakebtn{align-self:flex-start;background:var(--ink);color:var(--paper);padding:9px 14px;font-weight:600;font-size:13px;border-radius:var(--radius)}
+.email-f{font-size:12px;color:var(--muted);border-top:1px dashed var(--rule);padding-top:10px}
+
+.track-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+.pipeline{display:flex;gap:6px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.pipe{display:flex;gap:4px}
+.pipe i{width:16px;height:6px;border-radius:2px;background:var(--none-bg)}
+.pipe i.on{background:var(--ink)}
+.feed{border:1px solid var(--rule);display:flex;flex-direction:column;max-height:380px;overflow:auto}
+.feed-h{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;padding:10px 12px;border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0}
+.note{padding:10px 12px;border-bottom:1px solid var(--rule);font-size:13px;display:flex;flex-direction:column;gap:2px}
+.note time{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.note:last-child{border-bottom:0}
+.mini{font:600 12px/1 var(--body);padding:7px 10px;border-radius:var(--radius);border:1px solid var(--rule-strong);background:var(--panel);color:var(--ink);cursor:pointer}
+.mini.go{background:var(--ink);color:var(--paper)}
+.daybar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.day{font-family:var(--mono);font-size:13px;border:1px solid var(--rule);padding:6px 10px;border-radius:var(--radius)}
+
+/* how it works */
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1.5px solid var(--rule-strong);background:var(--panel)}
+.how>div{padding:18px 18px 20px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:8px}
+.how>div:last-child{border-right:0}
+.how .ln{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.how h3{font-size:19px;font-weight:700;font-stretch:85%}
+.how p{font-size:15px;color:var(--muted)}
+
+/* security */
+.sec{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.sec ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;border:1.5px solid var(--rule-strong);background:var(--panel)}
+.sec li{padding:12px 14px;border-bottom:1px solid var(--rule);font-size:15px;display:grid;grid-template-columns:auto 1fr;gap:10px}
+.sec li:last-child{border-bottom:0}
+.sec li::before{content:"✓";font-weight:700;color:var(--ok)}
+.sig{border:1.5px solid var(--rule-strong);background:var(--panel)}
+.sig .perj{padding:14px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--rule)}
+.sig .line{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:end;padding:16px 14px}
+.sig .here{background:var(--flag);color:var(--flag-ink);font-family:var(--display);font-weight:800;font-stretch:70%;text-transform:uppercase;font-size:13px;padding:6px 10px;letter-spacing:.06em;clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%);padding-right:18px}
+.sig .name{border-bottom:1.5px solid var(--rule-strong);font-family:var(--mono);font-size:15px;padding-bottom:4px}
+.sig .date{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+/* pricing */
+.price{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid var(--rule-strong);background:var(--panel)}
+.price>div{padding:20px 18px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:8px}
+.price>div:last-child{border-right:0}
+.price .amt{font-family:var(--mono);font-size:30px;font-weight:500}
+.price .amt small{font-size:13px;color:var(--muted)}
+.price h3{font-size:18px;font-weight:700;font-stretch:85%}
+.price p{font-size:14px;color:var(--muted)}
+.price .feat{box-shadow:inset 0 4px 0 var(--flag)}
+
+/* faq */
+.faq{display:flex;flex-direction:column;border:1.5px solid var(--rule-strong);background:var(--panel)}
+.faq details{border-bottom:1px solid var(--rule);padding:14px 16px}
+.faq details:last-child{border-bottom:0}
+.faq summary{cursor:pointer;font-weight:600}
+.faq details p{margin-top:8px;color:var(--muted);max-width:52em}
+
+/* cta */
+.cta{border:3px solid var(--rule-strong);background:var(--panel);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;padding:28px 24px;align-items:center}
+.cta h2{font-size:clamp(28px,4vw,40px);font-weight:800;font-stretch:72%}
+.cta p{color:var(--muted);margin-top:10px}
+.cta ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+
+footer{border-top:1.5px solid var(--rule-strong);padding-top:14px;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+@media (max-width:820px){
+  .hero,.sendgrid,.track-grid,.sec,.cta{grid-template-columns:1fr}
+  .how,.price{grid-template-columns:1fr}
+  .how>div,.price>div{border-right:0;border-bottom:1px solid var(--rule)}
+  .how>div:last-child,.price>div:last-child{border-bottom:0}
+  .clients{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .mast{grid-template-columns:auto 1fr}
+  .mast .rev{display:none}
+}
+@media (max-width:560px){
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .step:nth-child(2){border-right:0}
+  .step:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .mast .mid{display:none}
+  .wrap{gap:56px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.btn:hover{transform:none}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="formno">Clearline<b>W-9 Desk</b></div>
+  <div class="mid">For bookkeepers on QuickBooks Online · 1099 season, tax year 2026</div>
+  <div class="rev">Early access · Oct 2026</div>
+</header>
+
+<section class="hero" aria-labelledby="h1">
+  <div>
+    <p class="eyebrow">Stop chasing W-9s in January</p>
+    <h1 id="h1">Every W-9 you need, <mark>collected before January</mark>.</h1>
+    <p class="lede">Clearline scans your clients' QuickBooks files, finds every vendor who needs a 1099, sends secure W-9 requests on your behalf, and keeps chasing until they're done. You review and approve. That's it.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#demo">Try the demo</a>
+      <a class="btn" href="#scan">Get a free scan</a>
+    </div>
+  </div>
+  <aside class="box" aria-label="2026 threshold change">
+    <div class="box-h"><span>Form 1099-NEC</span><span>What changed</span></div>
+    <div class="thr">
+      <div class="thr-row"><span>Reporting threshold, payments made in 2025</span><strong>$600</strong></div>
+      <div class="thr-row"><span>Payments made in 2026, filed by Jan 31, 2027</span><strong>$2,000</strong></div>
+      <div class="thr-row"><span>Late filing penalty, per form</span><strong>$60–$340</strong></div>
+      <small>First threshold change since 1954. Fewer vendors qualify, which means every client's list needs rechecking this season.</small>
+    </div>
+  </aside>
+</section>
+
+<section aria-labelledby="p1">
+  <div class="part-h"><div class="tag">Part I</div><h2 id="p1">January, without the scramble</h2></div>
+  <div class="compare">
+    <table>
+      <thead><tr><th scope="col"></th><th scope="col">How it usually goes</th><th scope="col">With Clearline</th></tr></thead>
+      <tbody>
+        <tr><td>Finding who needs a 1099</td><td>Dig through each client's vendor list in December</td><td>Every client scanned in minutes, then weekly</td></tr>
+        <tr><td>Untagged vendors</td><td>Missed until someone remembers them</td><td>Flagged by payment method, entity type and amount</td></tr>
+        <tr><td>Requesting W-9s</td><td>Email a blank PDF, wait</td><td>One click sends a secure, branded request</td></tr>
+        <tr><td>Chasing</td><td>Follow-ups by email, text and phone</td><td>Automatic reminders on day 3 and day 7</td></tr>
+        <tr><td>Status</td><td>In your head or a spreadsheet</td><td>Requested → Opened → Submitted → Approved</td></tr>
+        <tr><td>Getting it into QuickBooks</td><td>Retype tax IDs by hand</td><td>Saved to the vendor record with the signed W-9 attached</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="demo" aria-labelledby="p2">
+  <div class="part-h"><div class="tag">Part II</div><h2 id="p2">See it work</h2></div>
+  <p class="intro">Click through a full season for one bookkeeping firm with three clients. Every name and number here is sample data.</p>
+
+  <div class="demo">
+    <div class="demo-top">
+      <div class="who">Signed in as <b>Harbor Lane Bookkeeping</b> · 3 connected QuickBooks files</div>
+      <span class="sample">Sample data</span>
+    </div>
+    <div class="steps" role="tablist" aria-label="Demo steps">
+      <button class="step" role="tab" id="t-scan" aria-controls="p-scan" aria-selected="true" data-step="scan"><span class="n">1</span>Scan</button>
+      <button class="step" role="tab" id="t-review" aria-controls="p-review" aria-selected="false" data-step="review"><span class="n">2</span>Review</button>
+      <button class="step" role="tab" id="t-send" aria-controls="p-send" aria-selected="false" data-step="send"><span class="n">3</span>Send</button>
+      <button class="step" role="tab" id="t-track" aria-controls="p-track" aria-selected="false" data-step="track"><span class="n">4</span>Track</button>
+    </div>
+
+    <!-- 1 scan -->
+    <div class="pane" role="tabpanel" id="p-scan" aria-labelledby="t-scan">
+      <h3>Scan every client file</h3>
+      <p class="sub">Clearline reads vendors and 2026 payments from each connected QuickBooks file. It never changes anything until you approve.</p>
+      <div class="clients" id="clients"></div>
+      <div class="row">
+        <button class="btn primary" id="runScan">Scan 3 clients</button>
+        <span class="log" id="scanLog" aria-live="polite">Ready.</span>
+      </div>
+    </div>
+
+    <!-- 2 review -->
+    <div class="pane" role="tabpanel" id="p-review" aria-labelledby="t-review" hidden>
+      <h3>Who needs a W-9</h3>
+      <p class="sub">Each vendor is sorted by what you need to do, with the reason shown. Card and PayPal payments, most corporations, and vendors under $2,000 are set aside automatically.</p>
+      <div class="stats" id="stats"></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter vendors"></div>
+      <div class="tablewrap"><table class="vt" id="vtable"></table></div>
+      <div class="row"><button class="btn primary" id="toSend">Request W-9s from <span id="needN">5</span> vendors</button></div>
+    </div>
+
+    <!-- 3 send -->
+    <div class="pane" role="tabpanel" id="p-send" aria-labelledby="t-send" hidden>
+      <h3>Send secure requests</h3>
+      <p class="sub">Each vendor gets a request from the business that paid them, not from you. They fill in the W-9 online and sign it. No PDFs, no tax IDs in email.</p>
+      <div class="sendgrid">
+        <div class="recips" id="recips"></div>
+        <div class="email" aria-label="Email preview">
+          <div class="email-h">
+            <div><span>From:</span> Ridgeway Renovations via Clearline</div>
+            <div><span>To:</span> <span class="mono" id="emTo">marco.alvarez@example.com</span></div>
+            <div><span>Subject:</span> W-9 needed for your 2026 payments</div>
+          </div>
+          <div class="email-b">
+            <p>Hi <span id="emName">Marco</span>,</p>
+            <p><span id="emClient">Ridgeway Renovations</span> paid you <b class="mono" id="emAmt">$14,250.00</b> in 2026 and needs your W-9 to file a 1099 by January 31.</p>
+            <p>It takes about two minutes. You'll confirm your email with a one-time code, enter your details, and sign online.</p>
+            <span class="fakebtn">Complete my W-9</span>
+            <p class="email-f">Your tax ID is sent directly to <span id="emClient2">Ridgeway Renovations</span>'s books. Clearline does not keep a copy.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row"><button class="btn primary" id="sendBtn">Send 5 requests</button><span class="log" id="sendLog" aria-live="polite"></span></div>
+    </div>
+
+    <!-- 4 track -->
+    <div class="pane" role="tabpanel" id="p-track" aria-labelledby="t-track" hidden>
+      <h3>Track, nudge, approve</h3>
+      <p class="sub">Clearline sends reminders for you and tells you when something needs your eyes. Submitted forms wait for your approval before anything is written to QuickBooks.</p>
+      <div class="daybar">
+        <span class="day" id="dayLbl">Day 0 · Oct 14</span>
+        <button class="btn" id="ffBtn">Skip ahead 2 days</button>
+        <span class="log" id="trackLog" aria-live="polite"></span>
+      </div>
+      <div class="track-grid">
+        <div class="tablewrap"><table class="vt" id="ttable" style="min-width:600px"></table></div>
+        <div class="feed" aria-label="Notifications"><div class="feed-h">Notifications to you</div><div id="feed"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="p3">
+  <div class="part-h"><div class="tag">Part III</div><h2 id="p3">How it fits your week</h2></div>
+  <div class="how">
+    <div><span class="ln">Line 1 · once</span><h3>Connect your clients</h3><p>Sign in with QuickBooks and pick the client files to watch. About ten minutes.</p></div>
+    <div><span class="ln">Line 2 · every week</span><h3>Clearline scans</h3><p>New vendors are caught the week they're first paid, so W-9s are collected while the work is fresh.</p></div>
+    <div><span class="ln">Line 3 · when flagged</span><h3>You click send, then approve</h3><p>Requests and reminders go out for you. You approve each W-9 before it's saved to QuickBooks.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="p4">
+  <div class="part-h"><div class="tag">Part IV</div><h2 id="p4">Tax IDs, handled carefully</h2></div>
+  <div class="sec">
+    <ul>
+      <li>Vendors enter their details on a secure form, never by replying to an email.</li>
+      <li>A one-time code confirms the vendor before they can open the form.</li>
+      <li>The W-9 is signed online, with the IRS certification shown right above the signature.</li>
+      <li>After your approval, the details and the signed PDF go into the client's QuickBooks.</li>
+      <li>Clearline then deletes its copy and keeps only the status and date.</li>
+    </ul>
+    <div class="sig" aria-label="Example signature line">
+      <p class="perj">Under penalties of perjury, I certify that the number shown on this form is my correct taxpayer identification number, and that I am a U.S. citizen or other U.S. person.</p>
+      <div class="line"><span class="here">Sign here</span><span class="name">Marco Alvarez</span><span class="date">10/16/2026</span></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="p5">
+  <div class="part-h"><div class="tag">Pricing</div><h2 id="p5">Early access pricing</h2></div>
+  <div class="price">
+    <div><h3>Free scan</h3><div class="amt">$0</div><p>One client file. See exactly which vendors need a W-9 before you decide anything.</p></div>
+    <div class="feat"><h3>Season pass</h3><div class="amt">$299 <small>/ firm</small></div><p>Up to 30 clients through January 31, 2027. Scans, W-9 requests, reminders and approvals. $10 per extra client.</p></div>
+    <div><h3>Year-round</h3><div class="amt">$8 <small>/ client / mo</small></div><p>Starting February. Weekly scans catch new vendors as they're paid, so next January is already done.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="faqh">
+  <div class="part-h"><div class="tag">FAQ</div><h2 id="faqh">Common questions</h2></div>
+  <div class="faq">
+    <details><summary>Does Clearline file the 1099s?</summary><p>No. Clearline makes sure every vendor is tagged and has a W-9 on file. You file the same way you do today, through QuickBooks or your filing service.</p></details>
+    <details><summary>Which accounting software does it work with?</summary><p>QuickBooks Online first. Xero is planned for later.</p></details>
+    <details><summary>Will it change anything in my clients' books on its own?</summary><p>No. Scans are read-only. Nothing is written to QuickBooks until you approve a submitted W-9.</p></details>
+    <details><summary>How does it decide who needs a 1099?</summary><p>It looks at 2026 payments per vendor, how they were paid, and the vendor's entity type. Card and PayPal payments are reported by the processor, most corporations are exempt, and attorneys are flagged even when incorporated. You make the final call.</p></details>
+    <details><summary>Is it available now?</summary><p>We're onboarding a small group of bookkeeping firms for the 2026 season. Early users get the season pass price locked in.</p></details>
+  </div>
+</section>
+
+<section class="cta" id="scan" aria-labelledby="ctah">
+  <div>
+    <h2 id="ctah">Get a free scan of one client</h2>
+    <p>We'll show you every vendor in that file who needs a 1099 and is missing a W-9. No commitment.</p>
+  </div>
+  <ol>
+    <li>Reply to the email this link came in.</li>
+    <li>Tell us how many clients you manage on QuickBooks Online.</li>
+    <li>We'll set up a 15-minute call and run the scan together.</li>
+  </ol>
+</section>
+
+<footer>
+  <span>Clearline · Early access, tax year 2026</span>
+  <span>QuickBooks is a trademark of Intuit Inc. Clearline is independent and not affiliated with Intuit. Not tax advice.</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  var fmt = function(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})};
+  var clients = [
+    {id:'rr', name:'Ridgeway Renovations', payments:214},
+    {id:'ly', name:'Lumen Yoga Studio', payments:96},
+    {id:'dd', name:'Delgado Dental', payments:102}
+  ];
+  var clientName = function(id){for(var i=0;i<clients.length;i++){if(clients[i].id===id)return clients[i].name}return ''};
+  // status: need = needs W-9; ready = W-9 on file; skip = no 1099; watch = under threshold
+  var vendors = [
+    {v:'Marco Alvarez', first:'Marco', c:'rr', amt:14250, how:'Check, ACH', ent:'Individual', st:'need', tag:false, why:'Over $2,000, paid by check. Not tagged for 1099 tracking.'},
+    {v:'BrightWire Electric LLC', c:'rr', amt:8900, how:'ACH', ent:'LLC', st:'ready', tag:true, why:'Tagged, W-9 on file.'},
+    {v:'Home Depot', c:'rr', amt:22410, how:'Card', ent:'Corporation', st:'skip', tag:false, why:'Card payments are reported by the card processor on a 1099-K.'},
+    {v:'Sam Cho Painting', c:'rr', amt:1750, how:'Check', ent:'Individual', st:'watch', tag:false, why:'$250 under the $2,000 threshold. Clearline will flag it if more payments arrive.'},
+    {v:'Keystone Plumbing Inc.', c:'rr', amt:6300, how:'ACH', ent:'Corporation', st:'skip', tag:false, why:'Corporations are generally exempt from 1099-NEC.'},
+    {v:'Priya Raman', first:'Priya', c:'ly', amt:11200, how:'ACH', ent:'Individual', st:'need', tag:false, why:'Instructor paid by ACH. Not tagged, no W-9.'},
+    {v:'Jordan Blake', c:'ly', amt:4800, how:'PayPal', ent:'Individual', st:'skip', tag:false, why:'PayPal payments are reported by PayPal on a 1099-K.'},
+    {v:'Kit Studio Design', first:'Kit', c:'ly', amt:2600, how:'Check', ent:'Sole prop.', st:'need', tag:true, why:'Tagged for 1099, but no W-9 on file.'},
+    {v:'Northside Dental Lab LLC', c:'dd', amt:18900, how:'Check', ent:'LLC', st:'ready', tag:true, why:'Tagged, W-9 on file.'},
+    {v:'Coastal Cleaning Co. LLC', first:'Coastal Cleaning', c:'dd', amt:7200, how:'ACH', ent:'LLC', st:'need', tag:false, why:'Over $2,000, paid by ACH. Not tagged, no W-9.'},
+    {v:'Reyes & Lin Law PLLC', first:'Reyes & Lin', c:'dd', amt:5500, how:'Check', ent:'PLLC (attorneys)', st:'need', tag:true, why:'Attorney fees are reportable even when the firm is incorporated. No W-9 on file.'}
+  ];
+  var LABEL = {need:['Needs W-9','crit'], ready:['Ready to file','ok'], skip:['No 1099 needed','none'], watch:['Under threshold','warn']};
+  var need = vendors.filter(function(x){return x.st==='need'});
+  var state = {scanned:false, filter:'all', selected:need.map(function(x){return x.v}), sent:false, day:0, track:{}, notes:[], preview:need[0].v};
+  var $ = function(id){return document.getElementById(id)};
+  var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+
+  // tabs
+  var steps = ['scan','review','send','track'];
+  function show(step){
+    steps.forEach(function(s){
+      var t=$('t-'+s), p=$('p-'+s), on=(s===step);
+      t.setAttribute('aria-selected', on?'true':'false');
+      t.tabIndex = on?0:-1;
+      p.hidden = !on;
+    });
+    if(step==='track') renderTrack();
+  }
+  document.querySelectorAll('.step').forEach(function(b){
+    b.addEventListener('click',function(){show(b.dataset.step)});
+    b.addEventListener('keydown',function(e){
+      var i=steps.indexOf(b.dataset.step);
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        e.preventDefault();
+        var n=steps[(i+(e.key==='ArrowRight'?1:3))%4]; show(n); $('t-'+n).focus();
+      }
+    });
+  });
+  function markDone(step){$('t-'+step).classList.add('done')}
+
+  // 1 scan
+  $('clients').innerHTML = clients.map(function(c){
+    var n = vendors.filter(function(v){return v.c===c.id}).length;
+    return '<div class="client"><b>'+esc(c.name)+'</b><span class="mono">'+c.payments+' payments · '+n+' vendors</span><div class="meter"><i id="m-'+c.id+'"></i></div></div>';
+  }).join('');
+  $('runScan').addEventListener('click',function(){
+    var btn=this; btn.disabled=true;
+    var i=0, logs=['Reading Ridgeway Renovations…','Reading Lumen Yoga Studio…','Reading Delgado Dental…'];
+    (function next(){
+      if(i<clients.length){
+        $('scanLog').textContent=logs[i];
+        $('m-'+clients[i].id).style.width='100%';
+        i++; setTimeout(next,650);
+      } else {
+        $('scanLog').textContent='Done. 412 payments, 11 vendors checked. 5 need a W-9.';
+        state.scanned=true; markDone('scan'); renderReview();
+        btn.textContent='Scan again'; btn.disabled=false;
+        setTimeout(function(){show('review')},700);
+      }
+    })();
+  });
+
+  // 2 review
+  function renderReview(){
+    var cnt = {need:0,ready:0,skip:0,watch:0};
+    vendors.forEach(function(v){cnt[v.st]++});
+    $('stats').innerHTML =
+      '<div class="stat crit"><strong>'+cnt.need+'</strong><span>Need a W-9</span></div>'+
+      '<div class="stat warn"><strong>'+cnt.watch+'</strong><span>Close to $2,000</span></div>'+
+      '<div class="stat ok"><strong>'+cnt.ready+'</strong><span>Ready to file</span></div>'+
+      '<div class="stat"><strong>'+cnt.skip+'</strong><span>No 1099 needed</span></div>';
+    var fs=[['all','All 11'],['need','Needs W-9'],['ready','Ready'],['watch','Under threshold'],['skip','No 1099']];
+    $('filters').innerHTML = fs.map(function(f){return '<button class="filt" data-f="'+f[0]+'" aria-pressed="'+(state.filter===f[0])+'">'+f[1]+'</button>'}).join('');
+    $('filters').querySelectorAll('.filt').forEach(function(b){b.addEventListener('click',function(){state.filter=b.dataset.f;renderReview()})});
+    var rows = vendors.filter(function(v){return state.filter==='all'||v.st===state.filter});
+    var order={need:0,watch:1,ready:2,skip:3};
+    rows.sort(function(a,b){return order[a.st]-order[b.st]||b.amt-a.amt});
+    $('vtable').innerHTML = '<thead><tr><th scope="col">Vendor</th><th scope="col">Client</th><th scope="col" class="amt">Paid in 2026</th><th scope="col">Paid by</th><th scope="col">Status</th><th scope="col">Why</th></tr></thead><tbody>'+
+      rows.map(function(v){
+        var L=LABEL[v.st];
+        var untag = (v.st==='need'&&!v.tag)?' <span class="chip info">Not tagged</span>':'';
+        return '<tr><td><b>'+esc(v.v)+'</b><br><span class="client-cell">'+esc(v.ent)+'</span></td><td class="client-cell">'+esc(clientName(v.c))+'</td><td class="amt">'+fmt(v.amt)+'</td><td>'+esc(v.how)+'</td><td><span class="chip '+L[1]+'">'+L[0]+'</span>'+untag+'</td><td class="why">'+esc(v.why)+'</td></tr>';
+      }).join('')+'</tbody>';
+  }
+  $('toSend').addEventListener('click',function(){markDone('review');show('send')});
+
+  // 3 send
+  function emailFor(v){
+    $('emTo').textContent = v.v.toLowerCase().replace(/[^a-z]+/g,'.').replace(/^\.|\.$/g,'')+'@example.com';
+    $('emName').textContent = v.first||v.v;
+    $('emClient').textContent = clientName(v.c);
+    $('emClient2').textContent = clientName(v.c);
+    $('emAmt').textContent = fmt(v.amt);
+    document.querySelector('.email-h div').innerHTML='<span>From:</span> '+esc(clientName(v.c))+' via Clearline';
+  }
+  function renderRecips(){
+    $('recips').innerHTML = need.map(function(v,i){
+      var checked = state.selected.indexOf(v.v)>-1;
+      return '<label class="recip" for="r'+i+'"><input type="checkbox" id="r'+i+'" data-v="'+esc(v.v)+'"'+(checked?' checked':'')+(state.sent?' disabled':'')+'><span><b>'+esc(v.v)+'</b><small>'+esc(clientName(v.c))+' · '+fmt(v.amt)+'</small></span></label>';
+    }).join('');
+    $('recips').querySelectorAll('input').forEach(function(cb){
+      cb.addEventListener('change',function(){
+        var name=cb.dataset.v, i=state.selected.indexOf(name);
+        if(cb.checked&&i<0) state.selected.push(name);
+        if(!cb.checked&&i>-1) state.selected.splice(i,1);
+        updateSendBtn();
+      });
+      cb.closest('.recip').addEventListener('mouseenter',function(){emailFor(need.filter(function(x){return x.v===cb.dataset.v})[0])});
+      cb.addEventListener('focus',function(){emailFor(need.filter(function(x){return x.v===cb.dataset.v})[0])});
+    });
+    updateSendBtn();
+  }
+  function updateSendBtn(){
+    var n=state.selected.length, b=$('sendBtn');
+    if(state.sent){b.textContent='Requests sent';b.disabled=true;return}
+    b.textContent = n? 'Send '+n+' request'+(n>1?'s':'') : 'Select vendors to send';
+    b.disabled = !n;
+  }
+  $('sendBtn').addEventListener('click',function(){
+    state.sent=true;
+    state.selected.forEach(function(name){state.track[name]={s:0,rem:0}}); // 0 requested,1 opened,2 submitted,3 approved
+    note('Day 0','Sent '+state.selected.length+' W-9 requests across 3 clients.');
+    renderRecips();
+    $('sendLog').textContent='Sent. Opening the tracker…';
+    markDone('send');
+    setTimeout(function(){show('track')},600);
+  });
+
+  // 4 track
+  var dates=['Oct 14','Oct 16','Oct 18','Oct 20','Oct 22'];
+  // scripted progress per day index for each vendor
+  var script = {
+    'Marco Alvarez':      [0,1,2,2,2],
+    'Priya Raman':        [0,2,2,2,2],
+    'Kit Studio Design':  [0,0,1,2,2],
+    'Coastal Cleaning Co. LLC':[0,0,0,0,0],
+    'Reyes & Lin Law PLLC':[0,1,1,2,2]
+  };
+  var STAGES=['Requested','Opened','Submitted','Approved'];
+  function note(when,text){state.notes.unshift({when:when,text:text})}
+  function renderTrack(){
+    $('dayLbl').textContent='Day '+(state.day*2)+' · '+dates[state.day];
+    var names=Object.keys(state.track);
+    if(!names.length){
+      $('ttable').innerHTML='<tbody><tr><td>No requests sent yet. Go to step 3 to send them.</td></tr></tbody>';
+      $('feed').innerHTML='<div class="note">Notifications will appear here once requests go out.</div>';
+      $('ffBtn').disabled=true; return;
+    }
+    $('ffBtn').disabled = state.day>=dates.length-1;
+    $('ttable').innerHTML='<thead><tr><th scope="col">Vendor</th><th scope="col">Progress</th><th scope="col">Status</th><th scope="col"></th></tr></thead><tbody>'+
+      names.map(function(n){
+        var t=state.track[n], v=vendors.filter(function(x){return x.v===n})[0];
+        var bars=''; for(var k=0;k<4;k++){bars+='<i class="'+(k<=t.s?'on':'')+'"></i>'}
+        var chip = t.s===3?'<span class="chip ok">Saved to QuickBooks</span>':t.s===2?'<span class="chip info">Submitted · review</span>':t.s===1?'<span class="chip none">Opened</span>':(t.rem>=2?'<span class="chip crit">No response</span>':'<span class="chip none">Requested</span>');
+        var rem = t.s<2&&t.rem? '<br><span class="client-cell">'+t.rem+' reminder'+(t.rem>1?'s':'')+' sent</span>':'';
+        var act = t.s===2?'<button class="mini go" data-ap="'+esc(n)+'">Approve</button>':(t.s<2&&t.rem>=2?'<span class="client-cell">Call or update email</span>':'');
+        return '<tr><td><b>'+esc(n)+'</b><br><span class="client-cell">'+esc(clientName(v.c))+'</span></td><td><div class="pipe">'+bars+'</div><span class="client-cell">'+STAGES[t.s]+'</span></td><td>'+chip+rem+'</td><td>'+act+'</td></tr>';
+      }).join('')+'</tbody>';
+    $('ttable').querySelectorAll('[data-ap]').forEach(function(b){
+      b.addEventListener('click',function(){
+        var n=b.dataset.ap; state.track[n].s=3;
+        var v=vendors.filter(function(x){return x.v===n})[0];
+        note(dates[state.day],'You approved '+n+'. Tax ID and signed W-9 saved to '+clientName(v.c)+' in QuickBooks; Clearline’s copy deleted.');
+        renderTrack();
+      });
+    });
+    $('feed').innerHTML = state.notes.map(function(x){return '<div class="note"><time>'+esc(x.when)+'</time><span>'+esc(x.text)+'</span></div>'}).join('');
+    var done=names.filter(function(n){return state.track[n].s===3}).length;
+    $('trackLog').textContent = done+' of '+names.length+' approved';
+  }
+  $('ffBtn').addEventListener('click',function(){
+    if(state.day>=dates.length-1) return;
+    state.day++;
+    var d=dates[state.day];
+    Object.keys(state.track).forEach(function(n){
+      var t=state.track[n], target=script[n]?script[n][state.day]:t.s;
+      if(t.s===3) return;
+      if(target>t.s){
+        if(target>=2&&t.s<2) note(d,n+' submitted a signed W-9. Ready for your review.');
+        t.s=target;
+      } else if(t.s<2){
+        if(state.day===1||state.day===3){ t.rem++; note(d,'Reminder '+t.rem+' sent to '+n+'.'); }
+        if(state.day===3&&t.rem>=2) note(d,n+' hasn’t responded after 2 reminders. You may want to call them or check the email address.');
+      }
+    });
+    if(state.day===dates.length-1) note(d,'Weekly summary: Delgado Dental 1 of 2 W-9s in, Lumen Yoga 2 of 2, Ridgeway 1 of 1.');
+    renderTrack();
+  });
+
+  renderReview(); renderRecips(); emailFor(need[0]);
+})();
+</script>
+
+</body>
+</html>
