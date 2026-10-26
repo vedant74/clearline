@@ -1,0 +1,6 @@
+u2netp.onnx - U^2-Net "small" (u2netp) salient object segmentation model, ONNX export.
+Model/weights: https://github.com/xuebinqin/U-2-Net  (License: Apache-2.0, see LICENSE-U2Net-Apache-2.0.txt)
+ONNX file obtained from the rembg project's GitHub release (rembg is MIT):
+  https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx
+sha256: 309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8
+Size: 4,574,861 bytes. Input: 1x3x320x320 float32 (ImageNet mean/std). Output[0]: 1x1x320x320 saliency.

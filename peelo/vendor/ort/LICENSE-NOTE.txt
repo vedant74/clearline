@@ -1,0 +1,4 @@
+Files in this folder are copied unmodified from the npm package onnxruntime-web@1.20.1
+(https://www.npmjs.com/package/onnxruntime-web, https://github.com/microsoft/onnxruntime).
+License: MIT. Copyright (c) Microsoft Corporation.
+Files: ort.wasm.min.js, ort-wasm-simd-threaded.mjs, ort-wasm-simd-threaded.wasm

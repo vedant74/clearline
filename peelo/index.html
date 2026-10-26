@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peelo – Free Background Remover, Full Resolution, No Upload</title>
+<meta name="description" content="Remove image backgrounds free at full resolution. Runs entirely in your browser, so your photos are never uploaded. No signup, no watermark, no credits. A private remove.bg alternative.">
+<meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Peelo – Free background remover that never uploads your photos">
+<meta property="og:description" content="Full-resolution PNG cutouts, no signup, no watermark. Runs on your device.">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+<script>
+  // Apply saved theme before paint to avoid a flash.
+  try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is this a free remove.bg alternative?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. Removing a background and downloading the full-resolution PNG or JPG is free, with no account, credits, watermark or ads. A paid batch mode for many images at once is planned as a one-time purchase."}},
+    {"@type": "Question", "name": "Can I remove a background for free at full resolution?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. The cutout is applied to your original image, so the download has the same pixel dimensions as the photo you added (up to 16 megapixels; larger photos are scaled to 16 MP)."}},
+    {"@type": "Question", "name": "Can I remove a background without uploading my photo?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. The AI model is downloaded once to your browser and runs on your device. Your image is never sent to a server. After the first visit the model loads from your browser's cache."}},
+    {"@type": "Question", "name": "What happens when remove.bg shuts down?",
+     "acceptedAnswer": {"@type": "Answer", "text": "remove.bg's pricing page states its standalone service ends on 1 December 2026 and moves into Canva. This tool is an independent, free option that does not require a Canva or any other account."}},
+    {"@type": "Question", "name": "What if the AI gets the edges wrong?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Use Refine: an erase and restore brush with adjustable size lets you fix hair, gaps and stray background by hand, and the edge softness slider controls how crisp the outline is."}},
+    {"@type": "Question", "name": "Which images work best?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Photos with one clear subject: products, people, pets, cars, food. Busy scenes with many subjects, glass and fine hair are harder; use the refine brush for those."}}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#tool">Skip to the tool</a>
+<header class="topbar">
+  <a class="brand" href="./"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="7" class="bm-bg"/><path d="M10 22c0-6 3-11 6-11s6 5 6 11z" class="bm-fg"/></svg><span data-name>Peelo</span></a>
+  <nav class="topnav">
+    <a href="#switch">Switching?</a>
+    <a href="#faq">FAQ</a>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Remove the background.<br><span class="hl">Keep every pixel.</span></h1>
+    <p class="lede">Free, full-resolution cutouts with no signup, no watermark and no credits. The AI runs in your browser, so your photos never leave your device.</p>
+  </section>
+
+  <section id="tool" class="tool" aria-label="Background remover">
+    <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Choose an image, drop one here, or paste">
+      <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,image/avif" hidden>
+      <div class="dz-inner">
+        <svg class="dz-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="5"/><circle cx="17" cy="20" r="3.5"/><path d="M8 34l10-9 7 6 6-5 9 8"/></svg>
+        <p class="dz-title"><strong>Choose a photo</strong> or drop it here</p>
+        <p class="dz-sub">You can also paste (Ctrl/⌘ + V). JPG, PNG, WebP.</p>
+        <p class="trust-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5" class="tick"/></svg>Your photos never leave your device.</p>
+      </div>
+    </div>
+
+    <div id="workspace" class="workspace" hidden>
+      <div id="status" class="status" role="status" aria-live="polite">
+        <span id="statusText">Getting ready…</span>
+        <div class="bar"><div id="statusBar"></div></div>
+      </div>
+      <div id="warn" class="warn" hidden></div>
+
+      <div class="stage-wrap">
+        <div id="stage" class="stage checker">
+          <canvas id="afterCanvas" aria-label="Result preview"></canvas>
+          <canvas id="beforeCanvas" class="before" aria-hidden="true"></canvas>
+          <div id="compareHandle" class="compare-handle" aria-hidden="true"><span></span></div>
+          <input id="compare" class="compare-range" type="range" min="0" max="100" value="50" aria-label="Before and after comparison">
+          <div id="brushCursor" class="brush-cursor" hidden></div>
+          <span class="tag tag-before">Before</span><span class="tag tag-after">After</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="seg" role="tablist" aria-label="Mode">
+          <button type="button" class="seg-btn is-on" data-mode="compare" role="tab" aria-selected="true">Compare</button>
+          <button type="button" class="seg-btn" data-mode="refine" role="tab" aria-selected="false">Refine edges</button>
+        </div>
+
+        <div id="refinePanel" class="panel" hidden>
+          <div class="row">
+            <div class="seg small" aria-label="Brush">
+              <button type="button" class="seg-btn is-on" data-brush="erase">Erase</button>
+              <button type="button" class="seg-btn" data-brush="restore">Restore</button>
+            </div>
+            <button type="button" class="btn ghost" id="undoBtn" disabled>Undo</button>
+            <button type="button" class="btn ghost" id="resetEditsBtn" disabled>Reset</button>
+          </div>
+          <label class="slider">Brush size <input id="brushSize" type="range" min="4" max="200" value="40"><output id="brushSizeOut">40</output></label>
+          <p class="hint">Paint over the image. Erase removes leftover background; Restore brings back parts of your subject.</p>
+        </div>
+
+        <label class="slider">Edge softness <input id="feather" type="range" min="0" max="100" value="35"><output id="featherOut">35</output></label>
+
+        <fieldset class="bg-opts">
+          <legend>Background</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="bg" value="transparent" checked><span>Transparent</span></label>
+            <label class="chip"><input type="radio" name="bg" value="color"><span>Colour</span></label>
+            <label class="chip"><input type="radio" name="bg" value="blur"><span>Blur</span></label>
+            <label class="chip"><input type="radio" name="bg" value="image"><span>Image…</span></label>
+          </div>
+          <div id="colorRow" class="row swatches" hidden>
+            <button type="button" class="sw" data-c="#ffffff" style="--c:#ffffff" aria-label="White"></button>
+            <button type="button" class="sw" data-c="#000000" style="--c:#000000" aria-label="Black"></button>
+            <button type="button" class="sw" data-c="#f2efe9" style="--c:#f2efe9" aria-label="Warm grey"></button>
+            <button type="button" class="sw" data-c="#ffd84d" style="--c:#ffd84d" aria-label="Yellow"></button>
+            <button type="button" class="sw" data-c="#6ec3ff" style="--c:#6ec3ff" aria-label="Sky blue"></button>
+            <label class="picker">Custom <input id="bgColor" type="color" value="#ffffff"></label>
+          </div>
+          <div id="blurRow" class="row" hidden>
+            <label class="slider">Blur amount <input id="blurAmt" type="range" min="2" max="60" value="20"><output id="blurOut">20</output></label>
+          </div>
+          <input id="bgFile" type="file" accept="image/*" hidden>
+        </fieldset>
+
+        <div class="downloads">
+          <button type="button" class="btn primary" id="dlPng" disabled>Download PNG</button>
+          <button type="button" class="btn" id="dlJpg" disabled>Download JPG</button>
+        </div>
+        <p id="meta" class="meta"></p>
+        <button type="button" class="btn ghost wide" id="newBtn">Start over with a new photo</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="points">
+    <div class="point"><h2>Private by design</h2><p>The AI engine downloads once (about 16 MB, then cached) and runs on your phone or computer. Photos are processed in memory and never uploaded.</p></div>
+    <div class="point"><h2>Full resolution, free</h2><p>The cutout is applied to your original pixels, not a preview. Download PNG with transparency or JPG with any background. No watermark, no credits.</p></div>
+    <div class="point"><h2>Fix it yourself</h2><p>AI isn't perfect on hair or busy scenes. The erase and restore brush and an edge softness control let you clean up the result in seconds.</p></div>
+  </section>
+
+  <section id="switch" class="switch">
+    <h2>Switching from remove.bg?</h2>
+    <p>remove.bg's own pricing page says its standalone service ends on <strong>1 December 2026</strong> and moves into Canva. If you just need clean cutouts, here's how this tool compares.</p>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>This tool</th><th>Typical online removers</th></tr></thead>
+      <tbody>
+        <tr><th>Price for a full-resolution download</th><td>Free</td><td>Often credits or a subscription</td></tr>
+        <tr><th>Account required</th><td>No</td><td>Usually for HD downloads</td></tr>
+        <tr><th>Where your photo is processed</th><td>On your device</td><td>Uploaded to a server</td></tr>
+        <tr><th>Manual edge refine</th><td>Erase / restore brush</td><td>Varies</td></tr>
+        <tr><th>Batch processing</th><td>Coming soon, pay once</td><td>Usually subscription</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="fine">Honest note: big server-side models can still beat a small on-device model on tricky hair and glass. For products, pets, people and logos, results here are good, and the refine brush handles the rest. remove.bg is a trademark of its owner; this site is not affiliated with it or with Canva.</p>
+  </section>
+
+  <section id="batch" class="batch">
+    <div>
+      <p class="kicker">Coming soon</p>
+      <h2>Batch: hundreds of photos at once. Pay once, keep it.</h2>
+      <p>Drop a folder of product shots, get consistent cutouts on white or transparent, zipped. Still on your device. One payment, no subscription.</p>
+    </div>
+    <form id="signup" class="signup" novalidate>
+      <label for="email" class="sr">Email</label>
+      <input id="email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
+      <button class="btn primary" type="submit">Notify me</button>
+      <a id="payLink" class="btn" hidden>Pre-order batch</a>
+      <p id="signupMsg" class="signup-msg" role="status"></p>
+    </form>
+  </section>
+
+  <section id="faq" class="faq">
+    <h2>Questions</h2>
+    <details><summary>Is this a free remove.bg alternative?</summary><p>Yes. Removing a background and downloading the full-resolution PNG or JPG is free, with no account, credits, watermark or ads. A paid batch mode for many images at once is planned as a one-time purchase.</p></details>
+    <details><summary>Can I remove a background for free at full resolution?</summary><p>Yes. The cutout is applied to your original image, so the download has the same pixel dimensions as the photo you added (up to 16 megapixels; larger photos are scaled to 16 MP so they don't crash your browser).</p></details>
+    <details><summary>Can I remove a background without uploading my photo?</summary><p>Yes. The AI model is downloaded once to your browser and runs on your device. Your image is never sent to a server. After the first visit the model loads from your browser's cache.</p></details>
+    <details><summary>What happens when remove.bg shuts down?</summary><p>remove.bg's pricing page states its standalone service ends on 1 December 2026 and moves into Canva. This tool is an independent, free option that does not need a Canva or any other account.</p></details>
+    <details><summary>What if the AI gets the edges wrong?</summary><p>Switch to <em>Refine edges</em>. The erase and restore brush (with adjustable size) fixes leftover background or missing parts, and the edge softness slider controls how crisp the outline is.</p></details>
+    <details><summary>Which images work best?</summary><p>Photos with one clear subject: products, people, pets, cars, food. Busy scenes with many subjects, glass and very fine hair are harder; use the refine brush for those.</p></details>
+  </section>
+</main>
+
+<footer class="footer">
+  <p><span data-name>Peelo</span> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+  <p class="fine">Segmentation model: U²-Net (u2netp) by Xuebin Qin et al., Apache-2.0. Runtime: ONNX Runtime Web, MIT. No cookies, no ads, no third-party requests.</p>
+</footer>
+
+<script src="vendor/ort/ort.wasm.min.js"></script>
+<script src="js/segment.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

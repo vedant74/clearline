@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free QR Code Generator That Never Expires – No Signup | ForeverQR</title>
+<meta name="description" content="Make free QR codes that never expire. No signup, no watermark, no trial. URL, Wi-Fi, contact, email, SMS and phone codes. Download PNG or SVG. Built-in ad-free QR scanner.">
+<meta name="theme-color" content="#f4efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16140f" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ForeverQR">
+<meta property="og:title" content="ForeverQR – QR codes that never expire">
+<meta property="og:description" content="Free static QR codes. No signup, no watermark, no trial that switches your printed codes off.">
+<meta property="og:url" content="https://example.com/">
+<meta property="og:image" content="https://example.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  // Apply saved theme before paint (no flash).
+  try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+<script src="config.js" defer></script>
+<script src="vendor/qrcode-generator-1.4.4.js" defer></script>
+<script src="js/app.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Do these QR codes expire?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every code made here is a static QR code: the link or text is stored inside the pattern itself. There is no server in between, so nothing can be switched off, ever."}},
+    {"@type": "Question", "name": "Why did my QR code stop working after a free trial?", "acceptedAnswer": {"@type": "Answer", "text": "Many generators make 'dynamic' codes that point to their own redirect server. When the trial ends they stop redirecting unless you pay. A static code has no redirect, so it keeps working."}},
+    {"@type": "Question", "name": "Is it really free with no signup?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Static codes are free forever, with no account, no email and no watermark. Codes are made in your browser."}},
+    {"@type": "Question", "name": "What is the difference between static and dynamic QR codes?", "acceptedAnswer": {"@type": "Answer", "text": "A static code contains your link directly and can never be changed or switched off. A dynamic code contains a short link to a company's server, so the destination can be edited later, but it only works while that server keeps redirecting."}},
+    {"@type": "Question", "name": "Can I use these codes commercially, on menus, flyers and packaging?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Download a high-resolution PNG or a vector SVG for print. No attribution required."}}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="./" aria-label="Home">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM18 14h3v2h-3zM14 18h2v3h-2z" fill="currentColor"/></svg>
+      <span data-config="PRODUCT_NAME">ForeverQR</span>
+    </a>
+    <nav class="top-nav" aria-label="Main">
+      <a href="#make">Create</a>
+      <a href="#scan">Scan</a>
+      <a href="#faq">FAQ</a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap">
+    <p class="eyebrow">Free QR code generator</p>
+    <h1>QR codes that <em>never expire</em>.</h1>
+    <p class="lede">No signup. No watermark. No “free trial” that kills your printed codes. We can’t switch your codes off — there’s nothing to switch.</p>
+    <ul class="promises" aria-label="Our promises">
+      <li><span aria-hidden="true">✓</span> Static codes never expire</li>
+      <li><span aria-hidden="true">✓</span> No account, no email</li>
+      <li><span aria-hidden="true">✓</span> No watermark, PNG + SVG</li>
+      <li><span aria-hidden="true">✓</span> Made in your browser</li>
+    </ul>
+  </section>
+
+  <section class="wrap tool" aria-label="QR tool">
+    <div class="mode-tabs" role="tablist" aria-label="Choose mode">
+      <button role="tab" id="tab-make" aria-controls="make" aria-selected="true">Create a code</button>
+      <button role="tab" id="tab-scan" aria-controls="scan" aria-selected="false" tabindex="-1">Scan a code</button>
+    </div>
+
+    <!-- ===================== CREATE ===================== -->
+    <div class="panel" id="make" role="tabpanel" aria-labelledby="tab-make">
+      <div class="make-grid">
+        <form class="controls" id="makeForm" novalidate onsubmit="return false">
+          <fieldset class="types">
+            <legend>What should the code open?</legend>
+            <div class="type-list">
+              <label><input type="radio" name="type" value="url" checked><span>URL</span></label>
+              <label><input type="radio" name="type" value="text"><span>Text</span></label>
+              <label><input type="radio" name="type" value="wifi"><span>Wi-Fi</span></label>
+              <label><input type="radio" name="type" value="vcard"><span>Contact</span></label>
+              <label><input type="radio" name="type" value="email"><span>Email</span></label>
+              <label><input type="radio" name="type" value="sms"><span>SMS</span></label>
+              <label><input type="radio" name="type" value="tel"><span>Phone</span></label>
+            </div>
+          </fieldset>
+
+          <div class="fields" data-type="url">
+            <label for="f-url">Website address</label>
+            <input id="f-url" name="url" type="url" inputmode="url" autocomplete="url" placeholder="https://yourbusiness.com/menu" value="https://example.com">
+            <p class="hint">We put this exact address inside the code. No redirect, no tracking link.</p>
+          </div>
+
+          <div class="fields" data-type="text" hidden>
+            <label for="f-text">Text</label>
+            <textarea id="f-text" name="text" rows="4" maxlength="1500" placeholder="Any text, up to about 1,500 characters"></textarea>
+          </div>
+
+          <div class="fields" data-type="wifi" hidden>
+            <label for="f-ssid">Network name (SSID)</label>
+            <input id="f-ssid" name="ssid" autocomplete="off" placeholder="CafeGuest">
+            <label for="f-wpass">Password</label>
+            <input id="f-wpass" name="wpass" autocomplete="off" placeholder="Leave blank for open networks">
+            <div class="row2">
+              <div>
+                <label for="f-wenc">Security</label>
+                <select id="f-wenc" name="wenc">
+                  <option value="WPA" selected>WPA / WPA2 / WPA3</option>
+                  <option value="WEP">WEP</option>
+                  <option value="nopass">None (open)</option>
+                </select>
+              </div>
+              <label class="check"><input type="checkbox" id="f-whidden" name="whidden"> Hidden network</label>
+            </div>
+          </div>
+
+          <div class="fields" data-type="vcard" hidden>
+            <div class="row2">
+              <div><label for="f-first">First name</label><input id="f-first" name="first" autocomplete="given-name"></div>
+              <div><label for="f-last">Last name</label><input id="f-last" name="last" autocomplete="family-name"></div>
+            </div>
+            <div class="row2">
+              <div><label for="f-org">Company</label><input id="f-org" name="org" autocomplete="organization"></div>
+              <div><label for="f-title">Job title</label><input id="f-title" name="title" autocomplete="organization-title"></div>
+            </div>
+            <div class="row2">
+              <div><label for="f-vtel">Phone</label><input id="f-vtel" name="vtel" type="tel" autocomplete="tel"></div>
+              <div><label for="f-vemail">Email</label><input id="f-vemail" name="vemail" type="email" autocomplete="email"></div>
+            </div>
+            <label for="f-vurl">Website</label><input id="f-vurl" name="vurl" type="url" autocomplete="url">
+            <label for="f-vadr">Address</label><input id="f-vadr" name="vadr" autocomplete="street-address" placeholder="Street, City, Postcode, Country">
+          </div>
+
+          <div class="fields" data-type="email" hidden>
+            <label for="f-eto">Email address</label><input id="f-eto" name="eto" type="email" autocomplete="email" placeholder="hello@yourbusiness.com">
+            <label for="f-esub">Subject (optional)</label><input id="f-esub" name="esub">
+            <label for="f-ebody">Message (optional)</label><textarea id="f-ebody" name="ebody" rows="3"></textarea>
+          </div>
+
+          <div class="fields" data-type="sms" hidden>
+            <label for="f-snum">Phone number</label><input id="f-snum" name="snum" type="tel" autocomplete="tel" placeholder="+1 555 123 4567">
+            <label for="f-smsg">Message (optional)</label><textarea id="f-smsg" name="smsg" rows="3"></textarea>
+          </div>
+
+          <div class="fields" data-type="tel" hidden>
+            <label for="f-tel">Phone number</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="+1 555 123 4567">
+          </div>
+
+          <details class="style-box" id="styleBox">
+            <summary>Style &amp; quality</summary>
+            <div class="row2">
+              <div class="color-field">
+                <label for="o-fg">Code colour</label>
+                <input id="o-fg" name="fg" type="color" value="#111111">
+              </div>
+              <div class="color-field">
+                <label for="o-bg">Background</label>
+                <input id="o-bg" name="bg" type="color" value="#ffffff">
+              </div>
+            </div>
+            <p class="warn" id="contrastWarn" role="status" hidden></p>
+            <div class="row2">
+              <div>
+                <label for="o-style">Dot style</label>
+                <select id="o-style" name="style">
+                  <option value="square">Square (classic)</option>
+                  <option value="rounded">Rounded</option>
+                  <option value="dots">Dots</option>
+                </select>
+              </div>
+              <div>
+                <label for="o-ecl">Error correction</label>
+                <select id="o-ecl" name="ecl">
+                  <option value="L">Low (7%)</option>
+                  <option value="M" selected>Medium (15%)</option>
+                  <option value="Q">Quartile (25%)</option>
+                  <option value="H">High (30%)</option>
+                </select>
+              </div>
+            </div>
+            <div class="row2">
+              <div>
+                <label for="o-size">PNG size</label>
+                <select id="o-size" name="size">
+                  <option value="512">512 px</option>
+                  <option value="1024">1024 px</option>
+                  <option value="2048" selected>2048 px (print)</option>
+                  <option value="4096">4096 px</option>
+                </select>
+              </div>
+              <div>
+                <label for="o-margin">Margin: <output id="o-margin-out" for="o-margin">4</output> modules</label>
+                <input id="o-margin" name="margin" type="range" min="0" max="10" value="4">
+              </div>
+            </div>
+            <label for="o-logo">Centre logo (optional)</label>
+            <div class="logo-row">
+              <input id="o-logo" name="logo" type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+              <button type="button" class="btn-link" id="logoClear" hidden>Remove logo</button>
+            </div>
+            <p class="hint" id="logoHint">Adding a logo switches error correction to High so the code still scans.</p>
+          </details>
+        </form>
+
+        <div class="preview">
+          <div class="preview-card">
+            <div class="qr-frame" id="qrFrame">
+              <canvas id="qrCanvas" width="320" height="320" role="img" aria-label="QR code preview"></canvas>
+            </div>
+            <p class="payload" id="payloadInfo" aria-live="polite"></p>
+            <p class="error" id="genError" role="alert" hidden></p>
+            <div class="actions">
+              <button type="button" class="btn primary" id="dlPng">Download PNG</button>
+              <button type="button" class="btn" id="dlSvg">Download SVG</button>
+              <button type="button" class="btn" id="copyPng">Copy image</button>
+            </div>
+            <p class="toast" id="toast" role="status" aria-live="polite"></p>
+            <p class="forever-note"><strong>Static code.</strong> Works forever. No account, no trial, nothing to renew.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== SCAN ===================== -->
+    <div class="panel" id="scan" role="tabpanel" aria-labelledby="tab-scan" hidden>
+      <div class="scan-grid">
+        <div class="scan-input">
+          <p class="scan-intro">Scan with your camera or pick a photo/screenshot. Decoding happens on your device. No ads, and links never open until you tap.</p>
+          <div class="actions">
+            <button type="button" class="btn primary" id="camStart">Use camera</button>
+            <button type="button" class="btn" id="camStop" hidden>Stop camera</button>
+            <label class="btn file-btn">Upload image<input type="file" id="scanFile" accept="image/*"></label>
+          </div>
+          <div class="video-wrap" id="videoWrap" hidden>
+            <video id="scanVideo" playsinline muted aria-label="Camera preview"></video>
+            <div class="reticle" aria-hidden="true"></div>
+          </div>
+          <p class="hint" id="scanStatus" role="status" aria-live="polite"></p>
+        </div>
+        <div class="scan-result" id="scanResult" hidden aria-live="polite">
+          <h2 class="result-kind" id="resultKind">Result</h2>
+          <div class="result-body" id="resultBody"></div>
+          <div class="actions" id="resultActions"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap explainer" aria-labelledby="why-h">
+    <h2 id="why-h">Why your last QR code stopped working</h2>
+    <div class="compare">
+      <div class="cmp-card bad">
+        <h3>“Dynamic” code from a trial</h3>
+        <p class="flow"><span>Phone</span> → <span>their server</span> → <span>your site</span></p>
+        <p>The code only holds a short link to the generator’s server. When the trial ends, they stop forwarding — and every flyer, menu and sign you printed goes dead until you pay a monthly fee.</p>
+      </div>
+      <div class="cmp-card good">
+        <h3>Static code from here</h3>
+        <p class="flow"><span>Phone</span> → <span>your site</span></p>
+        <p>Your link is written into the pattern itself. Nobody sits in the middle, so nobody — including us — can switch it off. It works as long as your website does.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap dynamic" aria-labelledby="dyn-h">
+    <div class="dyn-card">
+      <p class="badge">Coming soon</p>
+      <h2 id="dyn-h">Editable (dynamic) codes — pay once</h2>
+      <p>Need to change where a printed code points without reprinting? We’re building dynamic codes with a <strong>one-time price</strong>, not a subscription — and a written promise: if we ever shut down, we hand you an export so your redirects keep working on your own domain.</p>
+      <form class="signup" id="signupForm" novalidate>
+        <label for="s-email" class="sr-only">Email address</label>
+        <input id="s-email" name="email" type="email" autocomplete="email" placeholder="you@business.com" required>
+        <button type="submit" class="btn primary">Tell me when it’s ready</button>
+      </form>
+      <p class="toast" id="signupMsg" role="status" aria-live="polite"></p>
+      <p class="hint">One email when it launches. No spam, unsubscribe any time.</p>
+      <p><a class="btn" id="preorderLink" href="#" hidden rel="noopener">Pre-order (pay once)</a></p>
+    </div>
+  </section>
+
+  <section class="wrap faq" id="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Questions</h2>
+    <details>
+      <summary>Is there a QR code generator that doesn’t expire?</summary>
+      <p>Yes — this one. Every code made here is <strong>static</strong>: your link or text is stored inside the black-and-white pattern. There’s no server in between and no account, so there is nothing that can expire or be switched off.</p>
+    </details>
+    <details>
+      <summary>My QR code stopped working after the free trial. Why?</summary>
+      <p>Most “free” generators make <strong>dynamic</strong> codes by default. Those codes point to the company’s own short link, which forwards people to your site. When the trial ends, they stop forwarding unless you subscribe. You can’t fix an already-printed dynamic code without their account — but you can make a static replacement here in seconds, for free, and it will never die again.</p>
+    </details>
+    <details>
+      <summary>Is it really free with no signup?</summary>
+      <p>Yes. No account, no email, no watermark, no limit on how many codes you make or how many times they’re scanned. Codes are generated in your browser; we never see what you put in them.</p>
+    </details>
+    <details>
+      <summary>Static vs dynamic QR codes — what’s the difference?</summary>
+      <p><strong>Static:</strong> the destination is baked into the code. Free, permanent, private, can’t be edited after printing.<br><strong>Dynamic:</strong> the code holds a short link you can re-point later and can count scans — but it only works while the short-link service keeps running. Ours will be a one-time purchase (coming soon).</p>
+    </details>
+    <details>
+      <summary>Can I put my logo in the middle?</summary>
+      <p>Yes. Upload it under “Style &amp; quality”. We automatically switch to High error correction so the code still scans with part of it covered. Always test-scan before printing.</p>
+    </details>
+    <details>
+      <summary>Which file should I use for printing?</summary>
+      <p>SVG is a vector file — it stays sharp at any size and is best for designers and print shops. PNG at 2048 px is fine for flyers, menus and posters. Keep the code at least 2 cm (about 0.8 in) wide and keep dark-on-light colours with strong contrast.</p>
+    </details>
+    <details>
+      <summary>Can I use the codes commercially?</summary>
+      <p>Yes — menus, packaging, business cards, signage, anything. No attribution needed.</p>
+    </details>
+    <details>
+      <summary>Why doesn’t the scanner open links automatically?</summary>
+      <p>Malicious QR codes (“quishing”) are common. We show you the full address first, highlight the actual domain, and only open it when you tap. No ads next to your result, ever.</p>
+    </details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>© <span id="year">2026</span> <span data-config="PRODUCT_NAME">ForeverQR</span>. Static codes, free forever.</p>
+    <nav aria-label="Legal">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="vendor/LICENSES.md">Open-source licenses</a>
+      <a id="contactLink" href="#" hidden>Contact</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
