@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR Code That Never Expires: Free Static Generator</title>
+<meta name="description" content="Can a QR code expire? Static vs dynamic QR codes explained, why some codes stop after a free trial, and how to make one that keeps working, free.">
+<meta name="theme-color" content="#f4efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16140f" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="canonical" href="https://hyphenatesi.com/foreverqr/qr-code-that-never-expires/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ForeverQR">
+<meta property="og:title" content="QR Code That Never Expires: Free Static Generator">
+<meta property="og:description" content="Can a QR code expire? Static vs dynamic QR codes explained, why some codes stop after a free trial, and how to make one that keeps working, free.">
+<meta property="og:url" content="https://hyphenatesi.com/foreverqr/qr-code-that-never-expires/">
+<meta property="og:image" content="https://hyphenatesi.com/foreverqr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../css/style.css">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+<script src="../js/guide.js" defer></script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Do QR codes expire?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The code itself never expires. Dynamic codes can stop working when the service behind them stops redirecting, for example after a free trial. Static codes keep working as long as the link inside them does."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the difference between a static and a dynamic QR code?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A static code stores your link directly. A dynamic code stores a short link on a provider’s server that forwards to your link, so it can be edited but depends on that provider."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Are ForeverQR codes really free forever?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. They are static codes made in your browser, with no signup, watermark or trial. There is no server in between that could be switched off."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I change a static QR code after printing?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Not the code, but you can change the page it points to. Use an address you control and update that page."
+   }
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ForeverQR", "item": "https://hyphenatesi.com/foreverqr/"}, {"@type": "ListItem", "position": 2, "name": "A QR code that never expires", "item": "https://hyphenatesi.com/foreverqr/qr-code-that-never-expires/"}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="../" aria-label="ForeverQR home">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM18 14h3v2h-3zM14 18h2v3h-2z" fill="currentColor"/></svg>
+      <span>ForeverQR</span>
+    </a>
+    <nav class="top-nav" aria-label="Main">
+      <a href="../#make">Create</a>
+      <a href="../#scan">Scan</a>
+      <a href="../#guides">Guides</a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap article">
+  <p class="crumbs"><a href="../">ForeverQR</a> › <a href="../#guides">Guides</a></p>
+  <p class="eyebrow">Guide · Static vs dynamic</p>
+  <h1>A QR code that never expires</h1>
+  <p class="lede">A QR code is a printed pattern. The pattern can’t expire. What can stop working is the service some codes depend on, and that depends entirely on how the code was made.</p>
+
+  <div class="cta">
+      <p>Opens the generator. Paste your link, and the code is made in your browser with the link stored directly inside it.</p>
+      <div class="actions"><a class="btn primary" href="../?type=url">Make a code that never expires</a></div>
+    </div>
+
+  <h2>Static vs dynamic, in one picture</h2>
+  <table>
+    <thead><tr><th></th><th>Static code</th><th>Dynamic code</th></tr></thead>
+    <tbody>
+      <tr><td>What’s inside</td><td>Your actual link or text</td><td>A short link on the provider’s server</td></tr>
+      <tr><td>Path when scanned</td><td>Phone → your site</td><td>Phone → provider → your site</td></tr>
+      <tr><td>Can it be switched off?</td><td>No, nothing sits in the middle</td><td>Yes, if the provider stops redirecting</td></tr>
+      <tr><td>Change destination later?</td><td>No (but see the tip below)</td><td>Yes</td></tr>
+      <tr><td>Scan counts</td><td>Use your own website analytics</td><td>Built in</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Why some codes stop after a trial</h2>
+  <p>Dynamic codes are often the default on sites that offer a free trial. When the trial ends, the provider’s rules decide what happens to the redirect. One widely used provider, QR Code Generator, says in its help centre that dynamic QR codes are deactivated when the free trial ends and point to a service page instead of the original destination, while static codes in the account continue to work. It also says upgrading reactivates them. Other services have their own terms, so check before you print. The point isn’t that dynamic codes are bad; it’s that they are a subscription, and it’s worth knowing that before you put one on 5,000 flyers.</p>
+
+  <h2>What “never expires” really means</h2>
+  <p>A static code works for as long as what’s inside it does. Every code made on ForeverQR is static, made in your browser, with no account and no server in between, so there is nothing we, or anyone else, could switch off. These things can still break a static code, and they are all in your hands:</p>
+  <ul>
+    <li><strong>The web page moves or is deleted</strong>, or your domain name lapses.</li>
+    <li><strong>A shared file is replaced</strong> with a new file that has a new link.</li>
+    <li><strong>Wi-Fi passwords change</strong> (for <a href="../wifi-qr-code/">Wi-Fi codes</a>).</li>
+    <li><strong>The print is too small, too pale, glossy or damaged.</strong></li>
+  </ul>
+
+  <h2>Get “editable” without a subscription</h2>
+  <p>Put an address you control into the code (<code>yourbusiness.com/menu</code>, <code>yourbusiness.com/offer</code>) and change the page behind it whenever you like. If you run a website, you can also make that address a redirect you manage yourself. You get the main benefit of a dynamic code, changing the destination after printing, with no middleman.</p>
+
+  <h2>How to check whether a code is static</h2>
+  <ol class="steps">
+    <li>Open the <a href="../#scan">ForeverQR scanner</a> and scan the code with your camera or upload a photo of it. It shows the full content and never opens links by itself.</li>
+    <li>Look at the highlighted domain. If it’s your own website, the code holds your link directly.</li>
+    <li>If it’s a QR provider’s short domain, it’s a redirect, and it only keeps working as long as that account does.</li>
+  </ol>
+
+  <section class="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">FAQ</h2>
+    <details>
+      <summary>Do QR codes expire?</summary>
+      <p>The code itself never expires. Dynamic codes can stop working when the service behind them stops redirecting, for example after a free trial. Static codes keep working as long as the link inside them does.</p>
+    </details>
+    <details>
+      <summary>What is the difference between a static and a dynamic QR code?</summary>
+      <p>A static code stores your link directly. A dynamic code stores a short link on a provider’s server that forwards to your link, so it can be edited but depends on that provider.</p>
+    </details>
+    <details>
+      <summary>Are ForeverQR codes really free forever?</summary>
+      <p>Yes. They are static codes made in your browser, with no signup, watermark or trial. There is no server in between that could be switched off.</p>
+    </details>
+    <details>
+      <summary>Can I change a static QR code after printing?</summary>
+      <p>Not the code, but you can change the page it points to. Use an address you control and update that page.</p>
+    </details>
+  </section>
+
+  <section aria-labelledby="src-h">
+    <h2 id="src-h">Sources</h2>
+    <ul class="sources">
+      <li><a href="https://support.qr-code-generator.com/hc/en-us/articles/7665046137613" rel="noopener">QR Code Generator help: What happens to my account and QR Codes when the trial expires?</a></li>
+      <li><a href="https://support.qr-code-generator.com/hc/en-us/articles/7665049132685-Will-my-QR-Codes-be-reactivated-if-I-upgrade-to-a-paid-plan" rel="noopener">QR Code Generator help: Will my QR Codes be reactivated if I upgrade to a paid plan?</a></li>
+    </ul>
+  </section>
+</main>
+
+<section class="wrap more-guides" aria-labelledby="more-h">
+  <h2 id="more-h">More guides</h2>
+  <ul class="guide-grid">
+      <li><a href="../wifi-qr-code/"><strong>Wi-Fi QR code</strong><span>Let guests join your network without spelling out the password.</span></a></li>
+      <li><a href="../restaurant-menu-qr-code/"><strong>Restaurant menu QR code</strong><span>Table tents and menus that never turn into a paywall.</span></a></li>
+      <li><a href="../google-review-qr-code/"><strong>Google review QR code</strong><span>Get your official review link and print it at the counter.</span></a></li>
+      <li><a href="../instagram-qr-code/"><strong>Instagram QR code</strong><span>Send people straight to your profile from print.</span></a></li>
+      <li><a href="../business-card-qr-code/"><strong>Business card QR code</strong><span>A contact card that saves to the phone in one tap.</span></a></li>
+      <li><a href="../wedding-qr-code/"><strong>Wedding QR codes</strong><span>RSVPs, the wedding website and photo sharing.</span></a></li>
+      <li><a href="../real-estate-sign-qr-code/"><strong>Real estate sign QR code</strong><span>Listing details from the yard sign, sized for the curb.</span></a></li>
+      <li><a href="../event-check-in-qr-code/"><strong>Event check-in QR code</strong><span>Self check-in at the door with a form link.</span></a></li>
+      <li><a href="../why-did-my-qr-code-stop-working/"><strong>Why did my QR code stop working?</strong><span>Diagnose a dead code and get it working again.</span></a></li>
+  </ul>
+  <p><a href="../">← Back to the free QR code generator</a></p>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>© <span id="year">2026</span> ForeverQR. Static codes, free forever.</p>
+    <nav aria-label="Legal">
+      <a href="../privacy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

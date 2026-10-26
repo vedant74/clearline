@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make a Logo Background Transparent (Free PNG) | Peelo</title>
+<meta name="description" content="Turn a logo on white into a transparent PNG, free and in your browser. Uses colour keying made for flat artwork, with tips to avoid white halos.">
+<link rel="canonical" href="https://hyphenatesi.com/peelo/transparent-background-logo/">
+<meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Peelo">
+<meta property="og:title" content="Make a Logo Background Transparent (Free PNG) | Peelo">
+<meta property="og:description" content="Turn a logo on white into a transparent PNG, free and in your browser. Uses colour keying made for flat artwork, with tips to avoid white halos.">
+<meta property="og:url" content="https://hyphenatesi.com/peelo/transparent-background-logo/">
+<meta property="og:image" content="https://hyphenatesi.com/peelo/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="stylesheet" href="../styles.css">
+<script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Why does my transparent logo have a white outline?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The edge pixels in the original are a mix of logo colour and white. Lower the Edge softness slider for a tighter cut, and preview on black before downloading."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Part of my logo disappeared. Why?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The Plain background method removes every pixel that matches the background colour, including white areas inside the logo. Paint them back with Restore, or switch to the AI subject method."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I get an SVG?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Peelo outputs PNG and JPG. If you need a vector logo, ask your designer for the source file, or use a vector tracing tool on the transparent PNG."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is my logo uploaded anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Everything happens in your browser. That matters for unreleased brand work under NDA."
+   }
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Peelo",
+   "item": "https://hyphenatesi.com/peelo/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Guides",
+   "item": "https://hyphenatesi.com/peelo/#guides"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Transparent logo",
+   "item": "https://hyphenatesi.com/peelo/transparent-background-logo/"
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="../"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="7" class="bm-bg"/><path d="M10 22c0-6 3-11 6-11s6 5 6 11z" class="bm-fg"/></svg><span>Peelo</span></a>
+  <nav class="topnav">
+    <a href="../">Open the tool</a>
+    <a href="#more-guides">Guides</a>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="content" class="guide">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Peelo</a> › <a href="../#guides">Guides</a> › <span aria-current="page">Transparent logo</span></nav>
+  <article>
+    <h1>Make a logo's background transparent</h1>
+    <p class="lede">You have a logo as a JPG on white, and you need a transparent PNG for a slide, a website header or a product mock-up. AI subject detection is the wrong tool for flat artwork. Peelo has a <em>Plain background</em> method that removes the white itself.</p>
+    <div class="cta-box"><a class="btn primary" href="../?preset=logo">Open with the logo preset</a><p>Sets the Plain background method and a transparent PNG output.</p></div>
+    
+<h2>Why logos need a different method</h2>
+<p>Background-removal AI is trained to find "the subject" of a photo, like a person or a product. A logo isn't a photo. It might be three separate letters, a thin outline or a shape with holes in it, and an AI model may keep the main shape and drop the rest. The <strong>Plain background</strong> method works differently. It samples the colour around the edges of your image (usually white), then makes every pixel close to that colour transparent, with soft edges for anti-aliased lines. Letters, outlines and holes are all handled the same way.</p>
+
+<h2>Start from the best source you have</h2>
+<ul>
+<li><strong>If you have a vector file</strong> (SVG, AI, EPS or a PDF from the designer), export a transparent PNG from it. That will always beat removing a background from a JPG.</li>
+<li><strong>If you only have a raster file</strong>, use the largest version you can find. A 2000 px logo gives far cleaner edges than a 200 px favicon grabbed from a website.</li>
+<li><strong>Avoid screenshots of logos.</strong> They add compression blur and a coloured fringe.</li>
+</ul>
+
+<h2>Avoiding white halos</h2>
+<p>A logo on white has edge pixels that are a blend of logo colour and white. Remove the white and put the logo on a dark background, and you can see a faint light outline, or "halo". Use the <em>Edge softness</em> slider to control it:</p>
+<ul>
+<li><strong>Lower softness</strong> makes the cut tighter and removes more of the near-white fringe. This is best if the logo will sit on dark backgrounds.</li>
+<li><strong>Higher softness</strong> gives smoother edges. This is best on light backgrounds.</li>
+</ul>
+<p>Before you download, preview with the <em>Colour</em> background set to black to see any halo, then switch back to <em>Transparent</em>.</p>
+
+<h2>Watch out for white inside the logo</h2>
+<p>The Plain background method removes <em>every</em> pixel that matches the background colour, including white inside the logo, like white text on a red badge. If parts of your logo should stay white:</p>
+<ul>
+<li>use <em>Refine edges</em> and then <em>Restore</em> to paint those areas back, or</li>
+<li>switch the method to <em>AI subject</em>, which keeps a solid badge shape together.</li>
+</ul>
+
+<h2>Logos on a coloured background</h2>
+<p>It doesn't have to be white. If your logo sits on flat blue, the method samples blue from the edges and removes that instead. It works best when the background is one flat colour without gradients or texture.</p>
+
+    <h2 id="how-to">How to do it with Peelo</h2>
+    <ol class="steps"><li><strong>Open the tool with the <a href="../?preset=logo">logo preset</a></strong>. It sets the Plain background method and transparent output. The AI model isn't needed, so it starts instantly.</li><li><strong>Add your logo image</strong> (JPG, PNG or WebP). Use the largest version you have.</li><li><strong>Check for halos.</strong> Switch the background to Colour and pick black, then adjust <em>Edge softness</em> until the edge looks clean.</li><li><strong>Restore any white parts</strong> that belong to the logo with <em>Refine edges</em> and then <em>Restore</em>.</li><li><strong>Set the background back to Transparent and download the PNG.</strong> JPG can't store transparency.</li></ol>
+    
+    <div class="cta-box"><a class="btn primary" href="../?preset=logo">Open with the logo preset</a><p>Sets the Plain background method and a transparent PNG output.</p></div>
+    <section class="faq">
+      <h2>Questions</h2>
+      <details><summary>Why does my transparent logo have a white outline?</summary><p>The edge pixels in the original are a mix of logo colour and white. Lower the Edge softness slider for a tighter cut, and preview on black before downloading.</p></details><details><summary>Part of my logo disappeared. Why?</summary><p>The Plain background method removes every pixel that matches the background colour, including white areas inside the logo. Paint them back with Restore, or switch to the AI subject method.</p></details><details><summary>Can I get an SVG?</summary><p>No. Peelo outputs PNG and JPG. If you need a vector logo, ask your designer for the source file, or use a vector tracing tool on the transparent PNG.</p></details><details><summary>Is my logo uploaded anywhere?</summary><p>No. Everything happens in your browser. That matters for unreleased brand work under NDA.</p></details>
+    </section>
+    
+  </article>
+
+  <section id="more-guides" class="more-guides">
+    <h2>More guides</h2>
+    <ul class="guide-grid"><li><a href="../remove-bg-alternative/">remove.bg alternative</a></li><li><a href="../white-background-amazon-product-photo/">Amazon white background</a></li><li><a href="../remove-background-for-etsy/">Etsy listing photos</a></li><li><a href="../remove-background-shopify-product-photos/">Shopify product photos</a></li><li><a href="../remove-background-from-signature/">Signature background</a></li><li><a href="../remove-background-without-uploading/">No-upload background removal</a></li><li><a href="../linkedin-headshot-background/">LinkedIn headshot</a></li><li><a href="../remove-background-pet-photo/">Pet photos</a></li><li><a href="../remove-background-car-photo/">Car photos</a></li><li><a href="../remove-background-full-resolution-free/">Full resolution, free</a></li></ul>
+  </section>
+</main>
+
+<footer class="footer">
+  <p><a href="../">Peelo</a> · <a href="../#guides">Guides</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></p>
+  <p class="fine">Peelo is independent and not affiliated with remove.bg, Canva, Photoroom, Amazon, Etsy, Shopify or LinkedIn. Product names are trademarks of their owners.</p>
+</footer>
+<script src="../js/site.js"></script>
+</body>
+</html>

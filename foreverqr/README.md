@@ -6,6 +6,15 @@ A free, static QR code generator and ad-free scanner. Codes are made in the brow
 - **Scanner:** works from the camera or an uploaded image. It uses BarcodeDetector where the browser has it and falls back to jsQR, which is loaded only when needed. Results show in full. For links, the real domain is highlighted, risky links get warnings (http, punycode, raw IP, `@` login trick, URL shorteners), and nothing opens until the user taps.
 - **Waitlist:** a "Dynamic codes, pay once" waitlist form, plus optional analytics and a payment link. All three are set in `config.js`.
 
+## Presets via URL
+
+Links can open the generator pre-set (it only selects and pre-fills; it never downloads):
+`?type=url|text|wifi|vcard|email|sms|phone` plus optional `label=` (caption under the code and on the printable sign),
+`url=` (http/https only), `text=`, `ssid=`, `enc=WPA|WEP|nopass`, `number=` (sms/phone), `msg=`, `to=`, `subject=`, `body=`, `org=`.
+Example: `/foreverqr/?type=wifi&label=Scan%20for%20Wi-Fi`. Wi-Fi passwords are deliberately not accepted from the URL.
+
+**Printable sign:** "Printable sign (PNG/SVG)" exports a 6 × 8 in (1800 × 2400 px at 300 dpi) card with the caption, the code and its destination. No watermark.
+
 ## Files
 
 ```
@@ -14,6 +23,9 @@ config.js         All settings (name, signup endpoint, analytics snippet, paymen
 css/style.css     Styles; light/dark via prefers-color-scheme + toggle
 js/app.js         All app logic (payload builders, renderer, PNG/SVG export, scanner, waitlist)
 vendor/           qrcode-generator 1.4.4 (MIT), jsQR 1.4.0 (Apache-2.0), LICENSES.md
+<slug>/index.html 10 use-case guides (wifi-qr-code, restaurant-menu-qr-code, google-review-qr-code, …), static HTML
+js/guide.js       Guide pages: theme toggle + service worker registration
+manifest.webmanifest, sw.js, icons/   PWA: installable, offline app shell (bump VERSION in sw.js when the shell file list changes)
 privacy.html      Privacy policy TEMPLATE (review before launch)
 terms.html        Terms TEMPLATE (review before launch)
 favicon.svg, og-image.png, robots.txt, sitemap.xml, .nojekyll

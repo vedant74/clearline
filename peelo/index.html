@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Peelo – Free Background Remover, Full Resolution, No Upload</title>
-<meta name="description" content="Remove image backgrounds free at full resolution. Runs entirely in your browser, so your photos are never uploaded. No signup, no watermark, no credits. A private remove.bg alternative.">
+<meta name="description" content="Free background remover with full-res downloads. Runs in your browser, so photos are never uploaded. No signup, no watermark. A remove.bg alternative.">
 <meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
@@ -15,6 +15,8 @@
 <meta property="og:image" content="https://hyphenatesi.com/peelo/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="styles.css">
 <script src="config.js"></script>
 <script>
@@ -47,7 +49,8 @@
 <header class="topbar">
   <a class="brand" href="./"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="7" class="bm-bg"/><path d="M10 22c0-6 3-11 6-11s6 5 6 11z" class="bm-fg"/></svg><span data-name>Peelo</span></a>
   <nav class="topnav">
-    <a href="#switch">Switching?</a>
+    <a href="remove-bg-alternative/">Switching?</a>
+    <a href="#guides">Guides</a>
     <a href="#faq">FAQ</a>
     <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
@@ -57,8 +60,8 @@
 
 <main>
   <section class="hero">
-    <h1>Remove the background.<br><span class="hl">Keep every pixel.</span></h1>
-    <p class="lede">Free, full-resolution cutouts with no signup, no watermark and no credits. The AI runs in your browser, so your photos never leave your device.</p>
+    <h1>Free background remover.<br><span class="hl">Full resolution, no upload.</span></h1>
+    <p class="lede">Remove the background from any photo and download it at full resolution, free, with no signup, no watermark and no credits. The AI runs in your browser, so there's no upload: your photos never leave your device.</p>
   </section>
 
   <section id="tool" class="tool" aria-label="Background remover">
@@ -70,6 +73,13 @@
         <p class="dz-sub">You can also paste (Ctrl/⌘ + V). JPG, PNG, WebP.</p>
         <p class="trust-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5" class="tick"/></svg>Your photos never leave your device.</p>
       </div>
+    </div>
+
+    <div id="presetRow" class="preset-row">
+      <span class="preset-label">Quick presets:</span>
+      <button type="button" class="chip-btn" data-preset="marketplace" aria-pressed="false">Marketplace photo <small>(white, square)</small></button>
+      <button type="button" class="chip-btn" data-preset="plain" aria-pressed="false">Logo or signature</button>
+      <p id="presetNote" class="preset-note" role="status" hidden></p>
     </div>
 
     <div id="workspace" class="workspace" hidden>
@@ -109,7 +119,29 @@
           <p class="hint">Paint over the image. Erase removes leftover background; Restore brings back parts of your subject.</p>
         </div>
 
+        <p id="frameNote" class="hint" hidden>Refine shows the whole photo. Switch back to Compare to see the square framing.</p>
+
+        <div class="opt-group">
+          <span class="opt-label" id="methodLabel">Cut-out method</span>
+          <div class="seg small" role="group" aria-labelledby="methodLabel">
+            <button type="button" class="seg-btn is-on" data-method="ai" aria-pressed="true">AI subject</button>
+            <button type="button" class="seg-btn" data-method="plain" aria-pressed="false">Plain background</button>
+          </div>
+          <p class="hint">Plain background removes a solid colour (white paper, a flat logo background) instead of detecting a subject. Best for logos and signatures.</p>
+        </div>
+
         <label class="slider">Edge softness <input id="feather" type="range" min="0" max="100" value="35"><output id="featherOut">35</output></label>
+
+        <button type="button" class="btn wide market-btn" id="marketBtn" aria-pressed="false">Marketplace photo <small>white · square · 85% fill</small></button>
+
+        <div class="opt-group">
+          <span class="opt-label" id="frameLabel">Framing</span>
+          <div class="seg small" role="group" aria-labelledby="frameLabel">
+            <button type="button" class="seg-btn is-on" data-frame="original" aria-pressed="true">Original size</button>
+            <button type="button" class="seg-btn" data-frame="square" aria-pressed="false">Square, centred</button>
+          </div>
+          <label class="slider slider-wide" id="fillRow" hidden>Subject fills <input id="fill" type="range" min="50" max="100" value="85"><output id="fillOut">85%</output></label>
+        </div>
 
         <fieldset class="bg-opts">
           <legend>Background</legend>
@@ -151,7 +183,7 @@
 
   <section id="switch" class="switch">
     <h2>Switching from remove.bg?</h2>
-    <p>remove.bg's own pricing page says its standalone service ends on <strong>1 December 2026</strong> and moves into Canva. If you just need clean cutouts, here's how this tool compares.</p>
+    <p>remove.bg's own pricing page says its standalone service ends on <strong>1 December 2026</strong> and moves into Canva. If you just need clean cutouts, here's how this tool compares. For a fuller side-by-side with Canva and Photoroom, see <a href="remove-bg-alternative/">the remove.bg alternative guide</a>.</p>
     <div class="table-wrap">
     <table>
       <thead><tr><th></th><th>This tool</th><th>Typical online removers</th></tr></thead>
@@ -191,10 +223,27 @@
     <details><summary>What if the AI gets the edges wrong?</summary><p>Switch to <em>Refine edges</em>. The erase and restore brush (with adjustable size) fixes leftover background or missing parts, and the edge softness slider controls how crisp the outline is.</p></details>
     <details><summary>Which images work best?</summary><p>Photos with one clear subject: products, people, pets, cars, food. Busy scenes with many subjects, glass and very fine hair are harder; use the refine brush for those.</p></details>
   </section>
+  <section id="guides" class="guides-home">
+    <h2>Guides</h2>
+    <p class="fine">Step-by-step help for specific jobs. Each guide opens the tool with the right settings.</p>
+    <ul class="guide-grid">
+      <li><a href="remove-bg-alternative/">remove.bg alternative (free, no upload)</a></li>
+      <li><a href="white-background-amazon-product-photo/">White background for Amazon product photos</a></li>
+      <li><a href="remove-background-for-etsy/">Remove backgrounds for Etsy listings</a></li>
+      <li><a href="remove-background-shopify-product-photos/">Shopify product photos</a></li>
+      <li><a href="transparent-background-logo/">Make a logo background transparent</a></li>
+      <li><a href="remove-background-from-signature/">Remove the background from a signature</a></li>
+      <li><a href="remove-background-without-uploading/">Remove a background without uploading</a></li>
+      <li><a href="linkedin-headshot-background/">LinkedIn headshot background</a></li>
+      <li><a href="remove-background-pet-photo/">Remove the background from a pet photo</a></li>
+      <li><a href="remove-background-car-photo/">Remove the background from a car photo</a></li>
+      <li><a href="remove-background-full-resolution-free/">Full-resolution background removal, free</a></li>
+    </ul>
+  </section>
 </main>
 
 <footer class="footer">
-  <p><span data-name>Peelo</span> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+  <p><span data-name>Peelo</span> · <a href="#guides">Guides</a> · <a href="remove-bg-alternative/">remove.bg alternative</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
   <p class="fine">Segmentation model: U²-Net (u2netp) by Xuebin Qin et al., Apache-2.0. Runtime: ONNX Runtime Web, MIT. No cookies, no ads, no third-party requests.</p>
 </footer>
 

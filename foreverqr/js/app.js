@@ -273,10 +273,9 @@
   function fmt(n) { return String(Math.round(n * 1000) / 1000); }
   function xmlEsc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
-  function buildSvg(model, logo, sizePx) {
-    var T = model.total;
-    var out = ['<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ' + T + ' ' + T +
-      '" width="' + sizePx + '" height="' + sizePx + '" shape-rendering="' + (state.style === 'square' ? 'crispEdges' : 'geometricPrecision') + '">'];
+  // Inner SVG elements of a code (in module units, viewBox 0 0 total total).
+  function buildSvgBody(model, logo) {
+    var out = [];
     // Group consecutive square runs of the same colour into one path for a small file.
     var path = [], pathFill = null;
     function flush() { if (path.length) { out.push('<path fill="' + pathFill + '" d="' + path.join('') + '"/>'); path = []; } }
@@ -297,13 +296,22 @@
       out.push('<image x="' + fmt(b.x) + '" y="' + fmt(b.y) + '" width="' + fmt(b.w) + '" height="' + fmt(b.h) +
         '" preserveAspectRatio="xMidYMid meet" href="' + xmlEsc(logo.dataUrl) + '" xlink:href="' + xmlEsc(logo.dataUrl) + '"/>');
     }
-    out.push('</svg>');
     return out.join('');
+  }
+  function shapeRendering() { return state.style === 'square' ? 'crispEdges' : 'geometricPrecision'; }
+
+  function buildSvg(model, logo, sizePx) {
+    var T = model.total;
+    return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ' + T + ' ' + T +
+      '" width="' + sizePx + '" height="' + sizePx + '" shape-rendering="' + shapeRendering() + '">' + buildSvgBody(model, logo) + '</svg>';
   }
 
   /* ------------------------------------------------------------------ generator UI */
   var form = $('#makeForm');
   var canvas = $('#qrCanvas');
+  var labelInput = $('#o-label');
+  var DEFAULT_CAPTION = { url: 'Scan me', text: 'Scan me', wifi: 'Scan for Wi-Fi', vcard: 'Scan to save my contact',
+    email: 'Scan to email us', sms: 'Scan to text us', tel: 'Scan to call us' };
   var state = { type: 'url', payload: '', model: null, ecl: 'M', style: 'square', fg: '#111111', bg: '#ffffff', margin: 4, size: 2048 };
   var logo = null; // { img, dataUrl }
 
@@ -325,7 +333,7 @@
   }
   function contrast(a, b) { var A = lum(a), B = lum(b); return (Math.max(A, B) + 0.05) / (Math.min(A, B) + 0.05); }
 
-  function setButtons(on) { ['#dlPng', '#dlSvg', '#copyPng'].forEach(function (s) { $(s).disabled = !on; }); }
+  function setButtons(on) { ['#dlPng', '#dlSvg', '#copyPng', '#dlSignPng', '#dlSignSvg'].forEach(function (s) { $(s).disabled = !on; }); }
 
   function render() {
     var v = readValues();
@@ -353,7 +361,7 @@
       ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--surface-2') || '#eee';
       ctx.fillRect(0, 0, 320, 320);
       info.textContent = 'Fill in the fields to make your code.';
-      err.hidden = true; setButtons(false);
+      err.hidden = true; setButtons(false); updateCaption();
       return;
     }
     try {
@@ -363,6 +371,7 @@
       var shown = payload.length > 120 ? payload.slice(0, 117) + '…' : payload;
       info.textContent = 'Encodes: ' + shown.replace(/\r\n/g, ' ⏎ ');
       canvas.setAttribute('aria-label', 'QR code for ' + shown);
+      updateCaption();
     } catch (e) {
       state.model = null; setButtons(false);
       err.textContent = 'That’s too much data for one QR code. Shorten it, or lower error correction.';
@@ -426,6 +435,158 @@
   });
 
   render();
+
+  /* ------------------------------------------------------------------ caption + printable sign */
+  function captionText() { return (labelInput.value || '').trim() || DEFAULT_CAPTION[state.type] || 'Scan me'; }
+  function updateCaption() {
+    var cap = $('#qrCaption'), v = (labelInput.value || '').trim();
+    cap.textContent = v; cap.hidden = !v;
+    labelInput.placeholder = DEFAULT_CAPTION[state.type] || 'Scan me';
+  }
+  labelInput.addEventListener('input', updateCaption);
+
+  // Second line on the sign: tells people what the code does before they scan it.
+  function subline() {
+    var v = readValues();
+    switch (state.type) {
+      case 'url': try { var u = new URL(state.payload); return u.hostname.replace(/^www\./, '') + (u.pathname.length > 1 ? u.pathname : ''); } catch (e) { return ''; }
+      case 'wifi': return v.ssid ? 'Network: ' + v.ssid : '';
+      case 'vcard': return [v.first, v.last].filter(Boolean).join(' ') || v.org || '';
+      case 'email': return (v.eto || '').trim();
+      case 'sms': return (v.snum || '').trim();
+      case 'tel': return (v.tel || '').trim();
+    }
+    return '';
+  }
+
+  var SIGN_W = 1800, SIGN_H = 2400, SIGN_QR = 1300, SIGN_GAP = 90; // 6 x 8 in at 300 dpi; code is ~4.3 in wide
+  var SIGN_FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+
+  function wrapText(ctx, text, maxW) {
+    var words = text.split(/\s+/), lines = [], line = '';
+    words.forEach(function (w) {
+      var test = line ? line + ' ' + w : w;
+      if (ctx.measureText(test).width <= maxW || !line) line = test; else { lines.push(line); line = w; }
+    });
+    if (line) lines.push(line);
+    return lines;
+  }
+  function fitText(ctx, text, maxW) {
+    while (text.length > 1 && ctx.measureText(text).width > maxW) text = text.slice(0, -2) + '…';
+    return text;
+  }
+
+  // Shared layout for PNG and SVG so both look the same.
+  function signLayout() {
+    var c = document.createElement('canvas').getContext('2d');
+    var cap = captionText(), size = 150, lines;
+    var sizes = [150, 128, 110, 96, 84];
+    for (var i = 0; i < sizes.length; i++) {
+      size = sizes[i]; c.font = '800 ' + size + 'px ' + SIGN_FONT;
+      lines = wrapText(c, cap, SIGN_W - 300);
+      if (lines.length <= 2 && lines.every(function (l) { return c.measureText(l).width <= SIGN_W - 300; })) break;
+    }
+    if (lines.length > 2) lines = [lines[0], lines.slice(1).join(' ')]; // overflow goes to line 2 and is cut with an ellipsis
+    lines = lines.map(function (l) { return fitText(c, l, SIGN_W - 300); });
+    var lineH = Math.round(size * 1.18);
+    var sub = subline(), subSize = 62;
+    c.font = '500 ' + subSize + 'px ' + SIGN_FONT;
+    if (sub) sub = fitText(c, sub, SIGN_W - 300);
+    var blockH = lines.length * lineH + SIGN_GAP + SIGN_QR + (sub ? 70 + subSize : 0);
+    var top = Math.round((SIGN_H - blockH) / 2);
+    return { lines: lines, size: size, lineH: lineH, capTop: top, qrX: (SIGN_W - SIGN_QR) / 2, qrY: top + lines.length * lineH + SIGN_GAP,
+      sub: sub, subSize: subSize, subY: top + lines.length * lineH + SIGN_GAP + SIGN_QR + 70 + Math.round(subSize * 0.8) };
+  }
+
+  function signPngBlob() {
+    return new Promise(function (resolve, reject) {
+      if (!state.model) return reject(new Error('no code'));
+      var L = signLayout(), c = document.createElement('canvas');
+      c.width = SIGN_W; c.height = SIGN_H;
+      var ctx = c.getContext('2d');
+      ctx.fillStyle = state.bg; ctx.fillRect(0, 0, SIGN_W, SIGN_H);
+      ctx.strokeStyle = state.fg; ctx.lineWidth = 8;
+      roundRectPath(ctx, 60, 60, SIGN_W - 120, SIGN_H - 120, 70); ctx.stroke();
+      ctx.fillStyle = state.fg; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+      ctx.font = '800 ' + L.size + 'px ' + SIGN_FONT;
+      L.lines.forEach(function (l, i) { ctx.fillText(l, SIGN_W / 2, L.capTop + i * L.lineH + Math.round(L.size * 0.9)); });
+      var q = document.createElement('canvas');
+      drawCanvas(q, state.model, SIGN_QR, logo && logo.img);
+      ctx.drawImage(q, L.qrX, L.qrY);
+      if (L.sub) { ctx.font = '500 ' + L.subSize + 'px ' + SIGN_FONT; ctx.globalAlpha = 0.8; ctx.fillText(L.sub, SIGN_W / 2, L.subY); ctx.globalAlpha = 1; }
+      c.toBlob(function (b) { b ? resolve(b) : reject(new Error('toBlob failed')); }, 'image/png');
+    });
+  }
+
+  function signSvg() {
+    if (!state.model) return '';
+    var L = signLayout(), T = state.model.total;
+    var out = ['<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ' +
+      SIGN_W + ' ' + SIGN_H + '" width="6in" height="8in">'];
+    out.push('<rect width="' + SIGN_W + '" height="' + SIGN_H + '" fill="' + state.bg + '"/>');
+    out.push('<rect x="60" y="60" width="' + (SIGN_W - 120) + '" height="' + (SIGN_H - 120) + '" rx="70" fill="none" stroke="' + state.fg + '" stroke-width="8"/>');
+    var fam = xmlEsc(SIGN_FONT);
+    L.lines.forEach(function (l, i) {
+      out.push('<text x="' + SIGN_W / 2 + '" y="' + (L.capTop + i * L.lineH + Math.round(L.size * 0.9)) + '" text-anchor="middle" font-family="' + fam +
+        '" font-weight="800" font-size="' + L.size + '" fill="' + state.fg + '">' + xmlEsc(l) + '</text>');
+    });
+    out.push('<svg x="' + L.qrX + '" y="' + L.qrY + '" width="' + SIGN_QR + '" height="' + SIGN_QR + '" viewBox="0 0 ' + T + ' ' + T +
+      '" shape-rendering="' + shapeRendering() + '">' + buildSvgBody(state.model, logo) + '</svg>');
+    if (L.sub) out.push('<text x="' + SIGN_W / 2 + '" y="' + L.subY + '" text-anchor="middle" font-family="' + fam + '" font-weight="500" font-size="' +
+      L.subSize + '" fill="' + state.fg + '" fill-opacity="0.8">' + xmlEsc(L.sub) + '</text>');
+    out.push('</svg>');
+    return out.join('');
+  }
+
+  $('#dlSignPng').addEventListener('click', function () {
+    signPngBlob().then(function (b) { saveBlob(b, fileBase() + '-sign.png'); toast('#toast', 'Printable sign downloaded (6 × 8 in at 300 dpi).'); track('sign-download'); });
+  });
+  $('#dlSignSvg').addEventListener('click', function () {
+    var svg = signSvg(); if (!svg) return;
+    saveBlob(new Blob([svg], { type: 'image/svg+xml' }), fileBase() + '-sign.svg');
+    toast('#toast', 'Printable sign downloaded (SVG).'); track('sign-download');
+  });
+
+  /* ------------------------------------------------------------------ presets via URL (?type=wifi&label=...) */
+  // Only pre-selects and pre-fills. Never downloads or submits anything.
+  var TYPE_ALIASES = { url: 'url', link: 'url', website: 'url', text: 'text', wifi: 'wifi', 'wi-fi': 'wifi', vcard: 'vcard', contact: 'vcard',
+    email: 'email', mail: 'email', sms: 'sms', text_message: 'sms', phone: 'tel', tel: 'tel', call: 'tel' };
+  function applyPreset() {
+    var q;
+    try { q = new URLSearchParams(location.search); } catch (e) { return; }
+    var label = q.get('label');
+    if (label) labelInput.value = label.replace(/[\u0000-\u001f]/g, '').slice(0, 60);
+    var type = TYPE_ALIASES[(q.get('type') || '').toLowerCase()];
+    if (!type) { if (label) updateCaption(); return; }
+    var radio = $('input[name="type"][value="' + type + '"]', form);
+    radio.checked = true;
+    function set(sel, val, max) { if (val != null && val !== '') $(sel).value = String(val).slice(0, max || 300); }
+    var u = q.get('url');
+    if (type === 'url') $('#f-url').value = (u && /^https?:\/\//i.test(u)) ? u.slice(0, 1500) : '';
+    set('#f-text', q.get('text'), 1500);
+    set('#f-ssid', q.get('ssid'), 64);
+    if (/^(WPA|WEP|nopass)$/.test(q.get('enc') || '')) $('#f-wenc').value = q.get('enc');
+    if (type === 'sms') { set('#f-snum', q.get('number'), 40); set('#f-smsg', q.get('msg'), 300); }
+    if (type === 'tel') set('#f-tel', q.get('number'), 40);
+    if (type === 'email') { set('#f-eto', q.get('to'), 200); set('#f-esub', q.get('subject'), 200); set('#f-ebody', q.get('body'), 1000); }
+    if (type === 'vcard') { set('#f-org', q.get('org'), 100); }
+    showTab('make');
+    render();
+    var fields = $('.fields[data-type="' + type + '"]', form);
+    var first = $$('input, textarea', fields).filter(function (el) { return !el.value; })[0] || $('input, textarea', fields);
+    var tool = $('.tool');
+    if (tool && tool.scrollIntoView) tool.scrollIntoView({ block: 'start' });
+    if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+    track('preset-' + type);
+  }
+  applyPreset();
+
+  /* ------------------------------------------------------------------ offline / install (PWA) */
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(function () { /* offline support is optional */ });
+    });
+  }
 
   /* ------------------------------------------------------------------ scanner */
   var jsqrPromise = null;
@@ -641,7 +802,7 @@
   // Small test/debug surface (harmless in production).
   window.QRApp = {
     buildPayload: buildPayload, buildSvg: function () { return state.model ? buildSvg(state.model, logo, 1024) : ''; },
-    pngBlob: pngBlob, decodeImageData: decodeImageData, decodeFile: decodeFile,
+    pngBlob: pngBlob, signPngBlob: signPngBlob, signSvg: signSvg, decodeImageData: decodeImageData, decodeFile: decodeFile,
     state: function () { return { type: state.type, payload: state.payload, ecl: state.ecl, n: state.model && state.model.n }; }
   };
 })();

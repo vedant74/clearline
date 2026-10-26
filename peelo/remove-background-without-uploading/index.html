@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remove Background Without Uploading Your Photo | Peelo</title>
+<meta name="description" content="Remove image backgrounds entirely in your browser. The photo never leaves your device. How it works, how to verify it, and when it matters.">
+<link rel="canonical" href="https://hyphenatesi.com/peelo/remove-background-without-uploading/">
+<meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Peelo">
+<meta property="og:title" content="Remove Background Without Uploading Your Photo | Peelo">
+<meta property="og:description" content="Remove image backgrounds entirely in your browser. The photo never leaves your device. How it works, how to verify it, and when it matters.">
+<meta property="og:url" content="https://hyphenatesi.com/peelo/remove-background-without-uploading/">
+<meta property="og:image" content="https://hyphenatesi.com/peelo/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="stylesheet" href="../styles.css">
+<script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Does Peelo store my photos?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Photos are processed in your browser's memory and are never uploaded, so there's nothing on our side to store. Closing the tab clears them."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why does the first use download about 16 MB?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "That's the AI model (4.6 MB) and the WebAssembly runtime that runs it. It's downloaded once and cached by your browser, so later visits start almost instantly, even offline."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I use it completely offline?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, after the first visit. Install it as an app from your browser menu, or just reopen the page. The app and the model come from your browser's cache."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is on-device removal lower quality?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It uses a smaller model than server tools, so it's weaker on fine hair, glass and busy scenes. For single clear subjects the results are good, and you can fix edges with the brush."
+   }
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Peelo",
+   "item": "https://hyphenatesi.com/peelo/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Guides",
+   "item": "https://hyphenatesi.com/peelo/#guides"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "No-upload background removal",
+   "item": "https://hyphenatesi.com/peelo/remove-background-without-uploading/"
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="../"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="7" class="bm-bg"/><path d="M10 22c0-6 3-11 6-11s6 5 6 11z" class="bm-fg"/></svg><span>Peelo</span></a>
+  <nav class="topnav">
+    <a href="../">Open the tool</a>
+    <a href="#more-guides">Guides</a>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="content" class="guide">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Peelo</a> › <a href="../#guides">Guides</a> › <span aria-current="page">No-upload background removal</span></nav>
+  <article>
+    <h1>Remove a background without uploading your photo</h1>
+    <p class="lede">Most background removers send your photo to a server, process it there and send the result back. Peelo does the whole job inside your browser. Here's how that works, how to check it yourself, and when it matters.</p>
+    <div class="cta-box"><a class="btn primary" href="../">Try it: nothing gets uploaded</a><p>The AI engine downloads once, then runs on your device.</p></div>
+    
+<h2>How on-device background removal works</h2>
+<p>When you open Peelo, your browser downloads two things from the same site that serves the page:</p>
+<ol>
+<li><strong>The model:</strong> U²-Net small, an open-source segmentation network (Apache-2.0, 4.6 MB).</li>
+<li><strong>The runtime:</strong> ONNX Runtime Web, compiled to WebAssembly so it runs at near-native speed in any modern browser (about 11 MB).</li>
+</ol>
+<p>When you add a photo, your browser decodes it into memory. The model then works out which pixels belong to the subject, and the cut-out is composited at full resolution on a canvas, all in the browser tab. The download is created locally too. At no point does the image go into a network request.</p>
+
+<h2>Verify it yourself</h2>
+<p>You shouldn't have to take our word for it. Two easy checks:</p>
+<ul>
+<li><strong>Airplane mode test:</strong> open Peelo and process one photo so the engine is cached. Then turn on airplane mode or disconnect Wi-Fi and process another. It still works, because nothing needs the internet.</li>
+<li><strong>Network tab:</strong> on a desktop, open your browser's developer tools (F12), go to the Network tab, then add a photo. You'll see no upload request, and no third-party requests at all. Peelo doesn't load ads, trackers or fonts from other domains.</li>
+</ul>
+
+<h2>When not uploading matters</h2>
+<ul>
+<li><strong>Client work under NDA:</strong> unreleased products, packaging and campaign assets.</li>
+<li><strong>Photos of children</strong> or family photos you don't want stored on someone else's server.</li>
+<li><strong>Signatures and personal documents.</strong> See the <a href="../remove-background-from-signature/">signature guide</a>.</li>
+<li><strong>Workplaces with strict data policies</strong> where unapproved cloud tools are off-limits.</li>
+<li><strong>Bad connections:</strong> processing locally means no waiting for a 10 MB upload on hotel Wi-Fi.</li>
+</ul>
+
+<h2>The trade-offs, honestly</h2>
+<p>Running on your device means the model has to be small enough to download quickly and run on a phone. Server tools can run models that are 30 to 50 times larger. In practice:</p>
+<ul>
+<li>Single clear subjects (products, people, pets, cars) come out well.</li>
+<li>Fine hair against busy backgrounds, glass and crowded scenes are weaker. The erase and restore brush is there for that.</li>
+<li>Speed depends on your device. A recent phone takes about a second or two. A very old laptop may take longer.</li>
+<li>Very large photos are capped at 16 megapixels, because browsers, especially on iPhone, fail on bigger canvases.</li>
+</ul>
+
+<h2>Install it for offline use</h2>
+<p>Peelo is an installable web app. In Chrome or Edge, use "Install app" in the address bar or menu. On iPhone, use Share → Add to Home Screen. After one online visit, the app and its AI engine are cached, so it opens and works without a connection.</p>
+
+    <h2 id="how-to">How to do it with Peelo</h2>
+    <ol class="steps"><li><strong>Open <a href="../">Peelo</a></strong> while online. The engine downloads once and is cached.</li><li><strong>Optional:</strong> turn on airplane mode to prove nothing leaves your device.</li><li><strong>Add your photo.</strong> It's decoded and processed in your browser's memory.</li><li><strong>Refine the edges</strong> if needed, and pick a transparent, colour, blur or image background.</li><li><strong>Download.</strong> The file is created on your device at the photo's full resolution.</li></ol>
+    
+    <div class="cta-box"><a class="btn primary" href="../">Try it: nothing gets uploaded</a><p>The AI engine downloads once, then runs on your device.</p></div>
+    <section class="faq">
+      <h2>Questions</h2>
+      <details><summary>Does Peelo store my photos?</summary><p>No. Photos are processed in your browser's memory and are never uploaded, so there's nothing on our side to store. Closing the tab clears them.</p></details><details><summary>Why does the first use download about 16 MB?</summary><p>That's the AI model (4.6 MB) and the WebAssembly runtime that runs it. It's downloaded once and cached by your browser, so later visits start almost instantly, even offline.</p></details><details><summary>Can I use it completely offline?</summary><p>Yes, after the first visit. Install it as an app from your browser menu, or just reopen the page. The app and the model come from your browser's cache.</p></details><details><summary>Is on-device removal lower quality?</summary><p>It uses a smaller model than server tools, so it's weaker on fine hair, glass and busy scenes. For single clear subjects the results are good, and you can fix edges with the brush.</p></details>
+    </section>
+    
+  </article>
+
+  <section id="more-guides" class="more-guides">
+    <h2>More guides</h2>
+    <ul class="guide-grid"><li><a href="../remove-bg-alternative/">remove.bg alternative</a></li><li><a href="../white-background-amazon-product-photo/">Amazon white background</a></li><li><a href="../remove-background-for-etsy/">Etsy listing photos</a></li><li><a href="../remove-background-shopify-product-photos/">Shopify product photos</a></li><li><a href="../transparent-background-logo/">Transparent logo</a></li><li><a href="../remove-background-from-signature/">Signature background</a></li><li><a href="../linkedin-headshot-background/">LinkedIn headshot</a></li><li><a href="../remove-background-pet-photo/">Pet photos</a></li><li><a href="../remove-background-car-photo/">Car photos</a></li><li><a href="../remove-background-full-resolution-free/">Full resolution, free</a></li></ul>
+  </section>
+</main>
+
+<footer class="footer">
+  <p><a href="../">Peelo</a> · <a href="../#guides">Guides</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></p>
+  <p class="fine">Peelo is independent and not affiliated with remove.bg, Canva, Photoroom, Amazon, Etsy, Shopify or LinkedIn. Product names are trademarks of their owners.</p>
+</footer>
+<script src="../js/site.js"></script>
+</body>
+</html>

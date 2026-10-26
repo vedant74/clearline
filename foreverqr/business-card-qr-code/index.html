@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Card QR Code (vCard): Free, No Signup</title>
+<meta name="description" content="Put a contact QR code on your business card that saves your name, phone and email in one scan. vCard vs link, which fields to include, and print size.">
+<meta name="theme-color" content="#f4efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16140f" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="canonical" href="https://hyphenatesi.com/foreverqr/business-card-qr-code/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ForeverQR">
+<meta property="og:title" content="Business Card QR Code (vCard): Free, No Signup">
+<meta property="og:description" content="Put a contact QR code on your business card that saves your name, phone and email in one scan. vCard vs link, which fields to include, and print size.">
+<meta property="og:url" content="https://hyphenatesi.com/foreverqr/business-card-qr-code/">
+<meta property="og:image" content="https://hyphenatesi.com/foreverqr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../css/style.css">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+<script src="../js/guide.js" defer></script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is a vCard QR code?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A QR code containing a small contact card in the standard vCard format. Phone cameras read it and offer to save the name, phone, email and other details as a contact."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should my business card QR code be a vCard or a link?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A vCard works offline and never depends on a website. A link keeps the code smaller and editable but only works while the page exists. For most people, a vCard with five or six fields is the better choice."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How big should the QR code be on a business card?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "At least 2 cm (0.8 in) wide, and about 2.5 cm (1 in) for a vCard with several fields, with a clear four-module margin around it."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I update my details after printing?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Not with a vCard code: the details are inside it. You would reprint the card anyway when your details change, so this is rarely a problem."
+   }
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ForeverQR", "item": "https://hyphenatesi.com/foreverqr/"}, {"@type": "ListItem", "position": 2, "name": "Put a contact QR code on your business card", "item": "https://hyphenatesi.com/foreverqr/business-card-qr-code/"}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="../" aria-label="ForeverQR home">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM18 14h3v2h-3zM14 18h2v3h-2z" fill="currentColor"/></svg>
+      <span>ForeverQR</span>
+    </a>
+    <nav class="top-nav" aria-label="Main">
+      <a href="../#make">Create</a>
+      <a href="../#scan">Scan</a>
+      <a href="../#guides">Guides</a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap article">
+  <p class="crumbs"><a href="../">ForeverQR</a> › <a href="../#guides">Guides</a></p>
+  <p class="eyebrow">Guide · Business cards</p>
+  <h1>Put a contact QR code on your business card</h1>
+  <p class="lede">A contact QR code lets someone save your details without typing them. Done well, it’s small, scans first time and never depends on a website staying online.</p>
+
+  <div class="cta">
+      <p>Opens the generator with Contact selected. Fill in only the fields you want on the card, then download an SVG for your printer.</p>
+      <div class="actions"><a class="btn primary" href="../?type=vcard&amp;label=Scan%20to%20save%20my%20contact">Make a contact QR code</a></div>
+    </div>
+
+  <h2>Two ways to do it</h2>
+  <h3>1. A vCard code (recommended for most people)</h3>
+  <p>The code contains a small contact card in the standard vCard 3.0 format (RFC 2426), the same format phones use to share contacts:</p>
+  <pre>BEGIN:VCARD
+VERSION:3.0
+N:Rivera;Sam;;;
+FN:Sam Rivera
+ORG:Rivera Plumbing
+TEL;TYPE=CELL:+15551234567
+EMAIL:sam@riveraplumbing.com
+END:VCARD</pre>
+  <p>Current iPhone and Android camera apps recognise this and offer to add the contact. It works offline, involves no third party, and can never expire.</p>
+  <h3>2. A link to a profile page</h3>
+  <p>The code holds a web address, like your LinkedIn profile or a page on your company site. This keeps the code small and lets you change details later, but it only works while that page exists, and the person still has to tap “add contact” themselves. Use a <a href="../?type=url">website link code</a> for this.</p>
+
+  <h2>Step by step</h2>
+  <ol class="steps">
+    <li>Open the generator with the button above. Contact is already selected.</li>
+    <li>Fill in your name, company, job title, mobile and email. Add your website if you like.</li>
+    <li>Leave the address blank unless clients visit you; it adds a lot of data.</li>
+    <li>Scan the preview with your own phone and check the contact it offers to save: name order, phone format (use <code>+</code> and your country code) and email.</li>
+    <li>Download the <strong>SVG</strong>. It’s a vector file, so your printer can scale it without blurring.</li>
+  </ol>
+
+  <h2>Keep the code small</h2>
+  <p>Every character you add makes the pattern denser, with smaller squares. On a 3.5 × 2 inch card that matters. Fewer fields means a code that scans faster from further away.</p>
+  <ul>
+    <li><strong>Include:</strong> name, company, mobile, email, website.</li>
+    <li><strong>Skip:</strong> fax, a second phone, the full postal address, long job titles.</li>
+    <li>Use <strong>Medium</strong> error correction unless you add a logo (the generator switches to High automatically when you do, which makes the code denser).</li>
+  </ul>
+
+  <h2>Printing</h2>
+  <ul>
+    <li><strong>Size:</strong> at least 2 cm (0.8 in) wide; 2.5 cm (1 in) is safer for a vCard with five or six fields. Below about 2 cm many phones struggle.</li>
+    <li><strong>Quiet zone:</strong> leave a clear margin of four modules (the small squares) on every side. The generator includes it; tell your designer not to crop it.</li>
+    <li><strong>Colour:</strong> dark on light, with strong contrast. Avoid metallic foil or spot-UV gloss over the code; reflections stop cameras reading it.</li>
+    <li><strong>Proof:</strong> scan the printed proof, not just the screen, before approving a run of 500.</li>
+  </ul>
+
+  <section class="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">FAQ</h2>
+    <details>
+      <summary>What is a vCard QR code?</summary>
+      <p>A QR code containing a small contact card in the standard vCard format. Phone cameras read it and offer to save the name, phone, email and other details as a contact.</p>
+    </details>
+    <details>
+      <summary>Should my business card QR code be a vCard or a link?</summary>
+      <p>A vCard works offline and never depends on a website. A link keeps the code smaller and editable but only works while the page exists. For most people, a vCard with five or six fields is the better choice.</p>
+    </details>
+    <details>
+      <summary>How big should the QR code be on a business card?</summary>
+      <p>At least 2 cm (0.8 in) wide, and about 2.5 cm (1 in) for a vCard with several fields, with a clear four-module margin around it.</p>
+    </details>
+    <details>
+      <summary>Can I update my details after printing?</summary>
+      <p>Not with a vCard code: the details are inside it. You would reprint the card anyway when your details change, so this is rarely a problem.</p>
+    </details>
+  </section>
+
+  <section aria-labelledby="src-h">
+    <h2 id="src-h">Sources</h2>
+    <ul class="sources">
+      <li><a href="https://www.rfc-editor.org/rfc/rfc2426" rel="noopener">RFC 2426: vCard MIME Directory Profile (vCard 3.0)</a></li>
+      <li><a href="https://www.keyence.com/ss/products/auto_id/barcode_lecture/basic_2d/qr/" rel="noopener">Keyence: What is a QR code? (four-module margin)</a></li>
+      <li><a href="https://bitly.com/blog/minimum-size-for-qr-code/" rel="noopener">Bitly: What’s the minimum size for a QR code? (2 cm minimum, about 10:1 distance-to-size)</a></li>
+      <li><a href="https://scanova.io/blog/minimum-qr-code-size/" rel="noopener">Scanova: Minimum QR code size (10:1 rule, 1 m of distance ≈ 10 cm of code)</a></li>
+    </ul>
+  </section>
+</main>
+
+<section class="wrap more-guides" aria-labelledby="more-h">
+  <h2 id="more-h">More guides</h2>
+  <ul class="guide-grid">
+      <li><a href="../wifi-qr-code/"><strong>Wi-Fi QR code</strong><span>Let guests join your network without spelling out the password.</span></a></li>
+      <li><a href="../restaurant-menu-qr-code/"><strong>Restaurant menu QR code</strong><span>Table tents and menus that never turn into a paywall.</span></a></li>
+      <li><a href="../google-review-qr-code/"><strong>Google review QR code</strong><span>Get your official review link and print it at the counter.</span></a></li>
+      <li><a href="../instagram-qr-code/"><strong>Instagram QR code</strong><span>Send people straight to your profile from print.</span></a></li>
+      <li><a href="../wedding-qr-code/"><strong>Wedding QR codes</strong><span>RSVPs, the wedding website and photo sharing.</span></a></li>
+      <li><a href="../real-estate-sign-qr-code/"><strong>Real estate sign QR code</strong><span>Listing details from the yard sign, sized for the curb.</span></a></li>
+      <li><a href="../event-check-in-qr-code/"><strong>Event check-in QR code</strong><span>Self check-in at the door with a form link.</span></a></li>
+      <li><a href="../qr-code-that-never-expires/"><strong>QR code that never expires</strong><span>What “never expires” really means, and how to check.</span></a></li>
+      <li><a href="../why-did-my-qr-code-stop-working/"><strong>Why did my QR code stop working?</strong><span>Diagnose a dead code and get it working again.</span></a></li>
+  </ul>
+  <p><a href="../">← Back to the free QR code generator</a></p>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>© <span id="year">2026</span> ForeverQR. Static codes, free forever.</p>
+    <nav aria-label="Legal">
+      <a href="../privacy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

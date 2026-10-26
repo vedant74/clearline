@@ -9,6 +9,8 @@
 <meta name="theme-color" content="#16140f" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="canonical" href="https://hyphenatesi.com/foreverqr/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ForeverQR">
@@ -53,6 +55,7 @@
     <nav class="top-nav" aria-label="Main">
       <a href="#make">Create</a>
       <a href="#scan">Scan</a>
+      <a href="#guides">Guides</a>
       <a href="#faq">FAQ</a>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/></svg>
@@ -177,7 +180,6 @@
                 <select id="o-style" name="style">
                   <option value="square">Square (classic)</option>
                   <option value="rounded">Rounded</option>
-                  <option value="dots">Dots</option>
                 </select>
               </div>
               <div>
@@ -218,6 +220,7 @@
           <div class="preview-card">
             <div class="qr-frame" id="qrFrame">
               <canvas id="qrCanvas" width="320" height="320" role="img" aria-label="QR code preview"></canvas>
+              <p class="qr-caption" id="qrCaption" hidden></p>
             </div>
             <p class="payload" id="payloadInfo" aria-live="polite"></p>
             <p class="error" id="genError" role="alert" hidden></p>
@@ -225,6 +228,15 @@
               <button type="button" class="btn primary" id="dlPng">Download PNG</button>
               <button type="button" class="btn" id="dlSvg">Download SVG</button>
               <button type="button" class="btn" id="copyPng">Copy image</button>
+            </div>
+            <div class="sign-box">
+              <label for="o-label">Caption for a printable sign</label>
+              <input id="o-label" maxlength="60" autocomplete="off" placeholder="Scan me">
+              <div class="actions">
+                <button type="button" class="btn" id="dlSignPng">Printable sign (PNG)</button>
+                <button type="button" class="btn" id="dlSignSvg">Sign (SVG)</button>
+              </div>
+              <p class="hint">A 6 × 8 in card with your caption, the code and where it goes. No watermark.</p>
             </div>
             <p class="toast" id="toast" role="status" aria-live="polite"></p>
             <p class="forever-note"><strong>Static code.</strong> Works forever. No account, no trial, nothing to renew.</p>
@@ -288,6 +300,23 @@
       <p class="hint">One email when it launches. No spam, unsubscribe any time.</p>
       <p><a class="btn" id="preorderLink" href="#" hidden rel="noopener">Pre-order (pay once)</a></p>
     </div>
+  </section>
+
+  <section class="wrap guides" id="guides" aria-labelledby="guides-h">
+    <h2 id="guides-h">Guides</h2>
+    <p class="lede">Step-by-step help for the most common uses, with print sizes and tips.</p>
+    <ul class="guide-grid">
+      <li><a href="wifi-qr-code/"><strong>Wi-Fi QR code</strong><span>Let guests join your network without spelling out the password.</span></a></li>
+      <li><a href="restaurant-menu-qr-code/"><strong>Restaurant menu QR code</strong><span>Table tents and menus that never turn into a paywall.</span></a></li>
+      <li><a href="google-review-qr-code/"><strong>Google review QR code</strong><span>Get your official review link and print it at the counter.</span></a></li>
+      <li><a href="instagram-qr-code/"><strong>Instagram QR code</strong><span>Send people straight to your profile from print.</span></a></li>
+      <li><a href="business-card-qr-code/"><strong>Business card QR code</strong><span>A contact card that saves to the phone in one tap.</span></a></li>
+      <li><a href="wedding-qr-code/"><strong>Wedding QR codes</strong><span>RSVPs, the wedding website and photo sharing.</span></a></li>
+      <li><a href="real-estate-sign-qr-code/"><strong>Real estate sign QR code</strong><span>Listing details from the yard sign, sized for the curb.</span></a></li>
+      <li><a href="event-check-in-qr-code/"><strong>Event check-in QR code</strong><span>Self check-in at the door with a form link.</span></a></li>
+      <li><a href="qr-code-that-never-expires/"><strong>QR code that never expires</strong><span>What “never expires” really means, and how to check.</span></a></li>
+      <li><a href="why-did-my-qr-code-stop-working/"><strong>Why did my QR code stop working?</strong><span>Diagnose a dead code and get it working again.</span></a></li>
+    </ul>
   </section>
 
   <section class="wrap faq" id="faq" aria-labelledby="faq-h">

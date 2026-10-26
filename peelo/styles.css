@@ -193,3 +193,48 @@ td:nth-child(2) { font-weight: 700; color: var(--accent); }
 /* legal pages */
 .doc { max-width: 720px; padding-block: 12px 48px; }
 .doc .template-note { background: var(--warn-bg); color: var(--warn-ink); padding: 10px 14px; border-radius: 12px; font-size: .9rem; }
+
+/* presets + extra controls */
+.preset-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; font-size: .9rem; }
+.preset-label { color: var(--ink-2); font-weight: 600; }
+.chip-btn { font: inherit; font-size: .88rem; font-weight: 600; padding: 7px 12px; min-height: 38px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.chip-btn small { color: var(--ink-2); font-weight: 500; }
+.chip-btn.is-on { border-color: var(--accent); background: var(--accent-soft); }
+.preset-note { flex-basis: 100%; margin: 0; font-size: .86rem; color: var(--ink); background: var(--accent-soft); border-radius: 10px; padding: 8px 12px; }
+.opt-group { display: grid; gap: 8px; min-width: 0; }
+.opt-label { font-weight: 700; font-size: .9rem; }
+.market-btn { flex-wrap: wrap; }
+.market-btn small { font-weight: 500; color: var(--ink-2); }
+.market-btn.is-on { border-color: var(--accent); background: var(--accent-soft); }
+.slider-wide { grid-template-columns: auto 1fr 4.5ch; }
+
+/* guides list on the home page */
+.guides-home { margin: 0 0 48px; max-width: 760px; }
+.guide-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+@media (min-width: 640px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
+.guide-grid a { display: block; height: 100%; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; font-weight: 600; font-size: .95rem; }
+.guide-grid a:hover { border-color: var(--accent); }
+
+/* guide pages */
+.guide { max-width: 760px; padding-bottom: 24px; }
+.crumbs { font-size: .86rem; color: var(--ink-2); margin: 4px 0 14px; }
+.crumbs a { color: var(--ink-2); }
+.guide h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); font-weight: 850; }
+.guide h2 { margin-top: 1.6em; }
+.guide h3 { font-size: 1.05rem; margin: 1.2em 0 .4em; }
+.guide p, .guide li { overflow-wrap: anywhere; }
+.guide ul, .guide ol { padding-left: 1.3em; margin: 0 0 1em; }
+.guide li { margin-bottom: .4em; }
+.guide .lede { margin-bottom: 1.2em; }
+.cta-box { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin: 18px 0 8px; box-shadow: var(--shadow); }
+.cta-box p { margin: 0; color: var(--ink-2); font-size: .92rem; }
+.cta-box .btn { justify-self: start; }
+.steps { counter-reset: step; list-style: none; padding: 0 !important; }
+.steps li { counter-increment: step; position: relative; padding-left: 40px; margin-bottom: 12px; }
+.steps li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-weight: 800; font-size: .85rem; }
+.note { background: var(--surface-2); border-radius: 12px; padding: 12px 14px; font-size: .92rem; }
+.sources { font-size: .84rem; color: var(--ink-2); }
+.compare-table td:nth-child(2) { color: var(--ink); font-weight: 700; }
+.compare-table td, .compare-table th { min-width: 120px; }
+.more-guides { margin: 32px 0 0; padding-top: 8px; border-top: 1px solid var(--line); }
+.guide .faq { margin-bottom: 8px; }

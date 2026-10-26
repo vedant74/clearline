@@ -25,6 +25,14 @@ Features: drag and drop, file picker or paste; model download progress (cached w
 4. Brush strokes are stored in image coordinates and replayed at full resolution on export. The preview is capped at 1400 px for speed.
 5. On export, the mask is applied to the original-resolution image and composited over the chosen background.
 
+## URL presets, marketplace mode, PWA, guides
+
+- **URL presets** (used by the guide pages): `?preset=marketplace` (white, square, 85% fill), `?preset=logo` / `?preset=signature` (Plain background method, transparent), or individually `?bg=transparent|white|black|blur|<hex>`, `?format=square|original`, `?fill=50..100`, `?method=ai|plain`. Documented at the top of `js/app.js`.
+- **Square framing / Marketplace photo:** the subject's bounding box is measured on the full-resolution mask and a square is built around it at the chosen fill. It never upscales, is capped at 16 MP, and keeps subjects cut off by the bottom edge (headshots, cars) anchored to the bottom.
+- **Plain background method:** keys out the border colour (white paper, flat logo backgrounds) at full resolution, with no model download.
+- **PWA:** `manifest.webmanifest`, `icons/`, and `sw.js` (scope `/peelo/`). The shell is network-first with an offline fallback, `vendor/` is cache-first, and the model stays in the app's own Cache API cache. Bump `VERSION` in `sw.js` when the precache list changes.
+- **Guides:** 11 static pages in `/<slug>/index.html`, linked from the home page `#guides` and listed in `sitemap.xml`.
+
 ## Structure
 
 ```
