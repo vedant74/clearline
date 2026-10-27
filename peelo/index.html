@@ -29,7 +29,9 @@
   "@type": "FAQPage",
   "mainEntity": [
     {"@type": "Question", "name": "Is this a free remove.bg alternative?",
-     "acceptedAnswer": {"@type": "Answer", "text": "Yes. Removing a background and downloading the full-resolution PNG or JPG is free, with no account, credits, watermark or ads. A paid batch mode for many images at once is planned as a one-time purchase."}},
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes. Removing a background and downloading the full-resolution PNG or JPG is free, with no account, credits, watermark or ads. Batch mode is free for 3 photos at a time; Batch Pro removes that cap for a one-time payment."}},
+    {"@type": "Question", "name": "How does batch mode work?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Choose or drop many photos, pick the settings once, and they are processed one after another in your browser, then downloaded as one ZIP with your original filenames. Free batches are up to 3 photos; Batch Pro is up to 200 per run for $19 once, with no subscription."}},
     {"@type": "Question", "name": "Can I remove a background for free at full resolution?",
      "acceptedAnswer": {"@type": "Answer", "text": "Yes. The cutout is applied to your original image, so the download has the same pixel dimensions as the photo you added (up to 16 megapixels; larger photos are scaled to 16 MP)."}},
     {"@type": "Question", "name": "Can I remove a background without uploading my photo?",
@@ -49,7 +51,8 @@
 <header class="topbar">
   <a class="brand" href="./"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="7" class="bm-bg"/><path d="M10 22c0-6 3-11 6-11s6 5 6 11z" class="bm-fg"/></svg><span data-name>Peelo</span></a>
   <nav class="topnav">
-    <a href="remove-bg-alternative/">Switching?</a>
+    <a href="#batch" id="navBatch">Batch</a>
+    <a href="#pricing">Pricing</a>
     <a href="#guides">Guides</a>
     <a href="#faq">FAQ</a>
     <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -65,6 +68,11 @@
   </section>
 
   <section id="tool" class="tool" aria-label="Background remover">
+    <div id="proBanner" class="pro-banner" role="status" hidden></div>
+    <div class="tool-tabs" role="tablist" aria-label="Tool">
+      <button type="button" class="tab-btn is-on" id="tabSingle" data-tab="single" role="tab" aria-selected="true" aria-controls="tool">One photo</button>
+      <button type="button" class="tab-btn" id="tabBatch" data-tab="batch" role="tab" aria-selected="false" aria-controls="batch">Batch <span class="badge">many photos</span></button>
+    </div>
     <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Choose an image, drop one here, or paste">
       <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,image/avif" hidden>
       <div class="dz-inner">
@@ -173,6 +181,110 @@
         <button type="button" class="btn ghost wide" id="newBtn">Start over with a new photo</button>
       </div>
     </div>
+
+    <aside id="upsell" class="upsell" hidden>
+      <div>
+        <p class="upsell-title">Doing a whole catalog? Batch them all, <span data-price>$19</span> once.</p>
+        <p class="upsell-sub">Same settings for every photo, one ZIP download, still on your device. Try it free with 3 photos.</p>
+      </div>
+      <div class="upsell-actions">
+        <button type="button" class="btn primary" id="upsellTry">Open batch</button>
+        <button type="button" class="icon-btn" id="upsellClose" aria-label="Dismiss" title="Dismiss">✕</button>
+      </div>
+    </aside>
+
+    <div id="batch" class="batch-panel" role="tabpanel" aria-labelledby="tabBatch" hidden>
+      <div class="batch-grid">
+        <div class="batch-main">
+          <div id="bDrop" class="dropzone dz-batch" tabindex="0" role="button" aria-label="Choose photos for batch, or drop them here">
+            <input id="bInput" type="file" multiple accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,image/avif" hidden>
+            <div class="dz-inner">
+              <svg class="dz-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="32" height="24" rx="4"/><rect x="6" y="14" width="32" height="26" rx="4"/><circle cx="16" cy="23" r="3"/><path d="M8 37l9-8 6 5 5-4 8 7"/></svg>
+              <p class="dz-title"><strong>Choose photos</strong> or drop a bunch here</p>
+              <p class="dz-sub" id="bLimitNote">Up to 200 per run. Free: 3 photos per batch.</p>
+            </div>
+          </div>
+
+          <div id="bQueueBar" class="queue-bar" hidden>
+            <p id="bCount" class="queue-count"></p>
+            <div class="row">
+              <button type="button" class="btn ghost" id="bAdd">Add more</button>
+              <button type="button" class="btn ghost" id="bClear">Clear</button>
+            </div>
+          </div>
+          <div id="bWarn" class="warn" hidden></div>
+
+          <div id="bGate" class="gate" hidden>
+            <p class="gate-title" id="bGateTitle"></p>
+            <p class="gate-sub">Batch Pro removes the 3-photo cap: up to 200 photos per run, as many runs as you like. <strong><span data-price>$19</span> once</strong>, no subscription. Photos still never leave your device.</p>
+            <div class="row">
+              <a class="btn primary" id="bBuy" target="_blank" rel="noopener" hidden>Unlock Batch Pro, <span data-price>$19</span></a>
+              <span class="soon" id="bSoon" hidden>Batch Pro: coming soon</span>
+              <button type="button" class="btn" id="bFreeRun">Process the first 3 free</button>
+            </div>
+          </div>
+
+          <div id="bProgress" class="status" role="status" aria-live="polite" hidden>
+            <span id="bProgText"></span>
+            <div class="bar"><div id="bProgBar"></div></div>
+          </div>
+
+          <ul id="bList" class="file-list" aria-label="Photos in this batch"></ul>
+        </div>
+
+        <div class="controls batch-controls">
+          <div class="opt-group">
+            <span class="opt-label" id="bMethodLabel">Cut-out method</span>
+            <div class="seg small" role="group" aria-labelledby="bMethodLabel">
+              <button type="button" class="seg-btn is-on" data-bmethod="ai" aria-pressed="true">AI subject</button>
+              <button type="button" class="seg-btn" data-bmethod="plain" aria-pressed="false">Plain background</button>
+            </div>
+          </div>
+          <fieldset class="bg-opts">
+            <legend>Background</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="bbg" value="transparent" checked><span>Transparent</span></label>
+              <label class="chip"><input type="radio" name="bbg" value="white"><span>White</span></label>
+              <label class="chip"><input type="radio" name="bbg" value="color"><span>Colour</span></label>
+              <label class="chip"><input type="radio" name="bbg" value="blur"><span>Blur</span></label>
+            </div>
+            <label class="picker" id="bColorRow" hidden>Colour <input id="bColor" type="color" value="#f2efe9"></label>
+          </fieldset>
+          <div class="opt-group">
+            <label class="check"><input type="checkbox" id="bSquare"> Marketplace square (subject centred)</label>
+            <label class="slider slider-wide" id="bFillRow" hidden>Subject fills <input id="bFill" type="range" min="50" max="100" value="85"><output id="bFillOut">85%</output></label>
+          </div>
+          <div class="opt-group">
+            <span class="opt-label" id="bFmtLabel">File type</span>
+            <div class="seg small" role="group" aria-labelledby="bFmtLabel">
+              <button type="button" class="seg-btn is-on" data-bfmt="png" aria-pressed="true">PNG</button>
+              <button type="button" class="seg-btn" data-bfmt="jpg" aria-pressed="false">JPG</button>
+            </div>
+            <p class="hint" id="bFmtHint" hidden>JPG has no transparency, so transparent becomes white.</p>
+          </div>
+          <label class="select-row">Max size
+            <select id="bMax">
+              <option value="0">Original (up to 16 MP)</option>
+              <option value="4000">4000 px longest side</option>
+              <option value="2048">2048 px (Shopify)</option>
+              <option value="1600">1600 px</option>
+              <option value="1000">1000 px</option>
+            </select>
+          </label>
+          <button type="button" class="btn primary wide" id="bRun" disabled>Remove backgrounds</button>
+          <div class="row run-row" id="bRunCtl" hidden>
+            <button type="button" class="btn" id="bPause">Pause</button>
+            <button type="button" class="btn ghost" id="bCancel">Cancel</button>
+          </div>
+          <a class="btn primary wide" id="bZip" hidden>Download ZIP</a>
+          <p class="meta" id="bPlan"></p>
+          <details class="restore">
+            <summary>Restore purchase</summary>
+            <p>Bought Batch Pro on another device or cleared your browser data? Open the unlock link you were sent to after paying (we suggest bookmarking it). Lost it? <span id="bContact">Reply to your Stripe receipt email</span> and we'll send it again.</p>
+          </details>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="points">
@@ -192,23 +304,48 @@
         <tr><th>Account required</th><td>No</td><td>Usually for HD downloads</td></tr>
         <tr><th>Where your photo is processed</th><td>On your device</td><td>Uploaded to a server</td></tr>
         <tr><th>Manual edge refine</th><td>Erase / restore brush</td><td>Varies</td></tr>
-        <tr><th>Batch processing</th><td>Coming soon, pay once</td><td>Usually subscription</td></tr>
+        <tr><th>Batch processing</th><td>3 free per batch; unlimited for $19 once</td><td>Usually subscription</td></tr>
       </tbody>
     </table>
     </div>
     <p class="fine">Honest note: big server-side models can still beat a small on-device model on tricky hair and glass. For products, pets, people and logos, results here are good, and the refine brush handles the rest. remove.bg is a trademark of its owner; this site is not affiliated with it or with Canva.</p>
   </section>
 
-  <section id="batch" class="batch">
-    <div>
-      <p class="kicker">Coming soon</p>
-      <h2>Batch: hundreds of photos at once. Pay once, keep it.</h2>
-      <p>Drop a folder of product shots, get consistent cutouts on white or transparent, zipped. Still on your device. One payment, no subscription.</p>
+  <section id="pricing" class="pricing">
+    <h2>Pricing</h2>
+    <p class="fine">No subscription, no credits, no account.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Free</h3>
+        <p class="price">$0</p>
+        <ul>
+          <li>Unlimited single photos</li>
+          <li>Full resolution PNG and JPG</li>
+          <li>Refine brush, backgrounds, marketplace square</li>
+          <li>Batch up to 3 photos at a time</li>
+        </ul>
+        <a class="btn" href="#tool">Remove a background</a>
+      </div>
+      <div class="price-card is-pro">
+        <h3>Batch Pro</h3>
+        <p class="price"><span data-price>$19</span> <small>once</small></p>
+        <ul>
+          <li>Up to 200 photos per run, unlimited runs</li>
+          <li>One set of settings for the whole catalog</li>
+          <li>One ZIP with your original filenames</li>
+          <li>Still processed on your device</li>
+        </ul>
+        <a class="btn primary" id="priceBuy" target="_blank" rel="noopener" hidden>Get Batch Pro</a>
+        <a class="btn" href="#batch" id="priceTry">Try batch free</a>
+        <p class="soon" id="priceSoon" hidden>Batch Pro: coming soon. The free 3-photo batch works today.</p>
+      </div>
     </div>
-    <form id="signup" class="signup" novalidate>
-      <label for="email" class="sr">Email</label>
-      <input id="email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
-      <button class="btn primary" type="submit">Notify me</button>
+    <form id="signup" class="signup" novalidate hidden>
+      <label for="email">Want to hear when Batch Pro opens?</label>
+      <div class="signup-row">
+        <input id="email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
+        <button class="btn primary" type="submit">Notify me</button>
+      </div>
       <a id="payLink" class="btn" hidden>Pre-order batch</a>
       <p id="signupMsg" class="signup-msg" role="status"></p>
     </form>
@@ -216,11 +353,13 @@
 
   <section id="faq" class="faq">
     <h2>Questions</h2>
-    <details><summary>Is this a free remove.bg alternative?</summary><p>Yes. Removing a background and downloading the full-resolution PNG or JPG is free, with no account, credits, watermark or ads. A paid batch mode for many images at once is planned as a one-time purchase.</p></details>
+    <details><summary>Is this a free remove.bg alternative?</summary><p>Yes. Removing a background and downloading the full-resolution PNG or JPG is free, with no account, credits, watermark or ads. Batch mode is free for 3 photos at a time; Batch Pro removes that cap for a one-time payment.</p></details>
     <details><summary>Can I remove a background for free at full resolution?</summary><p>Yes. The cutout is applied to your original image, so the download has the same pixel dimensions as the photo you added (up to 16 megapixels; larger photos are scaled to 16 MP so they don't crash your browser).</p></details>
     <details><summary>Can I remove a background without uploading my photo?</summary><p>Yes. The AI model is downloaded once to your browser and runs on your device. Your image is never sent to a server. After the first visit the model loads from your browser's cache.</p></details>
     <details><summary>What happens when remove.bg shuts down?</summary><p>remove.bg's pricing page states its standalone service ends on 1 December 2026 and moves into Canva. This tool is an independent, free option that does not need a Canva or any other account.</p></details>
     <details><summary>What if the AI gets the edges wrong?</summary><p>Switch to <em>Refine edges</em>. The erase and restore brush (with adjustable size) fixes leftover background or missing parts, and the edge softness slider controls how crisp the outline is.</p></details>
+    <details><summary>How does batch mode work?</summary><p>Choose or drop many photos, pick the settings once (background, marketplace square, PNG or JPG, max size), and Peelo processes them one after another in your browser. You get one ZIP with your original filenames plus a suffix. Free batches are up to 3 photos; Batch Pro is up to 200 per run for <span data-price>$19</span> once. Keep the tab open while it runs.</p></details>
+    <details><summary>Is Batch Pro a subscription? Can I get a refund?</summary><p>No subscription: you pay once and keep it in the browser you unlock it in. Payment is handled by Stripe; we never see your card. If it doesn't work for you, <span class="contact-line">contact us</span> within 14 days for a refund.</p></details>
     <details><summary>Which images work best?</summary><p>Photos with one clear subject: products, people, pets, cars, food. Busy scenes with many subjects, glass and very fine hair are harder; use the refine brush for those.</p></details>
   </section>
   <section id="guides" class="guides-home">
@@ -244,12 +383,14 @@
 
 <footer class="footer">
   <p><span data-name>Peelo</span> · <a href="#guides">Guides</a> · <a href="remove-bg-alternative/">remove.bg alternative</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
-  <p class="fine">Segmentation model: U²-Net (u2netp) by Xuebin Qin et al., Apache-2.0. Runtime: ONNX Runtime Web, MIT. No cookies, no ads, no third-party requests.</p>
+  <p class="fine">Segmentation model: U²-Net (u2netp) by Xuebin Qin et al., Apache-2.0. Runtime: ONNX Runtime Web, MIT. No cookies, no ads. Your photos are never uploaded; we count anonymous page visits with GoatCounter.</p>
 </footer>
 
 <script src="vendor/ort/ort.wasm.min.js"></script>
 <script src="js/segment.js"></script>
 <script src="js/app.js"></script>
+<script src="vendor/fflate/fflate.min.js"></script>
+<script src="js/batch.js"></script>
 <script data-goatcounter="https://hyphenatesi.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

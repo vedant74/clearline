@@ -5,13 +5,13 @@
    - The AI model is cached by the app itself (Cache API, CONFIG.MODEL_CACHE_NAME), so it is not
      duplicated here; models/ requests pass through.
    Bump VERSION when the precache list changes. Old peelo-shell-* caches are deleted on activate. */
-const VERSION = "v2";
+const VERSION = "v3"; // v3: batch mode (js/batch.js, vendor/fflate)
 const SHELL = "peelo-shell-" + VERSION;
 const RUNTIME = "peelo-runtime-" + VERSION;
 const PRECACHE = [
-  "./", "index.html", "styles.css", "config.js", "js/app.js", "js/segment.js", "favicon.svg",
+  "./", "index.html", "styles.css", "config.js", "js/app.js", "js/segment.js", "js/batch.js", "favicon.svg",
   "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png",
-  "vendor/ort/ort.wasm.min.js",
+  "vendor/ort/ort.wasm.min.js", "vendor/fflate/fflate.min.js",
 ];
 const RUNTIME_FILES = ["vendor/ort/ort-wasm-simd-threaded.mjs", "vendor/ort/ort-wasm-simd-threaded.wasm"];
 

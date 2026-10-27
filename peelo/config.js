@@ -26,6 +26,19 @@ window.CONFIG = {
   SIGNUP_ENDPOINT: "",
   // Optional raw HTML snippet (e.g. a privacy-friendly analytics <script>) injected into <head>.
   ANALYTICS_SNIPPET: "",
-  // Optional payment link for "pay once" batch pre-orders. Empty = button hidden.
+  // Legacy pre-order link (unused since Batch Pro shipped; kept so old configs don't break).
   PAYMENT_LINK: "",
+
+  // ---- Batch Pro ($19 one-time). See README "Batch Pro payments". ----
+  // Stripe Payment Link (https://buy.stripe.com/...). Empty = "Batch Pro: coming soon" and no buy button;
+  // the free 3-image batch keeps working either way.
+  STRIPE_PAYMENT_LINK: "",
+  // Secret-ish string in the post-payment redirect: https://hyphenatesi.com/peelo/?pro=<token>#batch
+  // This is a soft lock: anyone who reads this file can find it. Change it to rotate the link.
+  PRO_UNLOCK_TOKEN: "peelo-lmdYYyiReAgSUrBukjKnS01K",
+  PRO_PRICE: "$19",
+  FREE_BATCH_LIMIT: 3,
+  BATCH_MAX_FILES: 200,
+  // Shown in "Restore purchase" and the refund FAQ. Empty = "reply to your Stripe receipt email".
+  CONTACT_EMAIL: "",
 };

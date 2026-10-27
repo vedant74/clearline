@@ -1,0 +1,4 @@
+fflate 0.8.2 (https://github.com/101arrowz/fflate), MIT licence (LICENSE.txt in this folder).
+fflate.min.js is the unmodified package/umd/index.js from the npm tarball fflate@0.8.2
+(sha256 c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf). It defines window.fflate.
+Used by js/batch.js to build the batch ZIP (store-only entries, since PNG/JPG are already compressed).

@@ -72,10 +72,21 @@
     return lut;
   }
 
+  /* ---------- pipeline options ----------
+     The mask/compose functions take an options object so batch mode can reuse them with its own
+     settings. Without one they use the single-image UI state. */
+  function cur() {
+    return {
+      method: S.method, low: S.low, keyBg: S.keyBg, feather: Number(el.feather.value) / 100,
+      bg: S.bg, color: S.color, bgImg: S.bgImg, blur: Number(el.blurAmt.value),
+    };
+  }
+
   /* ---------- mask building ---------- */
   // AI method: upscale the low-res probability map to w x h and apply an edge curve ("Edge softness").
-  function buildAIMask(w, h) {
-    const n = S.low.size, src = S.low.data;
+  function buildAIMask(w, h, o) {
+    o = o || cur();
+    const n = o.low.size, src = o.low.data;
     const lowC = canvas(n, n), lx = lowC.getContext("2d");
     const id = lx.createImageData(n, n);
     for (let i = 0; i < n * n; i++) {
@@ -98,7 +109,7 @@
     ox.drawImage(cur, 0, 0, w, h);
     if (cur !== lowC) free(cur);
     free(lowC);
-    const f = Number(el.feather.value) / 100;
+    const f = o.feather;
     const width = (0.06 + f * 0.7) * 255;
     const lut = smoothLUT(127.5 - width / 2, width);
     const md = ox.getImageData(0, 0, w, h), d = md.data;
@@ -124,12 +135,13 @@
 
   // Plain-background method: alpha from each pixel's distance to the background colour.
   // Good for logos, signatures and scans where AI subject detection is the wrong tool.
-  function buildKeyMask(w, h, src) {
+  function buildKeyMask(w, h, src, o) {
+    o = o || cur();
     const out = canvas(w, h), ox = out.getContext("2d", { willReadFrequently: true });
     ox.drawImage(src, 0, 0, w, h);
     const md = ox.getImageData(0, 0, w, h), d = md.data;
-    const bg = S.keyBg || [255, 255, 255];
-    const f = Number(el.feather.value) / 100;
+    const bg = o.keyBg || [255, 255, 255];
+    const f = o.feather;
     const lut = smoothLUT(10 + f * 30, 18 + f * 90);
     for (let p = 0; p < d.length; p += 4) {
       const dist = Math.max(Math.abs(d[p] - bg[0]), Math.abs(d[p + 1] - bg[1]), Math.abs(d[p + 2] - bg[2]));
@@ -140,8 +152,9 @@
     return out;
   }
 
-  function buildMask(w, h, src) {
-    return S.method === "plain" ? buildKeyMask(w, h, src) : buildAIMask(w, h);
+  function buildMask(w, h, src, o) {
+    o = o || cur();
+    return o.method === "plain" ? buildKeyMask(w, h, src, o) : buildAIMask(w, h, o);
   }
 
   function drawStroke(ctx, st, scale, from) {
@@ -208,8 +221,8 @@
     const s = Math.max(w / iw, h / ih), dw = iw * s, dh = ih * s;
     ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
   }
-  function drawBlurred(ctx, img, w, h) {
-    const r = Math.max(1, Number(el.blurAmt.value) / 1000 * Math.max(w, h));
+  function drawBlurred(ctx, img, w, h, amt) {
+    const r = Math.max(1, amt / 1000 * Math.max(w, h));
     if (canvasFilterOK()) {
       ctx.save(); ctx.filter = "blur(" + r.toFixed(1) + "px)";
       // Overdraw edges so the blur doesn't fade to transparent at the borders.
@@ -229,22 +242,23 @@
     free(a); free(b);
   }
   // Paint the chosen background into a w x h context. `src` is the original photo (for blur).
-  function paintBg(ctx, w, h, src, srcW, srcH, forceOpaque) {
-    const bg = S.bg;
-    if (bg === "color" || (forceOpaque && bg === "transparent") || (bg === "image" && !S.bgImg)) {
-      ctx.fillStyle = bg === "color" ? S.color : "#ffffff"; ctx.fillRect(0, 0, w, h);
+  function paintBg(ctx, w, h, src, srcW, srcH, forceOpaque, o) {
+    o = o || cur();
+    const bg = o.bg;
+    if (bg === "color" || (forceOpaque && bg === "transparent") || (bg === "image" && !o.bgImg)) {
+      ctx.fillStyle = bg === "color" ? o.color : "#ffffff"; ctx.fillRect(0, 0, w, h);
     } else if (bg === "blur") {
-      if (Math.abs(w / h - srcW / srcH) < 0.01) { drawBlurred(ctx, src, w, h); return; }
+      if (Math.abs(w / h - srcW / srcH) < 0.01) { drawBlurred(ctx, src, w, h, o.blur); return; }
       // Different aspect (square framing): blur at the photo's aspect, then cover-fit.
       const k = Math.min(1, 2000 / Math.max(srcW, srcH));
       const t = canvas(Math.round(srcW * k), Math.round(srcH * k));
-      drawBlurred(t.getContext("2d"), src, t.width, t.height);
+      drawBlurred(t.getContext("2d"), src, t.width, t.height, o.blur);
       drawCover(ctx, t, w, h); free(t);
-    } else if (bg === "image" && S.bgImg) {
-      drawCover(ctx, S.bgImg, w, h);
+    } else if (bg === "image" && o.bgImg) {
+      drawCover(ctx, o.bgImg, w, h);
     }
   }
-  function compose(ctx, w, h, src, maskC, forceOpaque) {
+  function compose(ctx, w, h, src, maskC, forceOpaque, o) {
     // cutout = mask, then image "source-in" -> image pixels with mask alpha
     const work = canvas(w, h), wx = work.getContext("2d");
     wx.drawImage(maskC, 0, 0, w, h);
@@ -252,20 +266,20 @@
     wx.imageSmoothingQuality = "high";
     wx.drawImage(src, 0, 0, w, h);
     ctx.clearRect(0, 0, w, h);
-    paintBg(ctx, w, h, src, w, h, forceOpaque);
+    paintBg(ctx, w, h, src, w, h, forceOpaque, o);
     ctx.drawImage(work, 0, 0);
     free(work);
   }
   // Square output: crop the subject (bb, in mask pixels), scale by L.scale, centre on the square.
   // `k` = source pixels per mask pixel (1 for the preview, >1 if the original exceeded 16 MP).
-  function composeFramed(ctx, src, k, maskC, bb, L, forceOpaque) {
+  function composeFramed(ctx, src, k, maskC, bb, L, forceOpaque, o) {
     const work = canvas(L.w, L.h), wx = work.getContext("2d");
     wx.imageSmoothingEnabled = true; wx.imageSmoothingQuality = "high";
     wx.drawImage(maskC, bb.x, bb.y, bb.w, bb.h, 0, 0, L.w, L.h);
     wx.globalCompositeOperation = "source-in";
     wx.drawImage(src, bb.x * k, bb.y * k, bb.w * k, bb.h * k, 0, 0, L.w, L.h);
     ctx.clearRect(0, 0, L.side, L.side);
-    paintBg(ctx, L.side, L.side, src, maskC.width, maskC.height, forceOpaque);
+    paintBg(ctx, L.side, L.side, src, maskC.width, maskC.height, forceOpaque, o);
     ctx.drawImage(work, L.dx, L.dy);
     free(work);
   }
@@ -349,6 +363,50 @@
     }
   }
 
+  /* ---------- one-shot cutout (used by batch mode) ----------
+     img: a decoded HTMLImageElement. s: {method:"ai"|"plain", bg:"transparent"|"color"|"blur",
+     color, square, fill (0.5..1), type:"image/png"|"image/jpeg", maxSide (0 = original), feather}.
+     Returns {blob, w, h, thumb (small canvas)}. Everything is freed before returning. */
+  async function cutoutImage(img, s) {
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    if (!iw || !ih) throw new Error("The image has no pixels.");
+    let W = iw, H = ih;
+    if (W * H > C.MAX_PIXELS) { const k = Math.sqrt(C.MAX_PIXELS / (W * H)); W = Math.floor(W * k); H = Math.floor(H * k); }
+    const jpeg = s.type === "image/jpeg";
+    const o = { method: s.method === "plain" ? "plain" : "ai", feather: s.feather == null ? 0.35 : s.feather,
+      bg: s.bg || "transparent", color: s.color || "#ffffff", bgImg: null, blur: s.blur || 20, low: null, keyBg: null };
+    if (o.method === "ai") o.low = await window.Segmenter.predict(img, iw, ih);
+    else {
+      const ps = Math.min(1, PREVIEW_MAX / Math.max(W, H));
+      const pc = canvas(Math.max(1, Math.round(W * ps)), Math.max(1, Math.round(H * ps)));
+      pc.getContext("2d").drawImage(img, 0, 0, pc.width, pc.height);
+      o.keyBg = estimateBg(pc, pc.width, pc.height); free(pc);
+    }
+    const limit = s.maxSide > 0 ? s.maxSide : 0;
+    let out;
+    if (s.square) {
+      const mask = buildMask(W, H, img, o), bb = maskBBox(mask);
+      const L = frameLayout(bb, H, s.fill || 0.85, limit ? Math.min(MAX_SIDE, limit) : MAX_SIDE);
+      out = canvas(L.side, L.side);
+      composeFramed(out.getContext("2d"), img, iw / W, mask, bb, L, jpeg, o);
+      free(mask);
+    } else {
+      if (limit && Math.max(W, H) > limit) { const k = limit / Math.max(W, H); W = Math.max(1, Math.round(W * k)); H = Math.max(1, Math.round(H * k)); }
+      const mask = buildMask(W, H, img, o);
+      out = canvas(W, H);
+      compose(out.getContext("2d"), W, H, img, mask, jpeg, o);
+      free(mask);
+    }
+    const ts = Math.min(1, 160 / Math.max(out.width, out.height));
+    const thumb = canvas(Math.max(1, Math.round(out.width * ts)), Math.max(1, Math.round(out.height * ts)));
+    const tx = thumb.getContext("2d"); tx.imageSmoothingQuality = "high"; tx.drawImage(out, 0, 0, thumb.width, thumb.height);
+    const w = out.width, h = out.height;
+    const blob = await new Promise((res) => out.toBlob(res, s.type || "image/png", 0.92));
+    free(out);
+    if (!blob) { free(thumb); throw new Error("Your browser could not encode this image size."); }
+    return { blob, w, h, thumb };
+  }
+
   /* ---------- loading an image ---------- */
   function loadImage(file) {
     return new Promise((resolve, reject) => {
@@ -429,6 +487,7 @@
       hideStatus();
       el.dlPng.disabled = el.dlJpg.disabled = false;
       el.stage.dataset.state = "done";
+      try { document.dispatchEvent(new CustomEvent("peelo:cutout")); } catch (_) {}
     } catch (e) {
       console.error(e);
       hideStatus();
@@ -452,12 +511,15 @@
   el.fileInput.addEventListener("change", () => { handleFile(el.fileInput.files[0]); el.fileInput.value = ""; });
   document.addEventListener("dragover", (e) => { e.preventDefault(); el.dropzone.classList.add("is-over"); });
   document.addEventListener("dragleave", (e) => { if (!e.relatedTarget) el.dropzone.classList.remove("is-over"); });
+  const batchActive = () => document.body.dataset.tab === "batch";
   document.addEventListener("drop", (e) => {
     e.preventDefault(); el.dropzone.classList.remove("is-over");
+    if (batchActive()) return; // batch mode handles its own drops
     const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
     if (f) handleFile(f);
   });
   window.addEventListener("paste", (e) => {
+    if (batchActive()) return;
     const items = (e.clipboardData && e.clipboardData.items) || [];
     for (const it of items) if (it.kind === "file" && it.type.startsWith("image/")) { handleFile(it.getAsFile()); e.preventDefault(); return; }
   });
@@ -690,4 +752,5 @@
 
   // Small hook for automated tests and debugging.
   window.__bgapp = { state: S, exportBlob, setSquare, setFill, setBg, setMethod };
+  window.PeeloCore = { cutoutImage, loadImage, MAX_SIDE };
 })();
