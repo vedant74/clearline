@@ -35,10 +35,10 @@
   },
   {
    "@type": "Question",
-   "name": "Why does the first use download about 16 MB?",
+   "name": "Why does the first use take a while?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "That's the AI model (4.6 MB) and the WebAssembly runtime that runs it. It's downloaded once and cached by your browser, so later visits start almost instantly, even offline."
+    "text": "That's the AI model (about 91 MB) and the runtime that runs it. They're downloaded once and cached by your browser, so later visits start almost instantly, even offline. Fast mode uses a 5 MB model instead."
    }
   },
   {
@@ -54,7 +54,7 @@
    "name": "Is on-device removal lower quality?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "It uses a smaller model than server tools, so it's weaker on fine hair, glass and busy scenes. For single clear subjects the results are good, and you can fix edges with the brush."
+    "text": "It runs a 1024-pixel model and then removes leftover background text and specks automatically. Very fine hair, glass and crowded scenes are still the hardest cases; the refine brush fixes what's left."
    }
   }
  ]
@@ -110,7 +110,7 @@
 <h2>How on-device background removal works</h2>
 <p>When you open Peelo, your browser downloads two things from the same site that serves the page:</p>
 <ol>
-<li><strong>The model:</strong> U²-Net small, an open-source segmentation network (Apache-2.0, 4.6 MB).</li>
+<li><strong>The model:</strong> IS-Net, an open-source high-resolution segmentation network (Apache-2.0, about 91 MB, downloaded once). Fast mode uses U²-Net small (Apache-2.0, 5 MB).</li>
 <li><strong>The runtime:</strong> ONNX Runtime Web, compiled to WebAssembly so it runs at near-native speed in any modern browser (about 11 MB).</li>
 </ol>
 <p>When you add a photo, your browser decodes it into memory. The model then works out which pixels belong to the subject, and the cut-out is composited at full resolution on a canvas, all in the browser tab. The download is created locally too. At no point does the image go into a network request.</p>
@@ -149,7 +149,7 @@
     <div class="cta-box"><a class="btn primary" href="../">Try it: nothing gets uploaded</a><p>The AI engine downloads once, then runs on your device.</p></div>
     <section class="faq">
       <h2>Questions</h2>
-      <details><summary>Does Peelo store my photos?</summary><p>No. Photos are processed in your browser's memory and are never uploaded, so there's nothing on our side to store. Closing the tab clears them.</p></details><details><summary>Why does the first use download about 16 MB?</summary><p>That's the AI model (4.6 MB) and the WebAssembly runtime that runs it. It's downloaded once and cached by your browser, so later visits start almost instantly, even offline.</p></details><details><summary>Can I use it completely offline?</summary><p>Yes, after the first visit. Install it as an app from your browser menu, or just reopen the page. The app and the model come from your browser's cache.</p></details><details><summary>Is on-device removal lower quality?</summary><p>It uses a smaller model than server tools, so it's weaker on fine hair, glass and busy scenes. For single clear subjects the results are good, and you can fix edges with the brush.</p></details>
+      <details><summary>Does Peelo store my photos?</summary><p>No. Photos are processed in your browser's memory and are never uploaded, so there's nothing on our side to store. Closing the tab clears them.</p></details><details><summary>Why does the first use take a while?</summary><p>That's the AI model (about 91 MB) and the runtime that runs it. They're downloaded once and cached by your browser, so later visits start almost instantly, even offline. Fast mode uses a 5 MB model instead.</p></details><details><summary>Can I use it completely offline?</summary><p>Yes, after the first visit. Install it as an app from your browser menu, or just reopen the page. The app and the model come from your browser's cache.</p></details><details><summary>Is on-device removal lower quality?</summary><p>It runs a 1024-pixel model and then removes leftover background text and specks automatically. Very fine hair, glass and crowded scenes are still the hardest cases; the refine brush fixes what's left.</p></details>
     </section>
     
   </article>

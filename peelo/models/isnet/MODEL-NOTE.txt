@@ -1,0 +1,10 @@
+isnet-w16.onnx (split into .part0 + .part1; the app concatenates them in the browser)
+IS-Net "general use" (DIS, Dichotomous Image Segmentation) by Xuebin Qin et al.
+Model/weights: https://github.com/xuebinqin/DIS  (License: Apache-2.0, see LICENSE-DIS-Apache-2.0.txt)
+ONNX file from the rembg project's GitHub release (rembg is MIT):
+  https://github.com/danielgatis/rembg/releases/download/v0.0.0/isnet-general-use.onnx
+Modified by Hyphenatesi: weights stored as float16 with Cast-to-float32 nodes (halves the download;
+outputs match the original to within 0.003), only the main output kept, and MaxPool ceil_mode set to 0
+(identical at the fixed 1024 px input; needed for the WebGPU runtime).
+sha256 (joined file): ea6a27cc31d6dbeb313da6c92e2e4933682742e002844184a95186efe153599c
+Input: 1x3x1024x1024 float32, pixels/max - 0.5. Output[0]: 1x1x1024x1024 mask.

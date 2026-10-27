@@ -312,3 +312,8 @@ body[data-tab="batch"] .tool > :is(#dropzone, #presetRow, #workspace, #upsell) {
 .signup label { font-weight: 600; font-size: .92rem; }
 .signup-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .signup-row input { flex: 1 1 200px; font: inherit; padding: 11px 14px; min-height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); min-width: 0; }
+
+/* option checkboxes in the single-image panel */
+.check { display: flex; gap: 8px; align-items: flex-start; font-weight: 700; font-size: .9rem; cursor: pointer; margin: 10px 0; line-height: 1.35; }
+.check input { width: 18px; height: 18px; margin: 1px 0 0; flex: none; accent-color: var(--accent); }
+.check small { display: block; font-weight: 400; color: var(--ink-2); font-size: .8rem; }

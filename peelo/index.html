@@ -140,6 +140,9 @@
 
         <label class="slider">Edge softness <input id="feather" type="range" min="0" max="100" value="35"><output id="featherOut">35</output></label>
 
+        <label class="check" id="mainOnlyRow"><input type="checkbox" id="mainOnly" checked><span>Keep main subject only <small>Removes leftover text and specks in the background.</small></span></label>
+        <label class="check" id="fastRow"><input type="checkbox" id="fastModel"><span>Fast mode <small>Smaller 5&nbsp;MB model for slow devices. Rougher edges.</small></span></label>
+
         <button type="button" class="btn wide market-btn" id="marketBtn" aria-pressed="false">Marketplace photo <small>white · square · 85% fill</small></button>
 
         <div class="opt-group">
@@ -383,10 +386,9 @@
 
 <footer class="footer">
   <p><span data-name>Peelo</span> · <a href="#guides">Guides</a> · <a href="remove-bg-alternative/">remove.bg alternative</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
-  <p class="fine">Segmentation model: U²-Net (u2netp) by Xuebin Qin et al., Apache-2.0. Runtime: ONNX Runtime Web, MIT. No cookies, no ads. Your photos are never uploaded; we count anonymous page visits with GoatCounter.</p>
+  <p class="fine">Segmentation models: IS-Net (DIS) and U²-Net small (fast mode), both by Xuebin Qin et al., Apache-2.0. Runtime: ONNX Runtime Web, MIT. No cookies, no ads. Your photos are never uploaded; we count anonymous page visits with GoatCounter.</p>
 </footer>
 
-<script src="vendor/ort/ort.wasm.min.js"></script>
 <script src="js/segment.js"></script>
 <script src="js/app.js"></script>
 <script src="vendor/fflate/fflate.min.js"></script>

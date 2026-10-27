@@ -5,7 +5,7 @@
    - The AI model is cached by the app itself (Cache API, CONFIG.MODEL_CACHE_NAME), so it is not
      duplicated here; models/ requests pass through.
    Bump VERSION when the precache list changes. Old peelo-shell-* caches are deleted on activate. */
-const VERSION = "v3"; // v3: batch mode (js/batch.js, vendor/fflate)
+const VERSION = "v4"; // v4: high-quality IS-Net model + main-subject cleanup
 const SHELL = "peelo-shell-" + VERSION;
 const RUNTIME = "peelo-runtime-" + VERSION;
 const PRECACHE = [

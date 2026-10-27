@@ -30,7 +30,7 @@ Rules: say you built it, follow each subreddit's self-promotion rules (many only
 
 **3. Product Hunt, Tue 25 Nov 2026**
 > **Tagline (≤60):** Free background remover that never uploads your photos
-> **First comment:** Why this, why now (the remove.bg shutdown), what's free forever (single images at full resolution), what's paid (batch, pay once), the honest limits (hair and glass), and the model's licence (U²-Net, Apache-2.0).
+> **First comment:** Why this, why now (the remove.bg shutdown), what's free forever (single images at full resolution), what's paid (batch, pay once), the honest limits (hair and glass), and the model's licence (IS-Net, Apache-2.0).
 
 **4. TikTok / Reels / Shorts script (~25 s), post the week of 24 Nov and again on 1 Dec**
 > [0–3s, screen recording] "remove.bg is shutting down its standalone site on December 1st. Here's the free thing I use instead."
@@ -39,8 +39,8 @@ Rules: say you built it, follow each subreddit's self-promotion rules (many only
 > [18–25s] Swap to a white background and download. "Link in bio. I made it, tell me what it gets wrong."
 
 **5. Show HN / r/SideProject on Mon 1 Dec 2026 (shutdown day)**
-> **Show HN: In-browser background removal, full res, no upload (U²-Net + ONNX Runtime Web)**
-> Technical write-up: a 4.6 MB Apache-2.0 model at 320×320, mask upscaled and edge-shaped at up to 16 MP, a refine brush replayed at full resolution on export, no server, static hosting. Be upfront about the quality limits compared with large server models.
+> **Show HN: In-browser background removal, full res, no upload (IS-Net + ONNX Runtime Web)**
+> Technical write-up: a 1024×1024 Apache-2.0 IS-Net model (fp16 weights, 91 MB, WebGPU when available, WASM otherwise), a connected-component pass that drops background text, mask upscaled and edge-shaped at up to 16 MP, a refine brush replayed at full resolution on export, no server, static hosting. Be upfront about the quality limits compared with large server models.
 
 ## Batch pricing (pay once)
 | Plan | Price | Includes |

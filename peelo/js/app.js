@@ -28,6 +28,7 @@
     bgFile: $("#bgFile"), dlPng: $("#dlPng"), dlJpg: $("#dlJpg"), meta: $("#meta"), newBtn: $("#newBtn"),
     fill: $("#fill"), fillOut: $("#fillOut"), fillRow: $("#fillRow"), marketBtn: $("#marketBtn"),
     presetNote: $("#presetNote"), frameNote: $("#frameNote"),
+    mainOnly: $("#mainOnly"), quality: $("#fastModel"),
   };
 
   const S = {
@@ -35,7 +36,7 @@
     low: null, lowFor: null, keyBg: null, previewImg: null, previewMask: null, previewBaseMask: null,
     strokes: [], mode: "compare", brush: "erase",
     bg: "transparent", color: "#ffffff", bgImg: null, ready: false, busy: false, ms: 0,
-    square: false, fill: 0.85, method: "ai", bbox: null, bboxDirty: true,
+    square: false, fill: 0.85, method: "ai", bbox: null, bboxDirty: true, mainOnly: true,
   };
 
   /* ---------- helpers ---------- */
@@ -77,7 +78,7 @@
      settings. Without one they use the single-image UI state. */
   function cur() {
     return {
-      method: S.method, low: S.low, keyBg: S.keyBg, feather: Number(el.feather.value) / 100,
+      method: S.method, low: S.low && !S.mainOnly && S.low.raw ? { size: S.low.size, data: S.low.raw } : S.low, keyBg: S.keyBg, feather: Number(el.feather.value) / 100,
       bg: S.bg, color: S.color, bgImg: S.bgImg, blur: Number(el.blurAmt.value),
     };
   }
@@ -422,7 +423,8 @@
   function prewarm() {
     if (S.method === "plain") return;
     window.Segmenter.load((f, cached) => {
-      if (modelProgressText) setStatus(cached ? "Loading AI model from cache…" : "Downloading AI model (one time)… " + Math.round(f * 100) + "%", cached ? null : f);
+      const mm = window.Segmenter.models && window.Segmenter.models[window.Segmenter.model];
+      if (modelProgressText) setStatus(cached ? "Loading AI model from cache…" : "Downloading AI model (one time" + (mm ? ", " + mm.mb + " MB" : "") + ")… " + Math.round(f * 100) + "%", cached ? null : f);
     }).catch(() => {});
   }
 
@@ -596,6 +598,25 @@
     if (!S.ready) return;
     cancelAnimationFrame(fTimer);
     fTimer = requestAnimationFrame(() => { rebuildPreviewMask(true); render(); });
+  });
+
+  /* main-subject cleanup toggle */
+  if (el.mainOnly) el.mainOnly.addEventListener("change", () => {
+    S.mainOnly = el.mainOnly.checked;
+    if (!S.ready) return;
+    S.bboxDirty = true;
+    rebuildPreviewMask(true); render();
+  });
+  /* model quality switch */
+  if (el.quality) el.quality.checked = window.Segmenter.model === "fast";
+  if (el.quality) el.quality.addEventListener("change", async () => {
+    window.Segmenter.setModel(el.quality.checked ? "fast" : "hq");
+    if (!S.img || S.method !== "ai" || S.busy) return;
+    S.low = null; S.lowFor = null;
+    S.busy = true;
+    try { await ensureSegmented(); S.bboxDirty = true; rebuildPreviewMask(true); render(); hideStatus(); }
+    catch (e) { warn("Couldn't run the AI model: " + (e && e.message || e)); }
+    finally { S.busy = false; }
   });
 
   /* background options */

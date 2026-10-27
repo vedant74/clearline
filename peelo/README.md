@@ -8,20 +8,24 @@ Features: drag and drop, file picker or paste; model download progress (cached w
 
 | Component | Licence | Source |
 |---|---|---|
-| U²-Net small (`u2netp`) weights | **Apache-2.0** | https://github.com/xuebinqin/U-2-Net (LICENSE copied to `models/LICENSE-U2Net-Apache-2.0.txt`) |
+| IS-Net general use (DIS) weights — default "high quality" model | **Apache-2.0** | https://github.com/xuebinqin/DIS (licence in `models/isnet/`) |
+| ONNX export of IS-Net | MIT (rembg project) | https://github.com/danielgatis/rembg/releases/download/v0.0.0/isnet-general-use.onnx |
+| U²-Net small (`u2netp`) weights — "fast mode" and low-memory fallback | **Apache-2.0** | https://github.com/xuebinqin/U-2-Net (LICENSE copied to `models/LICENSE-U2Net-Apache-2.0.txt`) |
 | ONNX export of u2netp | MIT (rembg project) | https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx |
-| onnxruntime-web **1.20.1** (pinned) | MIT | https://www.npmjs.com/package/onnxruntime-web |
+| onnxruntime-web **1.20.1** (pinned): CPU build + WebGPU build | MIT | https://www.npmjs.com/package/onnxruntime-web |
 | fflate **0.8.2** (ZIP for batch) | MIT | https://www.npmjs.com/package/fflate (`vendor/fflate/`, unmodified `umd/index.js`, licence copied) |
 
-- `u2netp` is a **general salient-object** model. It isn't limited to portraits, so it works on products, pets, people and logos.
-- The model is **vendored** in `models/u2netp.onnx` (4.6 MB, sha256 `309c8469…ddd8`, see `models/MODEL-NOTE.txt`). The ORT runtime is vendored in `vendor/ort/` (the largest file is 11 MB). Both are well under GitHub Pages' 100 MB per-file limit, and the site makes **no third-party requests**.
-- These were deliberately not used: `@imgly/background-removal` (AGPL), BRIA RMBG-1.4/2.0 (non-commercial), and the larger U²-Net/IS-Net files (about 170 MB each, too big for Pages).
-- Quality trade-off: u2netp is small. It's very good on single clear subjects and weaker on fine hair, glass and cluttered scenes, which is why the refine brush exists. You can swap in a bigger permissively licensed model by changing `MODEL_URL` (input must be 1×3×320×320 or you must adjust `MODEL_INPUT_SIZE`).
+- **Default model: IS-Net at 1024×1024.** Stored with float16 weights (91 MB instead of 179 MB, output within 0.003 of the original) and split into two parts under 50 MB each (`models/isnet/*.part0/.part1`), joined in the browser. See `models/isnet/MODEL-NOTE.txt` for the exact modifications and sha256.
+- **Fast mode / fallback: u2netp at 320×320** (4.6 MB). Used when the user ticks "Fast mode", with `?model=fast`, on devices reporting under 4 GB of memory, or automatically if IS-Net fails to load or run.
+- **Runtime:** the WebGPU build (`ort.webgpu.min.js` + `*.jsep.*`) loads only when the browser offers a GPU adapter (`?gpu=0` forces CPU); otherwise the smaller CPU build. A failed GPU run retries on CPU. All files are vendored, so the tool makes no third-party requests apart from the cookie-free GoatCounter counter.
+- **Main-subject cleanup** (`mainSubject()` in `js/segment.js`): both models treat bold text as a subject, so after the model the mask is split into connected regions; the largest is kept, rows of similar-sized blobs (lines of text) are dropped, other big regions (a second car, a person) and small pieces touching a kept region stay. The user can turn it off ("Keep main subject only").
+- Not used: `@imgly/background-removal` (AGPL), BRIA RMBG-1.4/2.0 (non-commercial). BiRefNet (MIT) is better still but needs ~6 GB RAM and ~40 s per image on CPU, too heavy for a browser.
+- Benchmark notes (Oct 2026, headless Chromium, 2 slow CPU cores, no GPU): IS-Net ~13 s per photo, u2netp ~1 s. Typical laptops are faster, and WebGPU much faster.
 
 ## How it works
 
 1. The image is decoded locally. Anything over `MAX_PIXELS` (16 MP) is scaled down, and the user sees a warning.
-2. A 320×320 copy goes through u2netp in onnxruntime-web (WASM, single-threaded so it works without cross-origin isolation).
+2. A 1024×1024 copy goes through IS-Net (or 320×320 through u2netp) in onnxruntime-web (WebGPU when available, else WASM single-threaded, which works without cross-origin isolation), then the main-subject cleanup runs.
 3. The probability mask is upscaled in steps to the working resolution, then shaped with a smoothstep edge curve (the "Edge softness" slider controls the feather).
 4. Brush strokes are stored in image coordinates and replayed at full resolution on export. The preview is capped at 1400 px for speed.
 5. On export, the mask is applied to the original-resolution image and composited over the chosen background.
@@ -68,7 +72,7 @@ config.js         all settings (name, model URL, signup endpoint, analytics, pay
 js/segment.js     model loading (Cache API + progress) and inference; stub mask for tests
 js/app.js         UI, mask building, refine brush, compositing, export; exposes PeeloCore.cutoutImage
 js/batch.js       batch mode, Pro unlock, upsell card, pricing buttons, analytics events
-models/           u2netp.onnx + licence notes
+models/           isnet/ (IS-Net, 2 parts) + u2netp.onnx + licence notes
 vendor/ort/       onnxruntime-web 1.20.1 runtime files + licence note
 vendor/fflate/    fflate 0.8.2 UMD build (ZIP) + MIT licence
 privacy.html, terms.html   TEMPLATES, so fill in the bracketed items before launch
