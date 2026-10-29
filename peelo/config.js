@@ -32,7 +32,7 @@ window.CONFIG = {
   // ---- Batch Pro ($19 one-time). See README "Batch Pro payments". ----
   // Stripe Payment Link (https://buy.stripe.com/...). Empty = "Batch Pro: coming soon" and no buy button;
   // the free 3-image batch keeps working either way.
-  STRIPE_PAYMENT_LINK: "",
+  STRIPE_PAYMENT_LINK: "https://buy.stripe.com/4gM7sKarB4Dd0FN1dC7Vm00",
   // Secret-ish string in the post-payment redirect: https://hyphenatesi.com/peelo/?pro=<token>#batch
   // This is a soft lock: anyone who reads this file can find it. Change it to rotate the link.
   PRO_UNLOCK_TOKEN: "peelo-lmdYYyiReAgSUrBukjKnS01K",
