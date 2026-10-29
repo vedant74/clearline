@@ -40,5 +40,5 @@ window.CONFIG = {
   FREE_BATCH_LIMIT: 3,
   BATCH_MAX_FILES: 200,
   // Shown in "Restore purchase" and the refund FAQ. Empty = "reply to your Stripe receipt email".
-  CONTACT_EMAIL: "",
+  CONTACT_EMAIL: "supporthyphenatesi@gmail.com",
 };
