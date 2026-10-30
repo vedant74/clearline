@@ -124,6 +124,9 @@
     ort.env.wasm.wasmPaths = new URL(C.ORT_WASM_PATH, location.href).href;
     // Multi-threading needs cross-origin isolation, which GitHub Pages cannot provide.
     ort.env.wasm.numThreads = 1;
+    // CPU path: run the model in a Web Worker so the page stays responsive (buttons, progress) while
+    // a photo is processed. Not used with WebGPU, which already runs off the main thread.
+    if (!gpuOK && param("proxy") !== "0") ort.env.wasm.proxy = true;
     let s = null;
     if (gpuOK) {
       try {
@@ -204,7 +207,7 @@
         gpuOK = false; sessionPromise = null; active = null;
         session = await load();
         r = await run(session, active, source, srcW, srcH);
-        return { data: mainSubject(r.data, r.size), raw: r.data, size: r.size, model: active };
+        return finish(r, active);
       }
       if (active === "fast") throw e;
       // Out of memory or similar on the big model: fall back for the rest of the visit.
@@ -213,7 +216,7 @@
       session = await load();
       r = await run(session, active, source, srcW, srcH);
     }
-    return { data: mainSubject(r.data, r.size), raw: r.data, size: r.size, model: active };
+    return finish(r, active);
   }
 
   /* ---- "main subject" cleanup ----
@@ -278,6 +281,50 @@
     const region = dilate(kept, N, Math.max(2, (N / 128) | 0));
     const out = new Float32Array(n);
     for (let p = 0; p < n; p++) out[p] = region[p] ? m[p] : 0;
+    return out;
+  }
+
+  function finish(r, model) {
+    const N = r.size;
+    return { data: solidify(fillUncertain(mainSubject(r.data, N), N), N), raw: solidify(fillUncertain(r.data, N), N), size: N, model };
+  }
+
+  /* ---- fill unsure regions ----
+     Low-contrast subjects (light clothes against a light wall) come out half-confident, which turns
+     into holes and speckles. Any non-subject region whose average confidence is >= 0.06 is filled
+     (confident background averages ~0.01 and is untouched), as are tiny fully-enclosed specks. */
+  function fillUncertain(m, N) {
+    const n = N * N, lab = new Int32Array(n), stack = new Int32Array(n);
+    const out = new Float32Array(m);
+    let k = 0;
+    const fillIds = [0];
+    for (let s0 = 0; s0 < n; s0++) {
+      if (lab[s0] || m[s0] > 0.5) continue;
+      k++; let top = 0; stack[top++] = s0; lab[s0] = k;
+      let area = 0, sum = 0, border = false;
+      while (top) {
+        const p = stack[--top]; area++; sum += m[p];
+        const y = (p / N) | 0, x = p - y * N;
+        if (x === 0 || y === 0 || x === N - 1 || y === N - 1) border = true;
+        if (x > 0 && !lab[p - 1] && m[p - 1] <= 0.5) { lab[p - 1] = k; stack[top++] = p - 1; }
+        if (x < N - 1 && !lab[p + 1] && m[p + 1] <= 0.5) { lab[p + 1] = k; stack[top++] = p + 1; }
+        if (y > 0 && !lab[p - N] && m[p - N] <= 0.5) { lab[p - N] = k; stack[top++] = p - N; }
+        if (y < N - 1 && !lab[p + N] && m[p + N] <= 0.5) { lab[p + N] = k; stack[top++] = p + N; }
+      }
+      fillIds.push(sum / area >= 0.06 || (!border && area < 0.0005 * n) ? 1 : 0);
+    }
+    for (let p = 0; p < n; p++) if (lab[p] && fillIds[lab[p]]) out[p] = 1;
+    return out;
+  }
+
+  // Pixels well inside the subject become fully opaque; only the outline keeps soft edges.
+  function solidify(m, N) {
+    const n = N * N, r = Math.max(2, (N / 200) | 0);
+    const outside = new Uint8Array(n);
+    for (let p = 0; p < n; p++) if (m[p] <= 0.5) outside[p] = 1;
+    const nearOutside = dilate(outside, N, r);
+    const out = new Float32Array(m);
+    for (let p = 0; p < n; p++) if (!nearOutside[p]) out[p] = 1;
     return out;
   }
 
