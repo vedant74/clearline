@@ -113,12 +113,12 @@
 <h2>What "full resolution" means here</h2>
 <p>Your download has the same pixel dimensions as the photo you added. A 4032 × 3024 phone photo comes back as a 4032 × 3024 PNG or JPG. In detail:</p>
 <ul>
-<li>The AI model works out the subject's outline on a small 320 × 320 copy, which is what keeps it fast enough for phones.</li>
+<li>The AI model works out the subject's outline on a 1024 × 1024 copy (320 × 320 in Fast mode), which keeps it fast enough to run in a browser.</li>
 <li>That outline is smoothly upscaled to your photo's full size and shaped with the <em>Edge softness</em> curve.</li>
 <li>It's then applied to your <strong>original pixels</strong>. The subject itself isn't resampled, so textures, text on labels and fine detail inside the subject stay as sharp as your original.</li>
 <li>Your refine-brush strokes are recorded and replayed at full resolution on export, so manual fixes stay crisp.</li>
 </ul>
-<p>The honest caveat: because the outline starts at 320 × 320, very fine edge detail like individual hairs is approximated rather than traced pixel by pixel. For products and most subjects you won't notice. For hair-heavy portraits you might, and the brush helps there.</p>
+<p>The honest caveat: because the outline starts at 1024 × 1024, very fine edge detail like individual hairs is approximated rather than traced pixel by pixel. For products and most subjects you won't notice. For hair-heavy portraits you might, and the brush helps there.</p>
 
 <h2>The 16-megapixel limit</h2>
 <p>Browsers limit how large a canvas can be, and iPhone Safari is the strictest, failing at around 16.7 megapixels. To make sure the export never fails silently, photos above 16 MP (for example 4900 × 3265) are scaled down to 16 MP, and the tool tells you before it happens. Most phone photos (12 MP) and many camera photos fit without any scaling.</p>
@@ -145,7 +145,7 @@
 
   <section id="more-guides" class="more-guides">
     <h2>More guides</h2>
-    <ul class="guide-grid"><li><a href="../remove-bg-alternative/">remove.bg alternative</a></li><li><a href="../white-background-amazon-product-photo/">Amazon white background</a></li><li><a href="../remove-background-for-etsy/">Etsy listing photos</a></li><li><a href="../remove-background-shopify-product-photos/">Shopify product photos</a></li><li><a href="../transparent-background-logo/">Transparent logo</a></li><li><a href="../remove-background-from-signature/">Signature background</a></li><li><a href="../remove-background-without-uploading/">No-upload background removal</a></li><li><a href="../linkedin-headshot-background/">LinkedIn headshot</a></li><li><a href="../remove-background-pet-photo/">Pet photos</a></li><li><a href="../remove-background-car-photo/">Car photos</a></li></ul>
+    <ul class="guide-grid"><li><a href="../remove-bg-alternative/">remove.bg alternative</a></li><li><a href="../white-background-amazon-product-photo/">Amazon white background</a></li><li><a href="../remove-background-for-etsy/">Etsy listing photos</a></li><li><a href="../remove-background-shopify-product-photos/">Shopify product photos</a></li><li><a href="../transparent-background-logo/">Transparent logo</a></li><li><a href="../remove-background-from-signature/">Signature background</a></li><li><a href="../remove-background-without-uploading/">No-upload background removal</a></li><li><a href="../linkedin-headshot-background/">LinkedIn headshot</a></li><li><a href="../remove-background-pet-photo/">Pet photos</a></li><li><a href="../remove-background-car-photo/">Car photos</a></li><li><a href="../remove-bg-shutting-down/">remove.bg shutting down</a></li><li><a href="../bulk-background-remover/">Bulk background remover</a></li><li><a href="../make-background-transparent/">Make background transparent</a></li><li><a href="../remove-white-background/">Remove white background</a></li></ul>
   </section>
 </main>
 

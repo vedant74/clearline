@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hyphenatesi — simple tools, fair prices</title>
-<meta name="description" content="Small, honest web tools: free QR codes that never expire and a private, full-resolution background remover. No signup, no watermarks, no subscription traps.">
+<title>Hyphenatesi: Free Background Remover &amp; QR Code Tools</title>
+<meta name="description" content="Free, honest web tools: Peelo removes image backgrounds at full resolution in your browser, and ForeverQR makes QR codes that never expire. No signup.">
 <link rel="canonical" href="https://hyphenatesi.com/">
 <meta property="og:title" content="Hyphenatesi — simple tools, fair prices">
 <meta property="og:description" content="Free QR codes that never expire and a private, full-resolution background remover.">
@@ -26,7 +26,33 @@ a.app:hover,a.app:focus-visible{border-color:var(--accent);outline:none}
 .go{margin-top:auto;padding-top:10px;color:var(--accent);font-weight:600}
 .promise{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:15px}
 footer{color:var(--muted);font-size:13px;margin-top:40px}
+.guides{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;margin:8px 0 32px}
+.guides h2{font-size:18px;margin:0 0 10px}
+.guides ul{margin:0;padding-left:18px;color:var(--muted)}
+.guides li{margin:4px 0}
+.guides a{color:var(--accent)}
+.why{color:var(--muted);max-width:40em}
+.why h2{color:var(--fg);font-size:20px;margin:28px 0 8px}
+footer a{color:inherit}
 </style>
+<script type="application/ld+json">
+[
+ {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Hyphenatesi",
+  "url": "https://hyphenatesi.com/",
+  "logo": "https://hyphenatesi.com/peelo/icons/icon-512.png",
+  "email": "supporthyphenatesi@gmail.com"
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Hyphenatesi",
+  "url": "https://hyphenatesi.com/"
+ }
+]
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -47,8 +73,52 @@ footer{color:var(--muted);font-size:13px;margin-top:40px}
     </a>
   </div>
 
+  <section class="guides" aria-label="Guides">
+    <div>
+      <h2>Peelo guides</h2>
+      <ul>
+      <li><a href="/peelo/remove-bg-shutting-down/">remove.bg is shutting down: what to do</a></li>
+      <li><a href="/peelo/remove-bg-alternative/">Free remove.bg alternative</a></li>
+      <li><a href="/peelo/make-background-transparent/">Make a background transparent</a></li>
+      <li><a href="/peelo/remove-white-background/">Remove a white background</a></li>
+      <li><a href="/peelo/bulk-background-remover/">Bulk background remover</a></li>
+      <li><a href="/peelo/white-background-amazon-product-photo/">White background for Amazon photos</a></li>
+      <li><a href="/peelo/remove-background-for-etsy/">Etsy listing photos</a></li>
+      <li><a href="/peelo/remove-background-shopify-product-photos/">Shopify product photos</a></li>
+      <li><a href="/peelo/transparent-background-logo/">Transparent logo</a></li>
+      <li><a href="/peelo/remove-background-from-signature/">Signature background</a></li>
+      <li><a href="/peelo/linkedin-headshot-background/">LinkedIn headshot background</a></li>
+      <li><a href="/peelo/remove-background-pet-photo/">Pet photos</a></li>
+      <li><a href="/peelo/remove-background-car-photo/">Car photos</a></li>
+      <li><a href="/peelo/remove-background-without-uploading/">Remove backgrounds without uploading</a></li>
+      <li><a href="/peelo/remove-background-full-resolution-free/">Full resolution, free</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>ForeverQR guides</h2>
+      <ul>
+      <li><a href="/foreverqr/qr-code-that-never-expires/">QR code that never expires</a></li>
+      <li><a href="/foreverqr/why-did-my-qr-code-stop-working/">Why did my QR code stop working?</a></li>
+      <li><a href="/foreverqr/wifi-qr-code/">Wi-Fi QR code</a></li>
+      <li><a href="/foreverqr/restaurant-menu-qr-code/">Restaurant menu QR code</a></li>
+      <li><a href="/foreverqr/google-review-qr-code/">Google review QR code</a></li>
+      <li><a href="/foreverqr/instagram-qr-code/">Instagram QR code</a></li>
+      <li><a href="/foreverqr/business-card-qr-code/">Business card QR code</a></li>
+      <li><a href="/foreverqr/wedding-qr-code/">Wedding QR codes</a></li>
+      <li><a href="/foreverqr/real-estate-sign-qr-code/">Real estate sign QR code</a></li>
+      <li><a href="/foreverqr/event-check-in-qr-code/">Event check-in QR code</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="why">
+    <h2>Why these tools exist</h2>
+    <p>A lot of everyday tools have turned into traps: QR code generators whose "free" codes stop working after a trial, background removers that charge credits for a full-size download or upload your photos to a server. Hyphenatesi builds the simple, honest version.</p>
+    <p>Both tools run in your browser. Peelo's AI model runs on your own device, so your photos are never uploaded. ForeverQR makes static QR codes that point straight to your link, so there's nothing to expire. Free versions stay free, and anything paid is a fair, one-time price.</p>
+  </section>
+
   <p class="promise">Our promise: the free versions stay free, and anything paid is priced fairly with a clear way to cancel.</p>
-  <footer>© 2026 Hyphenatesi</footer>
+  <footer>© 2026 Hyphenatesi · <a href="mailto:supporthyphenatesi@gmail.com">supporthyphenatesi@gmail.com</a> · <a href="/peelo/privacy.html">Privacy</a> · <a href="/peelo/terms.html">Terms</a></footer>
 </div>
 <script data-goatcounter="https://hyphenatesi.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

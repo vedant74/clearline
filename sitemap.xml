@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>https://hyphenatesi.com/peelo/sitemap.xml</loc></sitemap>
-  <sitemap><loc>https://hyphenatesi.com/foreverqr/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://hyphenatesi.com/sitemap-pages.xml</loc><lastmod>2026-10-29</lastmod></sitemap>
+  <sitemap><loc>https://hyphenatesi.com/peelo/sitemap.xml</loc><lastmod>2026-10-29</lastmod></sitemap>
+  <sitemap><loc>https://hyphenatesi.com/foreverqr/sitemap.xml</loc><lastmod>2026-10-29</lastmod></sitemap>
 </sitemapindex>
