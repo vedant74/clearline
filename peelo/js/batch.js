@@ -120,7 +120,14 @@
   const upsell = $("#upsell");
   let singles = 0;
   function upsellDismissed() { try { return sessionStorage.getItem("peelo-upsell-x") === "1"; } catch (_) { return false; } }
+  // Single-photo usage: counts only (no image data, file names or sizes are sent).
+  document.addEventListener("peelo:download", (e) => {
+    const f = (e.detail && e.detail.format) === "jpg" ? "jpg" : "png";
+    track("download-" + f, "Single photo downloaded (" + f.toUpperCase() + ")");
+  });
+  document.addEventListener("peelo:cutout-error", () => track("cutout-error", "Cutout failed"));
   document.addEventListener("peelo:cutout", () => {
+    track("cutout-done", "Background removed (single photo)");
     singles++;
     if (singles === 3 && !pro() && !upsellDismissed()) { upsell.hidden = false; track("upsell-shown", "Upsell shown after 3rd cutout"); }
   });

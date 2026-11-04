@@ -356,6 +356,7 @@
       a.href = URL.createObjectURL(blob);
       a.download = S.name + (S.square ? "-square" : "-no-bg") + "." + (type === "image/png" ? "png" : "jpg");
       document.body.appendChild(a); a.click(); a.remove();
+      try { document.dispatchEvent(new CustomEvent("peelo:download", { detail: { format: type === "image/png" ? "png" : "jpg" } })); } catch (_) {}
       setTimeout(() => URL.revokeObjectURL(a.href), 60000);
     } catch (e) {
       warn(e.message || "Export failed.");
@@ -494,6 +495,7 @@
       console.error(e);
       hideStatus();
       warn("Couldn't remove the background: " + ((e && e.message) || "unknown error") + ". Try reloading the page.");
+      try { document.dispatchEvent(new CustomEvent("peelo:cutout-error")); } catch (_) {}
       el.stage.dataset.state = "error";
     } finally {
       modelProgressText = null;
