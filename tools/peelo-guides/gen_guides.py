@@ -5,7 +5,9 @@ import html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pages import PAGES  # noqa: E402
 from pages_new import NEW_PAGES  # noqa: E402
+from related import R as RELATED  # noqa: E402
 PAGES = PAGES + NEW_PAGES
+BY_SLUG = {o["slug"]: o for o in PAGES}
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "peelo")
 BASE = "https://hyphenatesi.com/peelo/"
@@ -48,6 +50,9 @@ def build(p):
                         for t, u, n in p["sources"])
         sources = f'<h2>Sources</h2><ul class="sources">{items}</ul><p class="sources">Checked {p.get("checked", "26 October 2026")}. Platform rules change, so confirm on the official page before you rely on them.</p>'
     others = "".join(f'<li><a href="../{o["slug"]}/">{o["crumb"]}</a></li>' for o in PAGES if o["slug"] != p["slug"])
+    related = "".join(f'<li><a href="../{slug}/">{BY_SLUG[slug]["crumb"]}</a>: {why}</li>'
+                      for slug, why in RELATED[p["slug"]])
+    related_html = f'<section class="related"><h2>Related guides</h2><ul>{related}</ul></section>'
     words = len(strip_tags(p["body"] + steps + faqs + p["lede"]).split())
     doc = f"""<!doctype html>
 <html lang="en">
@@ -107,6 +112,7 @@ def build(p):
       {faqs}
     </section>
     {sources}
+    {related_html}
   </article>
 
   <section id="more-guides" class="more-guides">
@@ -117,6 +123,7 @@ def build(p):
 
 <footer class="footer">
   <p><a href="../">Peelo</a> · <a href="../#guides">Guides</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></p>
+  <p>Also free: <a href="/foreverqr/">ForeverQR, QR codes that never expire</a> · <a href="/">All Hyphenatesi tools</a></p>
   <p class="fine">Peelo is independent and not affiliated with remove.bg, Canva, Photoroom, Amazon, Etsy, Shopify or LinkedIn. Product names are trademarks of their owners.</p>
 </footer>
 <script src="../js/site.js"></script>

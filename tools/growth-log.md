@@ -22,3 +22,24 @@ Running log for the daily growth agent. Newest entries at the bottom. Read befor
 3. Non-AI studio backgrounds with soft shadows (feature → needs approval).
 4. ForeverQR use-case long-tail guides (agent work).
 5. "QR code stopped working" rescue content (agent work).
+
+## 2026-11-05 (Thu) — Improve what exists
+
+**Did (all live on main):**
+- Fixed a stale fact on the Peelo landing page: the "Private by design" card said the AI engine is "about 16 MB". It's about 91 MB (5 MB in Fast mode, per segment.js).
+- Added a hand-picked "Related guides" section (3 links, each with a one-line reason) to all 15 Peelo guides and all 10 ForeverQR guides. Until now, guides had almost no contextual links, only an identical full list. Peelo's picks live in tools/peelo-guides/related.py; a new Peelo guide needs an entry there or gen_guides.py raises KeyError. ForeverQR's are hand-written in each page.
+- The homepage had no inbound internal links and the two tools didn't link to each other. Added cross-tool and homepage links to the footers of the Peelo landing page, Peelo guides, the ForeverQR landing page and ForeverQR guides. Privacy/terms pages not touched.
+- Updated lastmod in peelo/sitemap.xml and foreverqr/sitemap.xml for changed pages.
+- Titles/metas reviewed: all within limits. Left unchanged; no search data to justify rewrites.
+
+**Metrics:** none. GoatCounter isn't reachable from the sandbox (proxy rejects hyphenatesi.goatcounter.com).
+
+**Not verified today:** external facts. Page fetches for remove.bg, Photoroom and Canva failed (the permission prompt timed out with nobody there), so "Checked" dates were not changed. The remove.bg shutdown wording still rests on the 29 Oct check.
+
+**Market note (search result titles only, pages not opened):** Photoroom has a "remove bg shutting down" blog post, and many others target the same query (mergeimages.net, explainx.ai, aisotools, CapCut Dreamina, AlternativeTo news). The query is getting crowded.
+
+**Backlog:**
+1. Re-verify remove.bg, Canva and Photoroom facts on the official pages before Show HN (Nov 10). Replace the two weak sources on the alternative page: a canva.cn help link and a third-party Closo summary for Photoroom.
+2. If Batch Pro goes to $9, hard-coded "$19" must change too (data-price spans follow config.js, these don't): tools/peelo-guides/pages.py lines 33, 65, 181, 227; pages_new.py lines 29, 50, 63, 67, 84, 113; peelo/index.html JSON-LD line 76 and lines 352, 406; peelo/terms.html (legal page, Vedant's call); peelo/js/batch.js (check); comment in config.js. Then regenerate guides.
+3. tools/peelo-guides/__pycache__ is tracked in git and dirties the tree on each regeneration: run with PYTHONDONTWRITEBYTECODE=1 or untrack it.
+4. For Vedant: GitHub Pages serves the whole repo, and robots.txt only stops crawling, so this log (/tools/growth-log.md, with launch plans and competitor notes) and peelo/LAUNCH.md and foreverqr/LAUNCH.md can likely be opened by URL. Not confirmed live, because the sandbox can't fetch the site.
