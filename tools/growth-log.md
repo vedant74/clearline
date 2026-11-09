@@ -82,3 +82,22 @@ Running log for the daily growth agent. Newest entries at the bottom. Read befor
 **Ideas for upcoming guide days:** Tue: "eBay white background photo without an app" (the eBay thread shows the need). Wed: "How to tell if your printed QR code will expire" (matches the Adobe threads).
 
 **Needs Vedant:** nothing new. Still open: the $9 price decision, and the log/LAUNCH.md files being publicly readable by URL (see Nov 5).
+
+## 2026-11-09 (Mon) — Metrics + plan
+
+**Metrics:** none again. The sandbox proxy refuses hyphenatesi.goatcounter.com (CONNECT 403), the dashboard and the /counter/*.json endpoints alike. No week-over-week comparison is possible from here. If Vedant pastes the week's numbers (visits, top pages, referrers, events) into this log, the next Monday run can compare.
+
+**Quick fix (live):** added a .gitignore (`__pycache__/`, `*.pyc`) and untracked tools/peelo-guides/__pycache__. Regenerating guides no longer dirties the tree (closes backlog #3 from Nov 5).
+
+**Check-script note:** the root sitemap.xml is a sitemap index. Page URLs for / live in sitemap-pages.xml, so any crawl check has to read that file too.
+
+**Not verified:** a fetch of remove.bg/pricing failed again (the permission prompt timed out). The 1 Dec 9:00 CET wording still rests on the 29 Oct check. Show HN is planned for tomorrow (Nov 10), so Vedant may want to glance at remove.bg/pricing himself first.
+
+**This week's three target topics:**
+1. **Tue (Peelo): "eBay white background photos without an app."** Why: the eBay Community thread (Nov 6 scan) shows sellers asking exactly this, and no Peelo guide covers eBay yet. Etsy, Amazon and Shopify already have one, so eBay is the biggest marketplace gap. It's also the first of the reseller set (backlog #1). Before writing, open eBay's official photo-requirements help page; don't rely only on summaries. Be honest that eBay has its own background tool, and pitch Peelo for desktop, full resolution, and use across several sites.
+2. **Wed (ForeverQR): "QR code on product packaging that won't expire."** Why: packaging is printed in bulk and kept for years, so a dynamic code that dies is costly. That makes the "never expires" pitch strongest here. It's a buyer-intent query from small brands, and it doesn't overlap the existing stop-working/never-expires guides, which are generic. I picked this over the "how to tell if my QR code will expire" idea from Nov 6 because that one overlaps why-did-my-qr-code-stop-working too much. Fold that idea into a section there on Thursday instead. Cover print size, quiet zone, contrast and testing, citing a real source (e.g. ISO/QR spec summaries or GS1 guidance, opened, not snippets). Don't claim GS1 Digital Link support; ForeverQR only makes plain static codes.
+3. **Thu (improve): pre-1-Dec remove.bg push + post-Show-HN cleanup.** Why: the remove.bg site closes in about three weeks, and the HN launch brings first real traffic. Link the new eBay guide from related.py, the bulk and Shopify guides, and remove-bg-alternative. Add a short "check whether a printed code will expire" section to why-did-my-qr-code-stop-working. Fix anything HN commenters report, if Vedant logs it. Re-verify remove.bg facts if a fetch succeeds.
+
+**Backlog after this week:** Poshmark/Depop/Vinted/Mercari guides (one per Tuesday), the yard sale sign or church bulletin ForeverQR guides, and the product ideas from Nov 6 (all need approval).
+
+**Needs Vedant:** nothing new. Still open: the $9 price decision; this log and LAUNCH.md are probably readable by URL (Nov 5); GoatCounter numbers can't be read from the sandbox.
