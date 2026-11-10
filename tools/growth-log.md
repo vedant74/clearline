@@ -101,3 +101,19 @@ Running log for the daily growth agent. Newest entries at the bottom. Read befor
 **Backlog after this week:** Poshmark/Depop/Vinted/Mercari guides (one per Tuesday), the yard sale sign or church bulletin ForeverQR guides, and the product ideas from Nov 6 (all need approval).
 
 **Needs Vedant:** nothing new. Still open: the $9 price decision; this log and LAUNCH.md are probably readable by URL (Nov 5); GoatCounter numbers can't be read from the sandbox.
+
+## 2026-11-10 (Tue) — New Peelo guide
+
+**Published (live on main):** https://hyphenatesi.com/peelo/ebay-white-background-photos/ — "White background eBay photos, without installing an app" (~600 words of body plus steps and 5 FAQs). Added to related.py, the Peelo #guides list, the homepage hub and peelo/sitemap.xml (lastmod today; also bumped / and /peelo/ lastmod and the sitemap index).
+
+**Sources (opened today, not snippets):** eBay picture policy (id=4370: ≥500 px longest side; no added borders, text or watermarks), eBay "Adding pictures" help (id=4148: ~1600×1600 recommended, up to 24 photos, 12 MB each, formats incl. HEIC/WebP, "White backgrounds are generally best", darker background for shiny items, background tool on web listing tool and app), eBay Seller Center photo tips. The eBay Community Background Removal FAQ failed to load, so nothing from it is used.
+
+**Honesty notes in the page:** says plainly that eBay's built-in tool is quickest for phone listers; pitches Peelo for crosslisting, manual edge fixes, batch and no-app use. Batch Max size is described as a cap (it never upscales). No price written in the new page (says "one-time purchase"), so it won't need editing if Batch Pro goes to $9.
+
+**Checks:** 33 pages crawled from / — no broken links, JSON-LD parses, no 390px horizontal scroll, all in sitemaps, GoatCounter on every page, title/meta limits OK. Sitemaps parse. No JS changed.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox on every run so far).
+
+**Backlog / next:** Thursday — link the eBay guide from the Amazon, Shopify and bulk guides' related lists (currently it only links out; it's reachable via the full guide lists and hub). Next Tuesday candidates: Poshmark, then Mercari/Depop/Vinted (open each platform's official photo help first).
+
+**Needs Vedant:** nothing new. Show HN is today per the plan. Still open: $9 price decision; log/LAUNCH.md readable by URL.

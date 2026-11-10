@@ -217,4 +217,70 @@ faqs=[
 ],
 checked="29 October 2026",
 ),
+# ---------------------------------------------------------------------------------------------
+dict(
+slug="ebay-white-background-photos",
+title="eBay White Background Photos Without an App | Peelo",
+og_title="White background eBay listing photos, free, no app needed",
+description="Make clean white-background eBay listing photos in your browser: 1600 px squares, no text or borders, no app or signup. Your photos stay on your device.",
+crumb="eBay white background",
+h1="White background eBay photos, without installing an app",
+lede="eBay recommends a plain white background and has its own background tool in the listing flow. That works well on a phone. If you prepare photos on a computer, sell the same item on several sites, or want to fix edges by hand, here's how to make clean white-background eBay photos in your browser, free.",
+cta=dict(href="?preset=marketplace", label="Open in Marketplace photo mode", note="White background, square canvas, product centred at 85% fill. Nothing is uploaded."),
+body="""
+<h2>What eBay asks for</h2>
+<p>eBay's photo rules are looser than Amazon's, but a few are firm. From eBay's own help pages:</p>
+<ul>
+<li><strong>At least 500 pixels on the longest side.</strong> Every listing needs at least one photo that size. eBay recommends about <strong>1600 × 1600 pixels</strong>, which gives buyers a sharp zoom.</li>
+<li><strong>Up to 24 photos per listing,</strong> each up to 12 MB. JPEG, PNG, WebP, HEIC and several other formats are accepted.</li>
+<li><strong>No added borders, text, logos or watermarks.</strong> eBay's picture policy doesn't allow them, and says they can affect where your listing shows up in search.</li>
+<li><strong>White is recommended, not required.</strong> eBay calls white backgrounds "generally best", but suggests a darker background can work better for shiny items like jewellery.</li>
+</ul>
+
+<h2>eBay's own tool or Peelo?</h2>
+<p>Be practical about this. If you shoot and list from your phone in the eBay app, eBay's built-in background tool is the quickest route: it replaces the background with white (or a studio or AI scene) right inside the listing. eBay's help pages describe the same option in the website's listing tool too.</p>
+<p>Peelo is more useful when:</p>
+<ul>
+<li><strong>You crosslist.</strong> Peelo gives you a file on your device, so the same white-background photo can go to eBay, Poshmark, Mercari, Depop or your own shop.</li>
+<li><strong>You want to fix edges yourself.</strong> Straps, buckles, laces and chain links sometimes get clipped by any automatic remover. Peelo's <em>Refine edges</em> brush lets you restore them or erase leftover background.</li>
+<li><strong>You have a pile of photos.</strong> <a href="../bulk-background-remover/">Batch mode</a> applies the same settings to many photos and can resize them all to 1600 px.</li>
+<li><strong>You'd rather not install another app or create an account.</strong> Peelo runs in the browser, on a computer or a phone, and photos aren't uploaded.</li>
+</ul>
+
+<h2>Getting to 1600 pixels</h2>
+<p>Peelo never upscales. In Marketplace photo mode it builds a square around the cut-out product from your original pixels, so the output size depends on how big the item is in your photo. For a 1600 px square at 85% fill, the item needs to span about 1360 px in the original. Most phone cameras manage that easily if you fill the frame when you shoot. The tool shows the output size before you download, so you can check.</p>
+<p>Larger is fine too: eBay accepts files up to 12 MB. If you'd rather cap every photo at 1600 px for smaller files, Batch mode has a <em>Max size</em> setting with a 1600 px option. It only shrinks larger photos; it never enlarges small ones.</p>
+
+<h2>Shiny, white and see-through items</h2>
+<ul>
+<li><strong>Jewellery and chrome:</strong> following eBay's own tip, try a black background (one of the colour swatches) or a dark grey custom colour instead of white.</li>
+<li><strong>White items on white:</strong> shoot on a darker or coloured backdrop so the AI can tell the item from the background, then put it on white in Peelo.</li>
+<li><strong>Glass and clear plastic:</strong> these are hard for every background remover. Check the edges closely and use Restore where parts went missing.</li>
+</ul>
+
+<h2>Keep the photos honest</h2>
+<p>A clean background makes a listing look better, but buyers still need to see what they're getting. Don't erase scratches, stains or wear marks along with the background, and keep at least one photo that shows any flaws clearly. Close-ups of labels, tags and damage usually don't need background removal at all.</p>
+""",
+steps_title="How to make an eBay photo with a white background",
+steps=[
+"<strong>Open <a href=\"../?preset=marketplace\">Peelo in Marketplace photo mode</a>.</strong> It sets a white background, a square canvas and 85% fill.",
+"<strong>Add your photo</strong> by dropping it in, choosing it or pasting it. The first run downloads the AI model once (about 91 MB); after that it loads from your browser's cache.",
+"<strong>Check the edges</strong> with the before/after slider. If a strap or handle is missing, use <em>Refine edges → Restore</em>. Paint over leftover background with <em>Erase</em>.",
+"<strong>Check the size</strong> shown under the download buttons. Aim for about 1600 px; at least 500 px is required.",
+"<strong>Download JPG</strong> and add it as the first photo in your eBay listing.",
+],
+faqs=[
+("Does eBay require a white background?", "No. eBay says white backgrounds are generally best and a plain white background is a safe choice, but it isn't required. For shiny items like jewellery, eBay suggests a darker background may work better."),
+("What size should eBay listing photos be?", "At least 500 pixels on the longest side, and eBay recommends about 1600 × 1600 pixels. Files can be up to 12 MB each, and you can add up to 24 photos per listing."),
+("Doesn't eBay already have a background remover?", "Yes. eBay has a background tool in its app and listing tool that can swap the background for white. Peelo is an alternative when you want a file you can reuse on other sites, want to fix edges by hand, or want to process many photos at once."),
+("Will Peelo add a watermark?", "No. Peelo never adds watermarks, text or borders, which eBay's picture policy doesn't allow anyway."),
+("Can I do a whole batch of eBay photos at once?", "Yes. Batch mode handles 3 photos at a time for free with the same settings for each, including white background, Marketplace square and a 1600 px size cap. Batch Pro, a one-time purchase, handles up to 200 per run."),
+],
+sources=[
+("eBay Help: Picture policy", "https://www.ebay.com/help/policies/listing-policies/picture-policy?id=4370", "“Photos must be at least 500 pixels on the longest side”; no added borders, text or watermarks"),
+("eBay Help: Adding pictures to your listings", "https://www.ebay.com/help/selling/listings/adding-pictures-listings?id=4148", "about 1600 × 1600 recommended; up to 24 pictures, 12 MB each; “White backgrounds are generally best”"),
+("eBay Seller Center: Take great photos", "https://www.ebay.com/sellercenter/listings/photo-tips", "“A plain white background is always a safe choice”; background removal tool in the eBay app"),
+],
+checked="10 November 2026",
+),
 ]

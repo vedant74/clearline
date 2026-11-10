@@ -76,4 +76,9 @@ R = {
         ("remove-background-from-signature", "signatures photographed on paper"),
         ("make-background-transparent", "for photos with a busier background"),
     ],
+    "ebay-white-background-photos": [
+        ("white-background-amazon-product-photo", "Amazon's stricter pure-white main image rules"),
+        ("bulk-background-remover", "a whole folder of listing photos, resized to 1600 px"),
+        ("remove-background-shopify-product-photos", "the same photos for your own store"),
+    ],
 }
