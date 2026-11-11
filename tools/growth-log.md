@@ -117,3 +117,9 @@ Running log for the daily growth agent. Newest entries at the bottom. Read befor
 **Backlog / next:** Thursday — link the eBay guide from the Amazon, Shopify and bulk guides' related lists (currently it only links out; it's reachable via the full guide lists and hub). Next Tuesday candidates: Poshmark, then Mercari/Depop/Vinted (open each platform's official photo help first).
 
 **Needs Vedant:** nothing new. Show HN is today per the plan. Still open: $9 price decision; log/LAUNCH.md readable by URL.
+
+## 2026-11-10 (Tue evening) — GoatCounter numbers pasted by Vedant
+
+Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr 2, /peelo/remove-background-car-photo 2, /peelo/linkedin-headshot-background 2, /peelo/remove-bg-alternative 2, /peelo/white-background-amazon-product-photo 1 (list truncated; 43 of 46 shown). Events: batch-open 2, upgrade-click 2, cutout-done 1. Referrers: unknown 25, Google 2. Systems: macOS 32, Windows 7, iOS 5, Chrome OS 1, Linux 1. Sizes: phones 5, tablets/large phones 6, monitors 35. Locations: US 44, India 2. Much of the macOS/Chrome traffic is probably Vedant's own testing. This is the baseline for next Monday's comparison.
+
+**Bug report (Vedant, iPhone Safari):** photo picker "didn't work" and an error message on Peelo. Likely cause: Safari doesn't expose navigator.deviceMemory, so pickModel() in segment.js always picks the 91 MB IS-Net model on iPhones (~1 GB working memory), and prewarm() starts loading it on touchstart, before the picker even opens. Proposed fix: Fast model by default on iOS/iPadOS, no prewarm until a file is chosen, Fast-mode toggle still lets people pick best quality. Awaiting Vedant's test of /peelo/?model=fast and his approval (segment.js change).
