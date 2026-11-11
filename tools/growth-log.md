@@ -123,3 +123,17 @@ Running log for the daily growth agent. Newest entries at the bottom. Read befor
 Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr 2, /peelo/remove-background-car-photo 2, /peelo/linkedin-headshot-background 2, /peelo/remove-bg-alternative 2, /peelo/white-background-amazon-product-photo 1 (list truncated; 43 of 46 shown). Events: batch-open 2, upgrade-click 2, cutout-done 1. Referrers: unknown 25, Google 2. Systems: macOS 32, Windows 7, iOS 5, Chrome OS 1, Linux 1. Sizes: phones 5, tablets/large phones 6, monitors 35. Locations: US 44, India 2. Much of the macOS/Chrome traffic is probably Vedant's own testing. This is the baseline for next Monday's comparison.
 
 **Bug report (Vedant, iPhone Safari):** photo picker "didn't work" and an error message on Peelo. Likely cause: Safari doesn't expose navigator.deviceMemory, so pickModel() in segment.js always picks the 91 MB IS-Net model on iPhones (~1 GB working memory), and prewarm() starts loading it on touchstart, before the picker even opens. Proposed fix: Fast model by default on iOS/iPadOS, no prewarm until a file is chosen, Fast-mode toggle still lets people pick best quality. Awaiting Vedant's test of /peelo/?model=fast and his approval (segment.js change).
+
+## 2026-11-11 (Wed) — New ForeverQR guide
+
+**Published (live on main):** https://hyphenatesi.com/foreverqr/product-packaging-qr-code/ — "QR codes on product packaging" (~850 words of body plus steps and 4 FAQs). Covers static vs dynamic, linking to a short path/redirect on your own domain, UTM tags, size (2 cm floor for short links, bigger on kraft/curves), quiet zone, dark-on-light, seams/folds/gloss, error-correction choice, printed-proof testing, and a "this isn't the checkout barcode" section on GS1 Sunrise 2027 (no claim that ForeverQR makes GS1 Digital Link codes). Cross-links to Peelo. Added to every ForeverQR guide's "More guides" grid, the foreverqr/ guide list, the homepage hub and foreverqr/sitemap.xml (lastmod today; also bumped /, /foreverqr/ and the sitemap index).
+
+**Sources (opened today via fetch):** Scantrust printing/placement best practices (1–2 cm on consumer packs, dark on light, flat surfaces, test on final product); QRStuff round-bottle guide (20 mm on curves, flattest part, never across a seam; marketing content, used only for practical tips); GS1 2024 industry endorsement statement (end-2027 aim, adoption voluntary, read alongside 1D); Esko Sunrise 2027 guide (not a legal mandate; coexists with UPC/EAN). Keyence, Bitly and GA links reused from the real-estate guide.
+
+**Checks:** 34 pages crawled from / — no broken links, JSON-LD parses, no 390px horizontal scroll, all in sitemaps, GoatCounter on every page, title/meta limits OK. Sitemaps parse. No JS changed.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox).
+
+**Backlog / next:** Thursday as planned — link the eBay guide from Amazon/Shopify/bulk related lists; add a "will my printed code expire?" check section to why-did-my-qr-code-stop-working. Future Wednesdays: yard sale sign, church bulletin, food truck menu.
+
+**Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js, awaiting approval), $9 price decision, log/LAUNCH.md readable by URL.
