@@ -137,3 +137,20 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Backlog / next:** Thursday as planned — link the eBay guide from Amazon/Shopify/bulk related lists; add a "will my printed code expire?" check section to why-did-my-qr-code-stop-working. Future Wednesdays: yard sale sign, church bulletin, food truck menu.
 
 **Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js, awaiting approval), $9 price decision, log/LAUNCH.md readable by URL.
+
+## 2026-11-12 (Thu) — Improve what exists
+
+**Did (live on main):**
+- Peelo: the eBay guide had no inbound "Related guides" links. Added it to the related lists of the Amazon, Shopify and bulk guides (related.py; Amazon dropped Etsy, Shopify dropped bulk, bulk dropped Shopify; each of those still has other inbound links). Regenerated; only those 3 pages changed.
+- ForeverQR: added a "Check your other printed codes now" section to why-did-my-qr-code-stop-working (scan every printed code; own-site/Wi-Fi/contact = can't be switched off; provider short link = replace first, before the plan ends). It links to the existing step-by-step check on qr-code-that-never-expires, which now has an anchor (#check). This covers the "will my printed code expire?" idea without a duplicate page. Swapped that page's third related link from real estate to the new packaging guide.
+- Sitemaps: lastmod 2026-11-12 for the 4 changed pages and the peelo/foreverqr entries in the sitemap index.
+
+**Checks:** 35 pages crawled from / — no broken links (the one 404 was the checker treating vendor/LICENSES.md as a folder; the file exists), JSON-LD parses, no 390px scroll, all indexable pages in sitemaps, GoatCounter everywhere, title/meta limits OK. All 4 sitemaps parse. No JS changed.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox). Baseline is Vedant's Nov 10 paste.
+
+**Not verified:** remove.bg facts not re-checked this run; the 1 Dec 9:00 CET wording still rests on the Oct 29 check and Photoroom's Oct 29 post.
+
+**Backlog / next:** Fri scan (re-check threads #4–5 from Nov 6). Next Tue: Poshmark guide (open Poshmark's official photo help first). Next Thu idea: a short "after 1 Dec" refresh of remove-bg-shutting-down once the date passes (change tense, keep URL).
+
+**Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js, awaiting approval), $9 price decision, log/LAUNCH.md readable by URL.

@@ -13,7 +13,7 @@ R = {
     ],
     "white-background-amazon-product-photo": [
         ("remove-background-shopify-product-photos", "the same photos, sized and padded for your own store"),
-        ("remove-background-for-etsy", "listing photos that fit an Etsy shop grid"),
+        ("ebay-white-background-photos", "if you list the same items on eBay, without installing an app"),
         ("bulk-background-remover", "do a whole catalogue with one set of settings"),
     ],
     "remove-background-for-etsy": [
@@ -23,8 +23,8 @@ R = {
     ],
     "remove-background-shopify-product-photos": [
         ("white-background-amazon-product-photo", "if you sell on Amazon too"),
+        ("ebay-white-background-photos", "if you sell on eBay too"),
         ("remove-background-for-etsy", "if you sell on Etsy too"),
-        ("bulk-background-remover", "process a whole catalogue in one run"),
     ],
     "transparent-background-logo": [
         ("remove-white-background", "white backgrounds on scans and product shots too"),
@@ -63,7 +63,7 @@ R = {
     ],
     "bulk-background-remover": [
         ("white-background-amazon-product-photo", "the settings for Amazon main images"),
-        ("remove-background-shopify-product-photos", "the settings for a Shopify catalogue"),
+        ("ebay-white-background-photos", "the settings for eBay listings, resized to 1600 px"),
         ("remove-background-for-etsy", "the settings for Etsy listings"),
     ],
     "make-background-transparent": [
