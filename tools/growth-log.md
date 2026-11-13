@@ -154,3 +154,35 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Backlog / next:** Fri scan (re-check threads #4–5 from Nov 6). Next Tue: Poshmark guide (open Poshmark's official photo help first). Next Thu idea: a short "after 1 Dec" refresh of remove-bg-shutting-down once the date passes (change tense, keep URL).
 
 **Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js, awaiting approval), $9 price decision, log/LAUNCH.md readable by URL.
+
+## 2026-11-13 (Fri) — Distribution + market scan
+
+**Published:** nothing (Friday is scan-only). Checks still run before pushing this log: 35 pages crawled from /, no problems; all 4 sitemaps parse.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox). Baseline remains Vedant's Nov 10 paste.
+
+**Threads (Vedant posts; nothing posted by the agent).** Thin week: search results are almost all SEO blog posts, and Reddit, t-shirtforums (robots.txt) and the Church Tech forum all failed to load. Only 2 new threads were usable, both older and low-traffic, so I'm not padding to 5. Last week's #1 (Shopify) and #2 (eBay "Best app for white background photos") are still the best ones to post on if not done yet.
+
+1. eBay Community, "photo back ground is white needed" (~9 months old, 19 comments, no lock visible): https://community.ebay.com/forum/selling-57920/topic/photo-back-ground-is-white-needed-156571/
+   Asker isn't sure white is best because some items look bad on it. Others suggested Photoroom, neutral fabric, cardboard, a white counter.
+   Suggested reply: "White is safest for the main photo, but you don't have to shoot on white. Shoot on whatever makes the item look good, then swap the background afterwards. I made a free browser tool for that, Peelo (https://hyphenatesi.com/peelo/): drop in a photo, and the JPG download comes out on white (or any colour you pick), at full resolution, no signup or watermark. For shiny or white items, eBay's own help suggests a darker background, so keep a few non-white shots too. I wrote up the eBay specifics here: https://hyphenatesi.com/peelo/ebay-white-background-photos/"
+   → It's old; only worth posting if the thread still gets views. Low priority.
+2. Adobe Community, "Remove BG" (Adobe Express; asked Sep 2023, last reply Nov 2025, no lock visible): https://community.adobe.com/questions-329/remove-bg-1220821
+   An expert already linked Express's Quick Action. Reply only as an alternative.
+   Suggested reply: "If the Quick Action isn't working for you (it needs JavaScript and a supported browser), another option: I made Peelo (https://hyphenatesi.com/peelo/), a free remover that runs entirely in the browser. No account, nothing uploaded, full-resolution PNG back. Express's built-in one is still the easiest if you're already editing there."
+   → Low priority; Adobe's forum may treat this as off-topic promotion.
+- Not usable: Adobe "Free QR Code stopped working suddenly" (1468437) and "QR Code generator" (1221528) are both closed to replies; Adobe Aero "None of my QR codes are working" is about AR codes, not ForeverQR's use case.
+
+**Competitor moves:**
+- **BatchBG (batchbg.com, page "last updated Sept 2026"): free, unlimited, in-browser batch background removal** — WASM, no upload, no signup, Amazon/Etsy/Shopify white-background presets (2000×2000, 85% fill), "Batch processing will always be free". Its own claims, not verified. This directly undercuts Peelo's paid Batch Pro and is relevant to the pending $19 vs $9 decision. Peelo's remaining edges: IS-Net quality model with WebGPU, 16 MP output, text cleanup, uncertain-region fill. Worth a side-by-side test on 5 hard photos (hair, glass, white-on-white) before deciding price.
+- Improve Photography (Oct 26, sponsored by Designkit, opened): "remove.bg alternatives after the move" listing 12 tools. Says the standalone site shuts down Dec 1, 2026 (no time given). Consistent with our wording; remove.bg/pricing itself still couldn't be fetched (permission timeout), so the 9:00 CET detail still rests on Oct 29.
+- More "I built a free alternative" posts (dev.to, financialcontent press releases). The shutdown query is saturated; Peelo should compete on reseller/marketplace long-tail, not "remove.bg alternative".
+
+**Product ideas (ranked, all need Vedant's approval):**
+1. Marketplace presets in batch (eBay/Poshmark square, Depop 4:5, Amazon 2000×2000 at 85% fill). BatchBG has these for free; Peelo needs parity for reseller traffic. (Same as Nov 6 #1, now more urgent.)
+2. Reconsider Batch Pro: lower price ($9) or raise the free batch limit above 3, given free unlimited competitors. Pricing is Vedant's call.
+3. iPhone fix (Fast model by default on iOS, no prewarm) — still awaiting approval; phone resellers are the target audience.
+
+**Next:** Tue — Poshmark guide (open Poshmark's own photo help first). Thu after Dec 1 — update remove-bg-shutting-down tense.
+
+**Needs Vedant:** BatchBG offers free unlimited in-browser batch — input for the $9 decision. Still open: iPhone Peelo fix (segment.js), log/LAUNCH.md readable by URL.
