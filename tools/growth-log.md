@@ -186,3 +186,18 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Next:** Tue — Poshmark guide (open Poshmark's own photo help first). Thu after Dec 1 — update remove-bg-shutting-down tense.
 
 **Needs Vedant:** BatchBG offers free unlimited in-browser batch — input for the $9 decision. Still open: iPhone Peelo fix (segment.js), log/LAUNCH.md readable by URL.
+
+## 2026-11-16 (Mon) — Metrics + plan
+
+**Metrics:** none. curl to hyphenatesi.goatcounter.com fails from the sandbox (no connection), and a WebFetch of the dashboard was blocked (permission prompt unanswered in an unattended run). No week-over-week comparison is possible. Baseline is still Vedant's Nov 10 paste (46 visits Oct 19 – Nov 10). If Vedant pastes Nov 10–16 numbers here (especially anything from the Show HN on Nov 10), next Monday can compare.
+
+**Quick improvement (live):** added tools/site_check.py, the reusable pre-push check (crawl from /, broken links, JSON-LD, 390px scroll, sitemap coverage, GoatCounter, title ≤ 60 / meta ≤ 155, sitemaps parse). Run `python3 tools/site_check.py 189xx` from the repo root. Today: 34 HTML pages crawled, 30 sitemap URLs (privacy/terms excluded by design), OK.
+
+**This week's three target topics:**
+1. **Tue (Peelo): Poshmark listing photos.** Why: carried over as the next reseller guide (backlog #1); reseller long-tail is where Peelo can win now that "remove.bg alternative" is saturated (Nov 6/13 scans), and Poshmark has no built-in remover pitch the way eBay does. Open Poshmark's official photo help first (cover photo is square; check current size/format facts on the page itself). Be honest that a plain light backdrop often beats editing; pitch Peelo for clean, consistent cover photos and crosslisting.
+2. **Wed (ForeverQR): church bulletin / service program QR codes.** Why: Advent starts Nov 29 and Christmas service programs are printed in the next few weeks, so this is timely; bulletins reprint weekly, so a code that points to a stable page (giving page, sign-up, livestream) and never expires saves work. Picked over yard sale signs, which are off-season in November. Don't claim anything about payment platforms beyond "link to your existing giving page"; cite any external fact from an opened page.
+3. **Thu (improve): remove.bg final-two-weeks pass.** Why: the remove.bg site closes 1 Dec (Monday after next). Re-try remove.bg/pricing; if it loads, confirm the 9:00 CET wording on remove-bg-shutting-down and remove-bg-alternative and refresh their lastmod; link the eBay/reseller guides from remove-bg-shutting-down so displaced resellers find them. If the fetch fails, change nothing factual. Plan the tense update for Thu Dec 3.
+
+**Backlog:** Mercari/Depop/Vinted guides (one per Tuesday); yard sale sign guide (spring); BatchBG side-by-side test (needs Vedant's eyes on output quality); product ideas from Nov 13 (all need approval).
+
+**Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js, awaiting approval); $9 vs $19 decision (BatchBG offers free unlimited batch); GoatCounter numbers must be pasted (sandbox can't read them); log/LAUNCH.md readable by URL.
