@@ -201,3 +201,21 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Backlog:** Mercari/Depop/Vinted guides (one per Tuesday); yard sale sign guide (spring); BatchBG side-by-side test (needs Vedant's eyes on output quality); product ideas from Nov 13 (all need approval).
 
 **Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js, awaiting approval); $9 vs $19 decision (BatchBG offers free unlimited batch); GoatCounter numbers must be pasted (sandbox can't read them); log/LAUNCH.md readable by URL.
+
+## 2026-11-17 (Tue) — New Peelo guide
+
+**Published (live on main):** https://hyphenatesi.com/peelo/poshmark-cover-photo-background/ — "Clean Poshmark cover photos, in the new portrait format" (~650 words of body plus steps and 5 FAQs). CTA opens Peelo with `?bg=white&format=original` (verified in Playwright: Colour/white, Original framing). Added to related.py (new entry; the eBay guide's related list now links it in place of Shopify, which keeps other inbound links), the Peelo #guides list, the homepage hub and peelo/sitemap.xml (lastmod today; also bumped /, /peelo/, the eBay guide and the sitemap index).
+
+**Key finding:** Poshmark switched listing/cover photos from square 1:1 to **3:4 portrait** (official blog, 25 Mar 2026, gradual rollout). Peelo has no 3:4 canvas, so the guide tells people to shoot portrait and keep *Original size* framing, and NOT to use the Marketplace square preset for Poshmark covers. Honest, but it's a product gap (see ideas).
+
+**Sources (opened today):** Poshmark blog "A New Look for Listing Photos" (2026-03-25: 3:4 cover photos, old photos preserved and auto-framed, clean/uncluttered backgrounds, bright even light, leave space at edges, camera defaults to 3:4); Poshmark "How do I list an item?" (max 16 photos); Poshmark 2020 photography guide (white/simple background, natural light, photograph tag and wear); Value Added Resource Nov 2025 (reports of auto white backgrounds on covers, later reverted on web — cited only as reports; guide says it's not a documented feature). Poshmark support.poshmark.com articles block automated fetching, so not used.
+
+**Checks:** tools/site_check.py — 35 pages crawled, 31 sitemap URLs, OK (links, JSON-LD, 390px, sitemaps, GoatCounter, title/meta). No JS changed.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox).
+
+**Ideas (need approval):** add a "Portrait 3:4" framing option next to "Square, centred" (and in batch), so Poshmark sellers get a padded 3:4 canvas like the marketplace square. Small app.js/UI change, no model or segment.js change. Pairs with the marketplace-presets idea from Nov 13 (Depop 4:5 too).
+
+**Next:** Wed — church bulletin ForeverQR guide. Thu — remove.bg final-two-weeks pass. Future Tuesdays: Mercari, Depop (check its current aspect ratio first), Vinted.
+
+**Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js), $9 vs $19 decision, GoatCounter numbers need pasting, log/LAUNCH.md readable by URL. Optional: approve a 3:4 framing option.

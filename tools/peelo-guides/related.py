@@ -79,6 +79,11 @@ R = {
     "ebay-white-background-photos": [
         ("white-background-amazon-product-photo", "Amazon's stricter pure-white main image rules"),
         ("bulk-background-remover", "a whole folder of listing photos, resized to 1600 px"),
-        ("remove-background-shopify-product-photos", "the same photos for your own store"),
+        ("poshmark-cover-photo-background", "if you crosslist to Poshmark, which now uses 3:4 portrait photos"),
+    ],
+    "poshmark-cover-photo-background": [
+        ("ebay-white-background-photos", "crosslisting the same item on eBay"),
+        ("bulk-background-remover", "clean up several listing photos with one set of settings"),
+        ("remove-white-background", "if your item was shot on a plain backdrop"),
     ],
 }

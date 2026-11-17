@@ -283,4 +283,68 @@ sources=[
 ],
 checked="10 November 2026",
 ),
+# ---------------------------------------------------------------------------------------------
+dict(
+slug="poshmark-cover-photo-background",
+title="Poshmark Cover Photo Background Remover, Free | Peelo",
+og_title="Clean Poshmark cover photos in the new 3:4 portrait format",
+description="Clean, bright Poshmark cover photos in the 3:4 portrait format: remove a messy background in your browser, free, no app or signup. Nothing is uploaded.",
+crumb="Poshmark cover photos",
+h1="Clean Poshmark cover photos, in the new portrait format",
+lede="Your cover photo is the only thing shoppers see in the feed before they tap. Poshmark now shows it as a 3:4 portrait, not a square, and asks for clean, uncluttered backgrounds. Here's how to get there when your backdrop is a busy bedroom, and when you're better off not editing at all.",
+cta=dict(href="?bg=white&format=original", label="Open Peelo with a white background", note="Keeps your photo's own shape, so a portrait phone photo stays 3:4. Nothing is uploaded."),
+body="""
+<h2>What Poshmark shows now</h2>
+<ul>
+<li><strong>Portrait, not square.</strong> In March 2026 Poshmark announced that listing photos appear in a 3:4 portrait format across the site, and that cover photos "now display in portrait (3:4) instead of square (1:1)". It says it's rolling the change out gradually, so the app and desktop may differ for a while.</li>
+<li><strong>Old square photos are kept.</strong> Existing listings need no action: the originals are preserved, and Poshmark frames them into portrait view in search and feeds, which "may slightly adjust" square photos.</li>
+<li><strong>Up to 16 photos</strong> per listing, according to Poshmark's listing guide. The first one is the cover photo.</li>
+<li><strong>Clean backgrounds and good light.</strong> Poshmark's tips: keep backgrounds "clean and uncluttered", use bright, even lighting, and leave a little space around the edges. Its older photography guide suggests a white or simple background, such as a plain white sheet or poster board.</li>
+</ul>
+<p>Poshmark doesn't publish a required pixel size, so a normal photo from your phone is fine.</p>
+
+<h2>First, try not to need a background remover</h2>
+<p>A white sheet or poster board by a window often gives a better result than any editing: true colours, natural shadows and nothing for software to get wrong. If you can shoot that way, do. Background removal earns its place when you can't control the backdrop (a patterned bedspread, a cluttered closet, a dark hallway), when you want every cover in your closet to match, or when you're fixing photos you've already taken.</p>
+
+<h2>Keep the 3:4 shape</h2>
+<p>Peelo doesn't have a 3:4 canvas option. It doesn't need one if you shoot in portrait: Poshmark notes that phone cameras already default to 3:4 in portrait, and Peelo's <em>Original size</em> framing keeps your photo's exact shape and resolution. So:</p>
+<ul>
+<li><strong>Hold the phone upright</strong> and leave some room around the item, as Poshmark suggests. Peelo keeps your crop; it doesn't add margins.</li>
+<li><strong>Don't use the Marketplace photo preset for your Poshmark cover.</strong> It makes a square, which Poshmark will reframe as a portrait. The square is still handy if you crosslist the same item on <a href="../ebay-white-background-photos/">eBay</a> or a site that uses square images.</li>
+</ul>
+
+<h2>Clothes, shoes and bags</h2>
+<ul>
+<li><strong>Hangers and mannequins:</strong> the AI usually keeps a hanger or dress form as part of the item. That's fine for a lot of listings. To remove a hanger hook, paint over it with <em>Refine edges → Erase</em>.</li>
+<li><strong>Straps, laces and fringe:</strong> thin parts can get clipped by any automatic remover. Check them with the before/after slider and paint them back with <em>Restore</em>.</li>
+<li><strong>White and cream items:</strong> shoot them against something darker so the AI can separate the item from the backdrop. Then pick a background that isn't pure white, such as Peelo's warm grey swatch or a light custom colour, so the garment's edges still show.</li>
+<li><strong>Lace, sheer and fuzzy fabrics:</strong> these are hard for every background remover. Zoom in on the edges before you download, and keep the original photo in the listing too.</li>
+</ul>
+
+<h2>Keep it honest</h2>
+<p>A clean cover sells the first click; the rest of the photos should show what buyers actually get. Don't erase pilling, stains or wear along with the background. Poshmark's own guide recommends close-ups of the tag and of any rips, stains or signs of wear, and those photos don't need background removal at all.</p>
+""",
+steps_title="How to clean up a Poshmark cover photo",
+steps=[
+"<strong>Shoot in portrait</strong> with the item centred and a little space around it.",
+"<strong>Open <a href=\"../?bg=white&amp;format=original\">Peelo with a white background</a></strong> and add your photo. The first run downloads the AI model once (about 91 MB); after that it loads from your browser's cache.",
+"<strong>Check the edges</strong> with the before/after slider. Use <em>Refine edges → Restore</em> for clipped straps or laces and <em>Erase</em> for leftover background or a hanger hook.",
+"<strong>Pick the background.</strong> White suits most items; for white or cream items, try the warm grey swatch or a light custom colour.",
+"<strong>Download JPG</strong> and upload it as the first photo of your listing.",
+],
+faqs=[
+("What size are Poshmark cover photos now?", "Poshmark displays listing photos, including the cover photo, in a 3:4 portrait format, replacing the old square. It doesn't publish a required pixel size. A portrait photo straight from a phone camera is already 3:4."),
+("Do I need to redo my old square photos?", "No. Poshmark says existing photos are preserved and no action is needed. Square cover photos are framed into portrait automatically in search and feeds, which may crop them slightly, so you may want to retake covers for your best items."),
+("Does Poshmark remove backgrounds automatically?", "Not as a documented feature. In late 2025 sellers reported Poshmark testing automatic white backgrounds on cover photos, and a later update reported it had been rolled back on the web. Poshmark's March 2026 photo guide doesn't mention it, so check what your app shows."),
+("Can I do several listing photos at once?", "Yes. Batch mode processes 3 photos at a time for free, with one set of settings for all of them. Leave <em>Marketplace square</em> unticked to keep the portrait shape. Batch Pro, a one-time purchase, handles up to 200 per run."),
+("Is Peelo free, and are my photos uploaded?", "It's free at full resolution with no account or watermark, and photos are processed in your browser on your device, not uploaded."),
+],
+sources=[
+("Poshmark Blog: A New Look for Listing Photos (25 March 2026)", "https://blog.poshmark.com/2026/03/25/your-guide-to-portrait-photos/", "“Cover photos now display in portrait (3:4) instead of square (1:1)”; existing photos preserved; clean, uncluttered backgrounds"),
+("Poshmark: How do I list an item?", "https://poshmark.com/posh_guide/how_to_list_item", "“The maximum number of photos you can upload is 16”"),
+("Poshmark Blog: The Poshmark Listing Photography Guide", "https://blog.poshmark.com/2020/01/16/the-poshmark-listing-photography-guide/", "white or simple background; natural light; photograph the tag and any wear"),
+("Value Added Resource: Poshmark photo aspect ratio updates (Nov 2025)", "https://www.valueaddedresource.net/poshmark-photo-aspect-ratio-item-condition-updates/", "reports of automatic background removal on cover photos, later reverted on the web"),
+],
+checked="17 November 2026",
+),
 ]
