@@ -219,3 +219,17 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Next:** Wed — church bulletin ForeverQR guide. Thu — remove.bg final-two-weeks pass. Future Tuesdays: Mercari, Depop (check its current aspect ratio first), Vinted.
 
 **Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js), $9 vs $19 decision, GoatCounter numbers need pasting, log/LAUNCH.md readable by URL. Optional: approve a 3:4 framing option.
+
+## 2026-11-18 (Wed) — New ForeverQR guide
+
+**Published (live on main):** https://hyphenatesi.com/foreverqr/church-bulletin-qr-code/ — "QR codes for church bulletins" (~950 words of body + steps + 4 FAQs). Angle: bulletins reuse one template weekly, so one static code → one church-site page (give / this week's sign-ups / livestream / connect card) that's updated weekly; stable YouTube `/channel/ID/live` link; guest Wi-Fi on a lobby sign; sizes for laser vs photocopied bulletins, stay off the fold; why a code on the announcement screen only works for front rows (10:1 rule). CTA opens the generator with type=url and label "Scan to give, sign up or watch" (verified in Playwright). Timed for Advent (Nov 29) / Christmas programs. Added to: foreverqr/index.html guide grid, every other ForeverQR guide's "More guides" grid (the packaging page now also lists packaging in the new page's grid), homepage hub, foreverqr/sitemap.xml (new URL + /foreverqr/ lastmod 2026-11-18), sitemap index and / lastmod bumped.
+
+**Sources (opened today via fetch):** Adventist Connect help, updated 13 Apr 2026 (channel /live link: shows a single scheduled/running stream, falls back to Live tab, public streams only, not reliable as an embed); LiveControl 2021 (youtube.com/channel/ID/live). Conflict noted: one 2025 blog says @handle/live works, Adventist Connect says channel ID only, so the guide uses the channel-ID form only. Size rules reuse existing Bitly/Scanova/Keyence sources. No claims about giving platforms.
+
+**Checks:** tools/site_check.py — 36 pages crawled, 32 sitemap URLs, OK. No JS changed.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox).
+
+**Next:** Thu — remove.bg final-two-weeks pass (see Nov 16 plan). Possible follow-up: link the church guide from event-check-in's Related list if it earns traffic. Spring backlog: yard sale sign guide.
+
+**Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js), $9 vs $19 decision, GoatCounter numbers need pasting, optional 3:4 framing option.
