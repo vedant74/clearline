@@ -14,7 +14,7 @@ lede="remove.bg's own pricing page says its standalone service ends on <strong>1
 cta=dict(href="", label="Remove a background now", note="Free, full resolution, no account. The AI runs in your browser."),
 body="""
 <h2>What's happening with remove.bg</h2>
-<p>remove.bg's pricing page states that the standalone remove.bg service ends on 1 December 2026 and that background removal moves into Canva. That's all we're claiming here. For anything that affects your account, like remaining credits, refunds, invoices or the API, read remove.bg's own notice and FAQ and act before the cutoff. In particular, download any invoices you need while your account is still open.</p>
+<p>remove.bg's pricing page states that the standalone remove.bg service ends on 1 December 2026 and that background removal moves into Canva. For anything that affects your account, like remaining credits, refunds, invoices or the API, read remove.bg's own notice and FAQ and act before the cutoff. Photoroom's summary of that FAQ reports that unused pay-as-you-go credits expire on 1 December and invoices can't be downloaded afterwards; our <a href="../remove-bg-shutting-down/">shutdown checklist</a> has the details.</p>
 <p>If you only need to cut a subject out of a photo now and then, you don't have to pick a new subscription today. Most people fall into one of three groups:</p>
 <ul>
 <li><strong>Already on Canva Pro or Teams:</strong> use Canva's Background Remover. It's included with paid plans, and it's where remove.bg is going.</li>
@@ -70,9 +70,10 @@ faqs=[
 sources=[
 ("remove.bg pricing page (shutdown notice)", "https://www.remove.bg/pricing", "states the standalone service ends 1 December 2026 and moves to Canva"),
 ("Canva Help: Background Remover", "https://www.canva.cn/en/help/background-remover-cn/", "“Background Remover is included with paid plans.”"),
+("Photoroom: remove.bg shutting down (29 Oct 2026)", "https://www.photoroom.com/blog/remove-bg-shutting-down", "competitor's summary of remove.bg's FAQ: credits expire 1 Dec, invoices not downloadable afterwards"),
 ("Photoroom background remover: free vs Pro (Closo, 2026)", "https://closo.co/blogs/beginner-guides-how-tos/photoroom-background-remover", "third-party summary of free-plan export limits and Pro batch mode; confirm on photoroom.com"),
 ],
-checked="29 October 2026",
+checked="19 November 2026 (remove.bg's own pricing page: 29 October 2026)",
 ),
 # ---------------------------------------------------------------------------------------------
 dict(

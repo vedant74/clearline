@@ -10,8 +10,15 @@ lede="remove.bg's own pricing page says the standalone website will no longer be
 cta=dict(href="", label="Try a free remove.bg replacement", note="Peelo: full-resolution cutouts, no account, nothing uploaded."),
 body="""
 <h2>What we actually know</h2>
-<p>The confirmed facts are short. remove.bg's pricing page says the standalone remove.bg website will no longer be available from 1 December 2026 at 9:00am CET, and that background removal is moving into Canva. That's it. We haven't seen official details here about every plan, unused credits or API customers, so treat anything beyond that as unconfirmed and check remove.bg's own notice and support pages for your account.</p>
-<p>Plenty of articles go further and predict what Canva will charge or which features disappear. Some of that may turn out right, but it isn't confirmed, so we've left it out.</p>
+<p>remove.bg's pricing page says the standalone remove.bg website will no longer be available from 1 December 2026 at 9:00am CET, and that background removal is moving into Canva.</p>
+<p>Photoroom's write-up of the shutdown (29 October 2026), which cites remove.bg's FAQ, adds the account details. We couldn't open that FAQ ourselves, so treat these as reported and confirm them in your remove.bg account:</p>
+<ul>
+<li><strong>Unused pay-as-you-go credits expire on 1 December.</strong> Use them before then.</li>
+<li><strong>Subscriptions end on 1 December.</strong> Annual plans get a pro-rata refund for unused time, to the original payment method. Monthly renewals on or after 1 November are free.</li>
+<li><strong>Invoices and usage reports can't be downloaded afterwards.</strong></li>
+<li><strong>The self-serve API stops at the same time,</strong> and API access moves to Leonardo.ai (also owned by Canva). The Photoshop plugin and other integrations are discontinued too.</li>
+</ul>
+<p>Plenty of articles go further and predict what Canva will charge or which features disappear. That isn't confirmed, so we've left it out.</p>
 
 <h2>Before 1 December: a five-minute checklist</h2>
 <ul>
@@ -27,7 +34,8 @@ body="""
 <li><strong>You already pay for Canva:</strong> Canva's Background Remover is the official destination and is included with paid Canva plans.</li>
 <li><strong>You want something free with no account:</strong> an in-browser tool like <a href="../">Peelo</a> removes backgrounds at your photo's full resolution, with no signup, credits or watermark. Your photo is processed on your device and never uploaded.</li>
 <li><strong>You process batches of product photos:</strong> look for batch support and check the price per photo. Peelo's batch mode is free for 3 photos at a time, and Batch Pro handles up to 200 per run for a one-time $19, with no subscription.</li>
-<li><strong>You used the API:</strong> you'll need another API provider. Peelo is a browser tool and doesn't offer an API.</li>
+<li><strong>You sell on eBay, Poshmark or other marketplaces:</strong> the platform's rules matter more than the tool. We've written up <a href="../ebay-white-background-photos/">white background eBay photos</a>, <a href="../poshmark-cover-photo-background/">Poshmark's new 3:4 cover photos</a> and <a href="../white-background-amazon-product-photo/">Amazon main images</a>.</li>
+<li><strong>You used the API:</strong> you'll need another API provider (remove.bg points API users to Leonardo.ai, per Photoroom's summary). Peelo is a browser tool and doesn't offer an API.</li>
 </ul>
 <p>For a side-by-side table of the main options, see our <a href="../remove-bg-alternative/">remove.bg alternative comparison</a>.</p>
 
@@ -44,16 +52,17 @@ steps=[
 ],
 faqs=[
 ("When does remove.bg shut down?", "remove.bg's pricing page says the standalone website will no longer be available from 1 December 2026 at 9:00am CET, and that background removal is moving to Canva."),
-("What happens to my remove.bg credits or subscription?", "We haven't seen confirmed public details for every plan. Read remove.bg's own notice and contact their support before 1 December 2026 if you have unused credits or an active subscription."),
+("What happens to my remove.bg credits or subscription?", "According to Photoroom's summary of remove.bg's FAQ, unused pay-as-you-go credits expire on 1 December 2026, subscriptions end that day, and annual plans get a pro-rata refund for unused time. Confirm in your remove.bg account and download your invoices before the cutoff."),
 ("Will I need a Canva account?", "To use Canva's background remover, yes. Canva says its Background Remover is included with paid Canva plans. Independent tools like Peelo need no account."),
 ("Is there a free remove.bg replacement with no signup?", "Yes. Peelo is free for single photos at full resolution, with no account, credits or watermark, and processes images in your browser without uploading them."),
 ("Can I still remove backgrounds in bulk?", "Yes. Peelo's batch mode handles 3 photos at a time for free, or up to 200 per run with Batch Pro for a one-time $19."),
 ],
 sources=[
 ("remove.bg pricing page (shutdown notice)", "https://www.remove.bg/pricing", "“The standalone website will no longer be available from 1 December 2026 at 9:00am CET.”"),
+("Photoroom: remove.bg shutting down (29 Oct 2026)", "https://www.photoroom.com/blog/remove-bg-shutting-down", "competitor's summary of remove.bg's FAQ: credits expire 1 Dec, subscriptions end with refunds, API moves to Leonardo.ai, invoices not downloadable afterwards"),
 ("Canva Help: Background Remover", "https://www.canva.cn/en/help/background-remover-cn/", "“Background Remover is included with paid plans.”"),
 ],
-checked="29 October 2026",
+checked="19 November 2026 (remove.bg's own pricing page: 29 October 2026)",
 ),
 # ---------------------------------------------------------------------------------------------
 dict(

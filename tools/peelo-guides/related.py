@@ -9,7 +9,7 @@ R = {
     "remove-bg-shutting-down": [
         ("remove-bg-alternative", "Peelo, Canva and Photoroom compared side by side"),
         ("bulk-background-remover", "if you relied on remove.bg for batches"),
-        ("make-background-transparent", "the everyday job: a transparent PNG from any photo"),
+        ("ebay-white-background-photos", "if you used remove.bg for marketplace listing photos"),
     ],
     "white-background-amazon-product-photo": [
         ("remove-background-shopify-product-photos", "the same photos, sized and padded for your own store"),

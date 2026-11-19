@@ -233,3 +233,20 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Next:** Thu — remove.bg final-two-weeks pass (see Nov 16 plan). Possible follow-up: link the church guide from event-check-in's Related list if it earns traffic. Spring backlog: yard sale sign guide.
 
 **Needs Vedant:** nothing new. Still open: iPhone Peelo fix (segment.js), $9 vs $19 decision, GoatCounter numbers need pasting, optional 3:4 framing option.
+
+## 2026-11-19 (Thu) — Improve what exists: remove.bg final-two-weeks pass
+
+**Did (live on main):**
+- https://hyphenatesi.com/peelo/remove-bg-shutting-down/ — replaced "we haven't seen official details on credits/API" with the account details from Photoroom's 29 Oct write-up, which cites remove.bg's FAQ, clearly labelled as reported: PAYG credits expire 1 Dec; subscriptions end 1 Dec (annual pro-rata refund, monthly renewals from 1 Nov free); invoices/usage reports not downloadable afterwards; self-serve API stops, API access moves to Leonardo.ai; Photoshop plugin/integrations discontinued. Updated the credits FAQ to match. Added a "You sell on eBay, Poshmark or other marketplaces" bullet linking the eBay, Poshmark and Amazon guides; Related list now links the eBay guide instead of make-background-transparent (which keeps other inbound links). Photoroom post added as a source.
+- https://hyphenatesi.com/peelo/remove-bg-alternative/ — removed "That's all we're claiming here", added the reported credits/invoices point with a link to the shutdown checklist; Photoroom source added.
+- Both pages: "Checked 19 November 2026 (remove.bg's own pricing page: 29 October 2026)". Sitemap lastmod 2026-11-19 for both + peelo entry in sitemap index.
+
+**Sources (opened today via fetch):** Photoroom blog "remove bg shutting down" (29 Oct 2026; standalone site and self-serve API end 1 Dec 2026 9:00 CET; credits/subscriptions/invoices per remove.bg's FAQ); AlternativeTo news (14 Sep 2026; 1 Dec, moving to Canva, lists https://www.remove.bg/faq as official source). **remove.bg/faq and remove.bg/pricing could not be fetched** (permission prompt timed out in the unattended run), so the official pages are still last verified 29 Oct.
+
+**Checks:** tools/site_check.py — 36 pages crawled, 32 sitemap URLs, OK. No JS changed.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox).
+
+**Next:** Fri scan. Thu Dec 3: switch remove-bg-shutting-down/remove-bg-alternative to past tense ("closed on 1 Dec"), keep URLs; drop the "before 1 December" checklist framing. Possible small Thu item: link church-bulletin guide from event-check-in's Related list.
+
+**Needs Vedant:** nothing new. Optional: open https://www.remove.bg/faq and confirm the credits/refund details now on the shutdown page. Still open: iPhone Peelo fix (segment.js), $9 vs $19 decision, GoatCounter numbers need pasting, optional 3:4 framing option.
