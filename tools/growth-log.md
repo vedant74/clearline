@@ -250,3 +250,42 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Next:** Fri scan. Thu Dec 3: switch remove-bg-shutting-down/remove-bg-alternative to past tense ("closed on 1 Dec"), keep URLs; drop the "before 1 December" checklist framing. Possible small Thu item: link church-bulletin guide from event-check-in's Related list.
 
 **Needs Vedant:** nothing new. Optional: open https://www.remove.bg/faq and confirm the credits/refund details now on the shutdown page. Still open: iPhone Peelo fix (segment.js), $9 vs $19 decision, GoatCounter numbers need pasting, optional 3:4 framing option.
+
+## 2026-11-20 (Fri) — Distribution + market scan
+
+**Published:** nothing (Friday is scan-only). Site checks run before pushing this log.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox).
+
+**Threads (Vedant posts; nothing posted by the agent).** Opened via fetch unless noted. Peelo price read from config.js ($19, 3 free in batch).
+
+1. **Microsoft Community Hub, "What is the best qr code generator without expiration?"** (asked 24 Mar 2026, 14 replies, last 19 Oct 2026, no lock shown): https://techcommunity.microsoft.com/discussions/windows11/what-is-the-best-qr-code-generator-without-expiration/4505070
+   Asker wants a code for a business card and flyers that won't die. Replies already explain static vs dynamic; several are self-promotion, so keep it short and useful.
+   Suggested reply: "Short version: anything that encodes your URL directly in the pattern (a 'static' code) can't expire, because there's no server in the middle. The ones that die are 'dynamic' codes that point at the generator's short link. I made ForeverQR (https://hyphenatesi.com/foreverqr/) for exactly this: static only, free, no account, PNG/SVG download. The catch with any static code is you can't change where it points after printing, so point it at a page you control (your own site) rather than a link you might change. More on business cards: https://hyphenatesi.com/foreverqr/business-card-qr-code/"
+2. **Shopify Community, "Option to automate background removal from product photos"** (asked 18 Jul 2024, last reply 5 Nov 2026, no lock shown): https://community.shopify.com/t/option-to-automate-background-removal-from-product-photos/340544
+   Large-catalogue owner; latest reply confirms Shopify's editor is one photo at a time. A related topic "Batch background removal for product images" had activity 18 Nov 2026 (not opened; check it too).
+   Suggested reply: "Shopify's built-in editor is still one image at a time, as mentioned above. If you'd rather not upload your catalogue to a third-party app, I made Peelo (https://hyphenatesi.com/peelo/), which runs in the browser on your own computer, keeps full resolution, and can put the result on white. Batch mode does 3 at a time free; unlimited batch is a one-time $19, no subscription. Shopify-specific tips here: https://hyphenatesi.com/peelo/remove-background-shopify-product-photos/ — for thousands of images an API-based app will still be faster."
+3. **eBay Community, "Al Background removal"** (date not shown in fetch, 6 replies, no lock shown): https://community.ebay.com/t5/Selling/Al-Background-removal/m-p/34017933
+   eBay's tool leaves jagged edges/missing pieces and has no cleanup step (a sibling thread says eBay removed it on purpose); asker found remove.bg's free download blurry. Check the date before posting.
+   Suggested reply: "The blurry result from remove.bg was probably the free preview size. I made a free one, Peelo (https://hyphenatesi.com/peelo/), that gives the full-resolution file without paying, and it has an erase/restore brush for the bits the AI gets wrong, which eBay's tool no longer offers. Download as JPG on white and upload that instead of using eBay's remover. eBay notes: https://hyphenatesi.com/peelo/ebay-white-background-photos/"
+4. **Hospitable Community, "What QR codes do you actually use for guests?"** (asked 10 Jun 2026, 7 replies, last 22 Jun 2026, no lock shown): https://community.hospitable.com/industry-conversations-33/what-qr-codes-do-you-actually-use-for-guests-1743
+   Hosts list direct-booking, how-to video, guest guide, Wi-Fi codes. Older and quiet; medium priority.
+   Suggested reply: "For Wi-Fi, a QR joins the network in one tap, no typing the password. Worth knowing: a Wi-Fi code stores the password itself, so if you change the password you reprint it. I made a free static generator, ForeverQR (https://hyphenatesi.com/foreverqr/wifi-qr-code/), which also prints a sign with the network name and password written out for guests whose camera won't scan. For the guest guide/booking link, use a static code pointing at a page you own so it never depends on a QR company staying in business."
+5. **r/web_design, "any alternatives to removebg now that it is shutting down"**: https://www.reddit.com/r/web_design/comments/1woym42/any_alternatives_to_removebg_now_that_it_is/ — **NOT opened** (link and title from Designkit's 2 Nov 2026 roundup; Reddit hasn't loaded from the sandbox). Check it's open and on-topic first.
+   Suggested reply: "I made one after the announcement: Peelo (https://hyphenatesi.com/peelo/). Free, runs in your browser (nothing uploaded), full-resolution PNG, no signup or credits. It's a single-purpose page like remove.bg was, not a design suite. No API though, so if you used remove.bg's API you'll need something else."
+- Other Reddit threads from the same roundup, not opened: r/canva "Am I the only one mad that remove.bg is being shut down" (/r/canva/comments/1w4v85y/), r/graphic_design "Another free tool down for the count" (/r/graphic_design/comments/1wntmlo/).
+- Not usable: Adobe "QR code that Adobe Express generates is free for lifetime?" (closed); Adobe "QR code expires?" (answered, last real reply links a competitor; low value); Airbnb "Offering automatic Wifi connection" (a moderator removed a link as advertising in Mar 2026; don't post there).
+
+**Competitor/market moves:**
+- Designkit (2 Nov 2026, its own promo post) summarises what remove.bg users ask for: standalone single-purpose page, free/no-signup, full-res export, batch, privacy/local processing, API replacement. Peelo matches all except API. Good copy angle for the landing page ("one job, no account, full resolution").
+- eBay's built-in remover: community threads report it turning backgrounds black on Android when white is picked, adding grey/tan edges, and no edge cleanup (removal can't be reverted per eBay's Fall 2023 update, as cited in a reply; not opened). Peelo's Refine brush is a real differentiator for eBay sellers.
+- Search results now show remove.bg comparison pages from carbackground.ai, photogrid, explainx and a "LassoCut drop-in API replacement" press item (titles only, not opened). The shutdown query stays saturated.
+
+**Product ideas (ranked, all need approval):**
+1. Marketplace presets in batch (eBay/Poshmark square, Poshmark 3:4, Depop 4:5, Amazon 2000×2000 85% fill). Unchanged #1.
+2. Batch Pro pricing ($9 or more free photos) — BatchBG is free unlimited; Shopify thread shows catalogue owners want batch. Vedant's call.
+3. Copy test on the Peelo hero: name the eBay pain directly ("Fix the edges eBay's remover gets wrong — erase/restore brush, full resolution"). Copy-only, could be a Thursday item if Vedant is fine with it.
+
+**Next:** Mon — metrics + plan (Dec 1 week). Thu Dec 3 — past-tense pass on remove.bg pages.
+
+**Needs Vedant:** post threads 1–3 (best); open #5 on Reddit yourself. Still open: iPhone Peelo fix (segment.js), $9 vs $19 decision, GoatCounter numbers, optional 3:4 framing.
