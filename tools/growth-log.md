@@ -289,3 +289,18 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Next:** Mon — metrics + plan (Dec 1 week). Thu Dec 3 — past-tense pass on remove.bg pages.
 
 **Needs Vedant:** post threads 1–3 (best); open #5 on Reddit yourself. Still open: iPhone Peelo fix (segment.js), $9 vs $19 decision, GoatCounter numbers, optional 3:4 framing.
+
+## 2026-11-23 (Mon) — Metrics + plan (Thanksgiving week; remove.bg closes Tue 1 Dec)
+
+**Metrics:** none again. curl to hyphenatesi.goatcounter.com gets a proxy 403 (CONNECT tunnel failed) and WebFetch's permission prompt timed out in the unattended run. Third Monday with no numbers; weekly planning is running blind. Fix options for Vedant: paste a weekly summary into this log, or allow hyphenatesi.goatcounter.com for scheduled runs.
+
+**Quick improvement:** checked internal linking instead of changing anything. Every Peelo and ForeverQR guide is linked from every sibling guide's full list (Peelo: 18 inbound each; ForeverQR: 12 each), and church-bulletin is already in event-check-in's "More guides". Nothing to fix, so nothing pushed besides this log.
+
+**This week's three target topics:**
+1. **Tue (Peelo): Mercari listing photos.** Why: next reseller guide in the backlog; Black Friday/holiday weekend is peak listing time for resellers, and the reseller long-tail is where Peelo can win (the remove.bg query is saturated). Open Mercari's own photo/listing help first and check its current photo count and aspect ratio (don't assume square; Poshmark moved to 3:4). Link it from the eBay and Poshmark guides via related.py.
+2. **Wed (ForeverQR): holiday market / craft fair booth QR sign.** Why: December craft fairs and holiday markets are this month's real use; a vendor needs one printed sign that keeps working at every fair (shop link, Instagram, payment page they already have). Static fits perfectly because the sign is reused all season. No claims about payment apps beyond "link to the page you already use"; size/distance from existing sources. Doesn't overlap existing guides (restaurant menu, product packaging, Instagram) — link to those instead.
+3. **Thu (improve): last pre-shutdown pass on the remove.bg pages.** Why: final working day before 1 Dec. Retry remove.bg/faq and /pricing; if they load, confirm 9:00 CET and the credits details and update "Checked" dates. Prepare (don't publish) the past-tense wording so the Thu 3 Dec switch is quick. If time: link the Mercari guide from remove-bg-shutting-down's marketplace bullet.
+
+**Backlog:** Depop (check aspect ratio), Vinted guides; Dec 3 past-tense pass; yard sale sign (spring); BatchBG side-by-side test.
+
+**Needs Vedant:** GoatCounter access (paste numbers or allow the domain) — three weeks blind. Still open: post Nov 20 threads 1–3; iPhone Peelo fix (segment.js); $9 vs $19 decision; optional 3:4 framing.
