@@ -304,3 +304,21 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Backlog:** Depop (check aspect ratio), Vinted guides; Dec 3 past-tense pass; yard sale sign (spring); BatchBG side-by-side test.
 
 **Needs Vedant:** GoatCounter access (paste numbers or allow the domain) — three weeks blind. Still open: post Nov 20 threads 1–3; iPhone Peelo fix (segment.js); $9 vs $19 decision; optional 3:4 framing.
+
+## 2026-11-24 (Tue) — New Peelo guide: Mercari listing photos
+
+**Did (live on main):**
+- https://hyphenatesi.com/peelo/mercari-listing-photos-background/ — Mercari photo rules (12 photos, plain backgrounds, natural light, show every side and flaws, own photos only) and the key angle: Photoroom's 19 Nov 2026 case study says Mercari tested white-background replacement and seller conversion/sell-through went *down*, so it shipped a one-tap background blur instead. Guide recommends Peelo's Blur background (CTA `?bg=blur&format=original`) for everyday items, white/light grey for small boxed/branded items, and honesty about flaws. Clearly labelled as a vendor case study; says it doesn't state which country's app.
+- Related links: eBay and Poshmark guides now link to Mercari (replacing eBay→Poshmark and Poshmark→remove-white-background in their hand-picked lists; both still appear in the full lists). Added to peelo/index.html #guides, homepage hub, peelo/sitemap.xml (2026-11-24) and sitemap index lastmod.
+
+**Sources (opened today via fetch):** Mercari Help Center "Creating a Listing" (12 photos, plain backgrounds, flaws; no date shown), "How It Works" (first photo, natural light), Mercari blog 31 Mar 2022 (own photos only), Photoroom Mercari customer story 19 Nov 2026. Mercari publishes no pixel size or aspect ratio, so the guide says so instead of guessing.
+
+**Checks:** tools/site_check.py — 37 pages crawled, 33 sitemap URLs, OK. No JS changed.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox, per Nov 23).
+
+**Ideas:** Peelo's Blur option is under-sold — the landing page leads with white/transparent. Possible Thursday copy item: mention "blur the room, keep it real" for resellers. Depop/Vinted guides still in backlog.
+
+**Next:** Wed — ForeverQR craft fair / holiday market booth sign. Thu — remove.bg final pre-shutdown pass (see Nov 23 plan); can add Mercari to remove-bg-shutting-down's marketplace bullet.
+
+**Needs Vedant:** nothing new. Still open: GoatCounter access, Nov 20 threads 1–3, iPhone Peelo fix (segment.js), $9 vs $19 decision, optional 3:4 framing.

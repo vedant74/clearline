@@ -356,4 +356,69 @@ sources=[
 ],
 checked="17 November 2026",
 ),
+# ---------------------------------------------------------------------------------------------
+dict(
+slug="mercari-listing-photos-background",
+title="Mercari Photo Background Remover, Free | Peelo",
+og_title="Mercari listing photos: clean backgrounds that still look real",
+description="Clean up Mercari listing photos in your browser: blur or replace a messy background, keep the real item and its flaws visible. Free, no app or signup.",
+crumb="Mercari listing photos",
+h1="Mercari listing photos: a clean background that still looks real",
+lede="Mercari asks for plain backgrounds, natural light and honest photos of the item you're actually selling. A messy room behind the item is the usual problem. Here's how to fix that without making the listing look like a stock photo, which matters more on Mercari than you might think.",
+cta=dict(href="?bg=blur&format=original", label="Open Peelo with a blurred background", note="Keeps your item sharp and softens the room behind it. Full resolution, nothing uploaded."),
+body="""
+<h2>What Mercari asks for</h2>
+<p>From Mercari's own help pages:</p>
+<ul>
+<li><strong>Up to 12 photos per listing.</strong> The first photo is the one shoppers see first, so Mercari says to make it your best. You can reorder photos at any time.</li>
+<li><strong>Plain backgrounds.</strong> "Plain backgrounds are the best so there aren't any distractions."</li>
+<li><strong>Natural light,</strong> to show the item's exact colour.</li>
+<li><strong>Every side, and every flaw.</strong> Mercari asks you to photograph all sides and to "photograph and call out any of the item's flaws".</li>
+<li><strong>Your own photos.</strong> Mercari's selling tips say you must photograph your item yourself; photos from other websites aren't allowed.</li>
+</ul>
+<p>The help pages don't give a required pixel size or shape, so a normal phone photo is fine. Check how your first photo is cropped in the listing preview before you publish.</p>
+
+<h2>White isn't automatically better on Mercari</h2>
+<p>This is the useful surprise. In a case study published in November 2026 by Photoroom, the company that supplies Mercari's photo AI, Mercari's team says it first tried replacing sellers' backgrounds with plain white, and that seller conversion and sell-through rates went <em>down</em>. It switched to a one-tap <strong>background blur</strong> in the camera instead, and says sellers published more items with it.</p>
+<p>That's a vendor's write-up of one marketplace's test, not a law of selling, and it doesn't say which country's app the test ran in. But it fits how Mercari feels: it's a person-to-person marketplace, and a photo that looks like a real item in a real home can read as more trustworthy than a catalogue cut-out. So a sensible default is:</p>
+<ul>
+<li><strong>Blur the background</strong> for clothes, home goods and most everyday items. The room is still there, just out of focus.</li>
+<li><strong>Use plain white or light grey</strong> for small, boxed or branded items (electronics, games, cosmetics, collectibles) where a clean catalogue look is normal.</li>
+<li><strong>Try both on a few listings</strong> and keep whatever sells for you.</li>
+</ul>
+<p>If your Mercari app's camera already has a blur button, that's the quickest route for photos you take in the app. Peelo helps when you shoot first and list later, prepare photos on a computer, crosslist, or want control over how strong the blur is.</p>
+
+<h2>How Peelo's blur works</h2>
+<p>Peelo finds the item, keeps it sharp at full resolution, and blurs only what's behind it, with a <em>Blur amount</em> slider from subtle to heavy. With <em>Original size</em> framing your photo keeps its shape and pixel size. It all runs in your browser, so your photos aren't uploaded anywhere.</p>
+<p>Light blur is usually best. Too much, and the edge where the sharp item meets the soft background starts to look cut out, especially around hair, fur, fringe and fluffy knits. Check those edges with the before/after slider and use <em>Refine edges → Restore</em> to paint back anything that got clipped.</p>
+
+<h2>Keep the photos honest</h2>
+<p>Only change the background, never the item. Don't brush out stains, scratches, pilling or missing parts: Mercari asks you to show flaws, and a buyer who gets something worse than the photos isn't going to leave a good review. Background editing belongs on your first photo and maybe one or two others; close-ups of tags, labels and wear are better left exactly as shot.</p>
+
+<h2>Crosslisting the same item</h2>
+<p>Peelo saves an ordinary file to your device, so you can make one version per marketplace from the same photo: a blurred cover for Mercari, a <a href="../ebay-white-background-photos/">white square for eBay</a> and a <a href="../poshmark-cover-photo-background/">3:4 portrait for Poshmark</a>.</p>
+""",
+steps_title="How to clean up a Mercari listing photo",
+steps=[
+"<strong>Shoot in natural light</strong> with the whole item in frame and a little space around it.",
+"<strong>Open <a href=\"../?bg=blur&amp;format=original\">Peelo with a blurred background</a></strong> and add your photo. The first run downloads the AI model once (about 91 MB); after that it loads from your browser's cache.",
+"<strong>Set the blur.</strong> Start light and raise <em>Blur amount</em> only until the room stops being distracting. For a clean catalogue look, pick White or a light colour instead.",
+"<strong>Check the edges</strong> with the before/after slider; use <em>Refine edges</em> to restore clipped parts or erase leftovers.",
+"<strong>Download JPG</strong> and add it as the first photo of your Mercari listing, followed by your unedited close-ups and flaw photos.",
+],
+faqs=[
+("How many photos can a Mercari listing have?", "Up to 12, according to Mercari's help center. The first one is what shoppers see first, and you can rearrange them whenever you want."),
+("Should Mercari photos have a white background?", "Mercari asks for plain, uncluttered backgrounds, not white specifically. In Photoroom's case study, Mercari reports that switching sellers to white backgrounds lowered conversion and sell-through, and that a background blur worked better. White still suits small boxed or branded items."),
+("Does Mercari have its own background tool?", "Photoroom's November 2026 case study describes a one-tap background blur built into Mercari's camera. It doesn't say which country's app or when it launched, so check what your app shows. Peelo is an alternative for photos you've already taken or edit on a computer."),
+("Can I do several listing photos at once?", "Yes. Batch mode applies the same background to 3 photos at a time for free; Batch Pro, a one-time purchase, handles up to 200 per run."),
+("Is Peelo free, and are my photos uploaded?", "It's free at full resolution with no account or watermark, and photos are processed in your browser on your device, not uploaded."),
+],
+sources=[
+("Mercari Help Center: Creating a Listing", "https://www.mercari.com/us/help_center/topics/listing/guides/creating-a-listing/", "“You can add up to 12 photos”; “Plain backgrounds are the best”; photograph every side and any flaws; first photo is what shoppers see"),
+("Mercari Help Center: How It Works", "https://www.mercari.com/us/help_center/topics/account/guides/how-it-works/", "make the first photo your best; natural lighting for the item's colour"),
+("Mercari Blog: 6 ways to optimize your listings (31 March 2022)", "https://blog.mercari.com/us/6-ways-to-optimize-your-listings-for-more-mercari-sales", "you must photograph your item yourself; photos from other websites are prohibited"),
+("Photoroom: Mercari customer story (19 November 2026)", "https://www.photoroom.com/customer-stories/mercari", "white-background test lowered seller conversion and sell-through; one-tap background blur in the camera instead (vendor case study)"),
+],
+checked="24 November 2026",
+),
 ]

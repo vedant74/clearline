@@ -79,11 +79,16 @@ R = {
     "ebay-white-background-photos": [
         ("white-background-amazon-product-photo", "Amazon's stricter pure-white main image rules"),
         ("bulk-background-remover", "a whole folder of listing photos, resized to 1600 px"),
-        ("poshmark-cover-photo-background", "if you crosslist to Poshmark, which now uses 3:4 portrait photos"),
+        ("mercari-listing-photos-background", "if you crosslist to Mercari, where a blurred background may beat white"),
+    ],
+    "mercari-listing-photos-background": [
+        ("ebay-white-background-photos", "a white square for the same item on eBay"),
+        ("poshmark-cover-photo-background", "a 3:4 portrait cover for the same item on Poshmark"),
+        ("bulk-background-remover", "the same background on several listing photos at once"),
     ],
     "poshmark-cover-photo-background": [
         ("ebay-white-background-photos", "crosslisting the same item on eBay"),
         ("bulk-background-remover", "clean up several listing photos with one set of settings"),
-        ("remove-white-background", "if your item was shot on a plain backdrop"),
+        ("mercari-listing-photos-background", "crosslisting to Mercari, with a blurred rather than white background"),
     ],
 }
