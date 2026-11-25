@@ -322,3 +322,21 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Next:** Wed — ForeverQR craft fair / holiday market booth sign. Thu — remove.bg final pre-shutdown pass (see Nov 23 plan); can add Mercari to remove-bg-shutting-down's marketplace bullet.
 
 **Needs Vedant:** nothing new. Still open: GoatCounter access, Nov 20 threads 1–3, iPhone Peelo fix (segment.js), $9 vs $19 decision, optional 3:4 framing.
+
+## 2026-11-25 (Wed) — New ForeverQR guide: craft fair / holiday market booth sign
+
+**Did (live on main):**
+- https://hyphenatesi.com/foreverqr/craft-fair-qr-code/ — "Craft Fair QR Code Sign That Never Expires". Angle: one reusable booth sign (and tag code) pointing at a shop or links page you control, so browsers who don't buy at the table can find you later. Payment section: use the payment app's own code (Venmo business profile QR, Square Payment Link QR), with Square's caveat that a deactivated link stops working for anyone you shared it with. Size table (tag 2 cm / table 10 cm / aisle 20 cm via 10:1 rule), placement, glare, weather, contrast. CTA presets caption "Shop online and see where we'll be next" (checked: preset loads, no page errors).
+- Added to every ForeverQR guide's "More guides", foreverqr/index.html guide list, homepage hub, foreverqr/sitemap.xml (2026-11-25); bumped sitemap index + sitemap-pages lastmods.
+
+**Sources (opened today via fetch):** Venmo Help "QR codes for Business Profiles" (scan to pay; download/print PDF; no date shown), Square Help 7105 "Create and share payment links" (share via QR; deactivated/deleted links become unavailable). Size/margin sources reused from the church guide. Not used: Castle Ink printing post (only partly read verbatim) and any Cash App claim (unverified).
+
+**Checks:** tools/site_check.py — 38 pages crawled, 34 sitemap URLs, OK. No JS changed.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox).
+
+**Ideas:** a short "Pay here / Shop online" two-code sign layout would suit market sellers, but that's a feature (needs approval). Craft-fair guide could later link to a Peelo product-photo guide for makers' online shops (cross-tool link; Thursday item).
+
+**Next:** Thu — remove.bg final pre-shutdown pass (see Nov 23 plan); add Mercari to remove-bg-shutting-down's marketplace bullet. Fri — distribution scan (include holiday-market/maker forums for the new guide).
+
+**Needs Vedant:** nothing new. Still open: GoatCounter access, Nov 20 threads 1–3, iPhone Peelo fix (segment.js), $9 vs $19 decision, optional 3:4 framing.
