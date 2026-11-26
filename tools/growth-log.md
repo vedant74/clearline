@@ -340,3 +340,26 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Next:** Thu — remove.bg final pre-shutdown pass (see Nov 23 plan); add Mercari to remove-bg-shutting-down's marketplace bullet. Fri — distribution scan (include holiday-market/maker forums for the new guide).
 
 **Needs Vedant:** nothing new. Still open: GoatCounter access, Nov 20 threads 1–3, iPhone Peelo fix (segment.js), $9 vs $19 decision, optional 3:4 framing.
+
+## 2026-11-26 (Thu, Thanksgiving) — Improve what exists: final pre-shutdown pass + cross-links
+
+**Did (live on main):**
+- https://hyphenatesi.com/peelo/remove-bg-shutting-down/ — marketplace bullet now names Mercari and links the new Mercari guide ("where a blurred background may beat white"), via tools/peelo-guides/pages_new.py + regenerate. Sitemap lastmod 2026-11-26. "Checked" date left at 19 Nov because nothing was re-verified today.
+- https://hyphenatesi.com/foreverqr/craft-fair-qr-code/ — first cross-tool link: Related guides now includes Peelo's Etsy listing photos guide (makers whose sign points at their shop). Sitemap lastmod 2026-11-26.
+- Sitemap index: peelo + foreverqr lastmod 2026-11-26.
+
+**Not done:** remove.bg/pricing and remove.bg/faq still can't be fetched in unattended runs (permission prompt times out), so 9:00 CET and the credits details remain as verified 29 Oct (official) / 19 Nov (Photoroom summary).
+
+**Prepared for Thu 3 Dec (not published): past-tense pass, keep URLs**
+- shutting-down title: "remove.bg Shut Down on Dec 1, 2026: What to Use Now" (51 chars). Description: "remove.bg's standalone website closed on 1 December 2026 and moved to Canva. Free ways to remove backgrounds now, and what happened to credits." (144).
+- Lede/body: "will no longer be available from" → "closed on 1 December 2026 at 9:00am CET (per its pricing page notice)"; replace the "before the cutoff" checklist with "If you had credits or a subscription" (credits expired; annual plans pro-rata refund per Photoroom's summary; invoices no longer downloadable — say "reportedly"). FAQ "When does remove.bg shut down?" → "When did remove.bg shut down?".
+- remove-bg-alternative: change "is closing"/"closes" phrasing to past tense; keep comparison as is. First try to load remove.bg (it may redirect to Canva — if so, note the redirect target as fact only if seen).
+- Update "Checked" dates only for what is actually re-opened.
+
+**Checks:** tools/site_check.py — 38 pages crawled, 34 sitemap URLs, OK. No JS changed.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox).
+
+**Next:** Fri — distribution scan (holiday-market/maker forums for the craft fair guide; remove.bg shutdown threads peak around 1 Dec). Mon — metrics + plan. Thu 3 Dec — past-tense pass above.
+
+**Needs Vedant:** nothing new. Still open: GoatCounter access, Nov 20 threads 1–3, iPhone Peelo fix (segment.js), $9 vs $19 decision, optional 3:4 framing. Optional: open remove.bg/faq yourself before 1 Dec.
