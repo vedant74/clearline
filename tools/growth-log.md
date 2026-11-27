@@ -363,3 +363,39 @@ Range Oct 19 – Nov 10: **46 visits** total. Pages: / 18, /peelo 11, /foreverqr
 **Next:** Fri — distribution scan (holiday-market/maker forums for the craft fair guide; remove.bg shutdown threads peak around 1 Dec). Mon — metrics + plan. Thu 3 Dec — past-tense pass above.
 
 **Needs Vedant:** nothing new. Still open: GoatCounter access, Nov 20 threads 1–3, iPhone Peelo fix (segment.js), $9 vs $19 decision, optional 3:4 framing. Optional: open remove.bg/faq yourself before 1 Dec.
+
+## 2026-11-27 (Fri, Black Friday) — Distribution + market scan
+
+**Published:** nothing (Friday is scan-only). Site checks run before pushing this log.
+
+**Metrics:** not attempted (GoatCounter unreachable from the sandbox, per Nov 23).
+
+**Threads (Vedant posts; nothing posted by the agent).** All opened today via fetch. Peelo price read from config.js ($19, 3 free in batch). Reddit still not loadable; Etsy community and one Adobe /t5/ URL refused the fetch.
+
+1. **Microsoft Tech Community, "How to remove background from picture without losing quality?"** (asked 24 Aug 2026, 12 replies, latest 25 Nov 2026, no lock shown): https://techcommunity.microsoft.com/t5/windows-11/how-to-remove-background-from-picture-without-losing-quality/m-p/4549848
+   Beginner wants the subject on a transparent or plain background without losing quality. Replies are mostly CLI tools (rembg, BiRefNet, withoutbg) and Paint's Remove background; several are self-promotion, one disclosed. Best current thread — still active this week.
+   Suggested reply: "If you don't want to install Python tools: I made a free browser page, Peelo (https://hyphenatesi.com/peelo/). The image is processed on your own computer (nothing uploaded), and the PNG comes out at the original resolution (up to 16 MP), not a shrunken preview. If the AI misses a bit of hair or leaves a shadow, there's an erase/restore brush to fix it. For a plain background instead of transparent, pick white or a colour before downloading. Paint's built-in option mentioned above is fine for quick jobs too. Why some free removers lose quality: https://hyphenatesi.com/peelo/remove-background-full-resolution-free/"
+2. **Adobe Community, "Unable to access old dynamic QR codes"** (Adobe Express; asked 10 Sep 2026, 11 replies, latest 30 Oct 2026, marked Answered but not locked): https://community.adobe.com/questions-329/unable-to-access-old-dynamic-qr-codes-1641275
+   Asker can't edit links on older dynamic codes (Manage shows only the 3 newest). Community Manager (10 Sep 2026) says dynamic QR management "isn't fully released or documented yet". Related Adobe threads: Oct 2025 "feature was in beta and then removed to be finalized"; a Nov 2026 thread (closed) says the team is "still actively working on getting this functionality restored", no timeline. Asker says printed code still works (user report, not official).
+   Suggested reply: "For anything you print next, it's worth avoiding the dependency entirely: a static QR code stores your URL directly in the pattern, so it works with no account and can't be switched off. I made a free generator for that, ForeverQR (https://hyphenatesi.com/foreverqr/). The trade-off is you can't edit a static code after printing, so point it at a page you control (your own site or a links page) and change that page instead. That gives you 'editable' without relying on any QR service. More on why codes stop working: https://hyphenatesi.com/foreverqr/why-did-my-qr-code-stop-working/"
+3. **eBay Community, "Ebay's Background Removing Tool Greatly Improved"** (date not shown in fetch, 6 comments): https://community.ebay.com/t5/Selling/Ebay-s-Background-Removing-Tool-Greatly-Improved/td-p/33965767
+   OP is happy; replies say the newer tool dropped the eraser/paintbrush, adds grey to already-cut-out images, and one seller gets ~25% success. Check the date before posting; only post if recent.
+   Suggested reply: "Agree it's better, but losing the eraser hurts on the ones it gets wrong. For those I use a free browser tool I made, Peelo (https://hyphenatesi.com/peelo/): it has an erase/restore brush, and you can download the JPG already on pure white at full resolution, then upload it as a normal photo so eBay's remover isn't involved (that should also avoid the grey being added). eBay notes: https://hyphenatesi.com/peelo/ebay-white-background-photos/"
+4. **Microsoft Tech Community, "How can I remove background from a photo or picture in bulk?"** (asked 14 Jul 2026, 10 replies, latest 15 Jul 2026, no lock): https://techcommunity.microsoft.com/discussions/windows11/how-can-i-remove-background-from-a-photo-or-picture-in-bulk/4537147
+   Hundreds of product shots; wants folder-in, folder-out, free. Quiet since July; low priority. Be honest that for hundreds a CLI (rembg, already suggested) is the free route.
+   Suggested reply: "If command-line tools aren't your thing: I made Peelo (https://hyphenatesi.com/peelo/bulk-background-remover/), which runs in the browser on your own PC (nothing uploaded) at full resolution, with an option to put everything on white. Batch does 3 photos at a time free; unlimited batch is a one-time $19. For hundreds of images and zero cost, rembg's folder mode mentioned above is the honest answer."
+- Skipped: MS "What is the best image background remover app for PC?" (Sep 2026, all replies same day, dead); Shopify "Batch background removal for product images" (OP is a tool developer doing research, not a buyer); Adobe Express "Manage QR button disabled" (closed to replies); FestivalNet "How I set up QR payment signs… and a tool I made" (another maker's promo thread).
+
+**Competitor/market moves:**
+- **Adobe Express dynamic QR management is unreliable**: beta feature removed Oct 2025 ("removed to be finalized"), partially back in 2026, then "Manage QR" disabled again; Community Manager 20 Nov 2026: still working on restoring it, no timeline. Real "my QR code can't be edited/stopped working" demand from a big brand's users. Only facts from staff posts above should be used; no official help page exists.
+- remove.bg shutdown query fully saturated by vendor posts (deep-image, poof.bg, madfable, carbackground, LassoCut, dev.to "I built my own" posts). No new forum threads found; Reddit still unreachable.
+- eBay's remover: users report the newer version lost manual eraser/brush. Reinforces Peelo's Refine brush as the eBay angle.
+
+**Product/content ideas (ranked):**
+1. **ForeverQR guide (Wed): "Adobe Express QR code can't be edited / Manage QR missing"** — rescue topic, cite the staff posts by date, explain static vs dynamic, how to check whether a printed code is static (scan shows the final URL vs an Adobe short link — verify how Adobe's links look before claiming), what to do. No speculation on Adobe's plans. Needs no approval.
+2. Marketplace presets in batch (unchanged; needs approval).
+3. Peelo hero copy test naming "erase/restore brush" for the eBay pain (copy-only Thursday item).
+
+**Next:** Mon — metrics + plan (remove.bg closes Tue 1 Dec). Thu 3 Dec — past-tense pass (wording prepared in Nov 26 entry). Wed 2 Dec candidate — Adobe Express QR rescue guide.
+
+**Needs Vedant:** post threads 1 and 2 (best; #1 active this week). Still open: GoatCounter access, iPhone Peelo fix (segment.js), $9 vs $19 decision, optional 3:4 framing.
